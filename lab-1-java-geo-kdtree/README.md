@@ -63,24 +63,21 @@
 ./gradlew :profile-runner:run --args="--mode knn --seconds 120 --n 100000 --k 20"
 ```
 
-JFR (CPU-профиль + аллокации):
+JFR-сборка + рендер флеймграфов тулингом async-profiler (`jfrconv`) — скрипт [tools/capture-jfr.sh](tools/capture-jfr.sh) (пути внутри рассчитаны на эту машину; JFR пишется JVM, конвертация — `java -jar tools/../.profiler-tools/.../jfrconv`, см. скрипт):
 
 ```
-./gradlew :profile-runner:run --args="--mode radius --seconds 60" &
-jcmd $(jps | awk '/ProfileRunner/{print $1}') JFR.start duration=60s filename=report/profiles/radius.jfr
+bash tools/capture-jfr.sh radius 30 my-radius-profile   # -> report/profiles/my-radius-profile.{jfr,html,collapsed}
 ```
 
 async-profiler: приаттачиться к PID процесса `ProfileRunner` (см. `jps`), собрать flamegraph (`-e cpu -f flamegraph.html`). Артефакты — в `report/profiles/` (создаётся при первом прогоне).
 
 ## Baseline и оптимизации
 
-Baseline повторяет семантику C#-версии, включая намеренные неэффективности:
-- pruning far-ветки только по широте (`axisLowerBoundMeters` = 0 для longitude-сплитов);
-- kNN-кандидаты хранятся в списке с re-sort на каждый кандидат (без heap);
-- полная сортировка результатов после поиска.
+Baseline повторяет семантику C#-версии, включая намеренные неэффективности. Поверх него выполнен perf-цикл (коммиты `perf:`): отсечение дальних веток по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарная вставка в best-лист, кэш косинусов широт. Итог на n=21 544: radius ×7.9 (112 608 ops/s), kNN k=1 ×8.2 (114 157), kNN k=20 ×3.5 (27 325).
 
-Оптимизации производительности выполняются отдельно в perf-фазе (коммиты `perf:`), этот документ и код не должны смешивать оба этапа.
+## Отчёты
 
-## Отчёт
-
-Артефакты профилирования и сравнения — по мере выполнения perf-фазы в `report/`.
+- [baseline.md](baseline.md) — анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и план оптимизаций
+- [report/perf.md](report/perf.md) — журнал perf-цикла: замеры до/после каждого шага, разбор профилей, финальный полный прогон
+- `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/images/` — скриншоты
+- `report/bench/` — сырые JMH-результаты по каждому шагу
