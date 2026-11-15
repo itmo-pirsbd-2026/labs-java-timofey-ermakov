@@ -24,17 +24,17 @@ final class GeoDistance {
     /**
      * Squared haversine term of the central angle between two points, clamped to [0, 1].
      * Strictly monotone in the distance: comparing {@code a} values is equivalent to
-     * comparing distances in meters.
+     * comparing distances in meters. The cosine factors come precomputed — the query
+     * latitude cosine is computed once per search, the node latitude cosine is cached in
+     * the node — which removes two {@code cos} calls per visited node.
      */
-    static double haversineA(double lat1, double lng1, double lat2, double lng2) {
+    static double haversineA(double lat1, double lng1, double lat2, double lng2, double cosLat1, double cosLat2) {
         double dLat = degreesToRadians(lat2 - lat1);
         double dLng = degreesToRadians(lng2 - lng1);
-        double rLat1 = degreesToRadians(lat1);
-        double rLat2 = degreesToRadians(lat2);
 
         double sinLat = Math.sin(dLat / 2);
         double sinLng = Math.sin(dLng / 2);
-        double a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
+        double a = sinLat * sinLat + cosLat1 * cosLat2 * sinLng * sinLng;
         return Math.min(1.0, a);
     }
 
@@ -61,21 +61,25 @@ final class GeoDistance {
      * as a candidate edge keeps the bound valid across the +/-180 wrap, where points beyond
      * the split in value can still be geographically near the query.
      */
-    static double axisLowerBoundA(double queryLat, double queryLng, double splitValue, boolean splitByLatitude) {
+    static double axisLowerBoundA(
+            double queryLat,
+            double queryLng,
+            double splitValue,
+            boolean splitByLatitude,
+            double queryCosLat) {
         if (splitByLatitude) {
             double dPhi = degreesToRadians(splitValue - queryLat);
             double s = Math.sin(dPhi / 2);
             return s * s;
         }
 
-        double qLat = degreesToRadians(queryLat);
         double qLng = degreesToRadians(queryLng);
         double splitDelta = degreesToRadians(splitValue) - qLng;
         double splitSeparation = Math.min(Math.abs(splitDelta), 2 * Math.PI - Math.abs(splitDelta));
         double seamSeparation = Math.PI - Math.abs(qLng);
         double entrySeparation = Math.min(splitSeparation, seamSeparation);
 
-        double x = Math.abs(Math.cos(qLat)) * Math.sin(entrySeparation);
+        double x = Math.abs(queryCosLat) * Math.sin(entrySeparation);
         return (1 - Math.sqrt(1 - x * x)) / 2;
     }
 

@@ -73,8 +73,9 @@ public final class GeoKdTreeIndex {
         }
 
         double radiusThreshold = GeoDistance.aFromMeters(radiusMeters);
+        double queryCosLat = Math.cos(Math.toRadians(latitude));
         List<GeoSearchResult> results = new ArrayList<>();
-        searchRadiusCore(root, latitude, longitude, radiusThreshold, results);
+        searchRadiusCore(root, latitude, longitude, radiusThreshold, queryCosLat, results);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
     }
@@ -93,8 +94,9 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
+        double queryCosLat = Math.cos(Math.toRadians(latitude));
         List<GeoSearchResult> best = new ArrayList<>(k);
-        searchKNearestCore(root, latitude, longitude, k, best);
+        searchKNearestCore(root, latitude, longitude, k, queryCosLat, best);
         List<GeoSearchResult> results = new ArrayList<>(best);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
@@ -124,8 +126,10 @@ public final class GeoKdTreeIndex {
             double queryLat,
             double queryLng,
             double radiusThreshold,
+            double queryCosLat,
             List<GeoSearchResult> results) {
-        double a = GeoDistance.haversineA(queryLat, queryLng, node.point.latitude(), node.point.longitude());
+        double a = GeoDistance.haversineA(
+                queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         if (a <= radiusThreshold) {
             results.add(new GeoSearchResult(node.point, GeoDistance.metersFromA(a)));
         }
@@ -137,16 +141,16 @@ public final class GeoKdTreeIndex {
         Node farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
-            searchRadiusCore(nearBranch, queryLat, queryLng, radiusThreshold, results);
+            searchRadiusCore(nearBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
         }
 
         if (farBranch == null) {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude);
+        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
         if (axisLowerBound <= radiusThreshold) {
-            searchRadiusCore(farBranch, queryLat, queryLng, radiusThreshold, results);
+            searchRadiusCore(farBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
         }
     }
 
@@ -155,8 +159,10 @@ public final class GeoKdTreeIndex {
             double queryLat,
             double queryLng,
             int k,
+            double queryCosLat,
             List<GeoSearchResult> best) {
-        double a = GeoDistance.haversineA(queryLat, queryLng, node.point.latitude(), node.point.longitude());
+        double a = GeoDistance.haversineA(
+                queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         tryAddBest(best, node.point, a, k);
 
         boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
@@ -166,16 +172,16 @@ public final class GeoKdTreeIndex {
         Node farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
-            searchKNearestCore(nearBranch, queryLat, queryLng, k, best);
+            searchKNearestCore(nearBranch, queryLat, queryLng, k, queryCosLat, best);
         }
 
         if (farBranch == null) {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude);
+        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
         if (best.size() < k || axisLowerBound <= worstA(best)) {
-            searchKNearestCore(farBranch, queryLat, queryLng, k, best);
+            searchKNearestCore(farBranch, queryLat, queryLng, k, queryCosLat, best);
         }
     }
 
@@ -246,12 +252,17 @@ public final class GeoKdTreeIndex {
     private static final class Node {
         final GeoPoint point;
         final int depth;
+
+        /** cos of the point latitude in radians — fixed per node, reused by every search. */
+        final double cosLatitude;
+
         Node left;
         Node right;
 
         Node(GeoPoint point, int depth) {
             this.point = point;
             this.depth = depth;
+            this.cosLatitude = Math.cos(Math.toRadians(point.latitude()));
         }
     }
 }
