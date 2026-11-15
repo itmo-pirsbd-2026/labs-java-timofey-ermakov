@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation(project(":"))
     implementation(libs.jmh.core)
+    implementation(libs.gson)
     annotationProcessor(libs.jmh.generator.annprocess)
 }
 

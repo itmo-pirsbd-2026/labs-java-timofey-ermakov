@@ -1,0 +1,10 @@
+{
+  "nValues": [10000, 21544, 35938],
+  "kValues": [1, 20],
+  "radiusValues": [100, 5000],
+  "launchCount": 1,
+  "warmupCount": 15,
+  "iterationCount": 40,
+  "gcProfiler": true,
+  "resultDir": "build/jmh-results"
+}
