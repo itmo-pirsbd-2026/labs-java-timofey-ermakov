@@ -5,6 +5,7 @@
   "launchCount": 1,
   "warmupCount": 15,
   "iterationCount": 40,
+  "iterationTimeMs": 500,
   "gcProfiler": true,
   "resultDir": "build/jmh-results"
 }

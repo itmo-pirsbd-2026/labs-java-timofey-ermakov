@@ -33,6 +33,7 @@ public final class BenchSettings {
     private static final int DEFAULT_LAUNCH_COUNT = 1;
     private static final int DEFAULT_WARMUP_COUNT = 15;
     private static final int DEFAULT_ITERATION_COUNT = 40;
+    private static final int DEFAULT_ITERATION_TIME_MS = 500;
     private static final boolean DEFAULT_GC_PROFILER = true;
     private static final String DEFAULT_RESULT_DIR = "build/jmh-results";
 
@@ -48,6 +49,7 @@ public final class BenchSettings {
     private final int launchCount;
     private final int warmupCount;
     private final int iterationCount;
+    private final int iterationTimeMs;
     private final boolean gcProfiler;
     private final String resultDir;
 
@@ -58,6 +60,7 @@ public final class BenchSettings {
             int launchCount,
             int warmupCount,
             int iterationCount,
+            int iterationTimeMs,
             boolean gcProfiler,
             String resultDir) {
         this.nValues = nValues;
@@ -66,6 +69,7 @@ public final class BenchSettings {
         this.launchCount = launchCount;
         this.warmupCount = warmupCount;
         this.iterationCount = iterationCount;
+        this.iterationTimeMs = iterationTimeMs;
         this.gcProfiler = gcProfiler;
         this.resultDir = resultDir;
     }
@@ -99,6 +103,10 @@ public final class BenchSettings {
 
     public int iterationCount() {
         return iterationCount;
+    }
+
+    public int iterationTimeMs() {
+        return iterationTimeMs;
     }
 
     public boolean gcProfiler() {
@@ -157,6 +165,9 @@ public final class BenchSettings {
         if (holder.warmupCount < 0 || holder.iterationCount < 1) {
             throw new IllegalArgumentException("warmupCount must be >= 0 and iterationCount must be positive.");
         }
+        if (holder.iterationTimeMs < 1) {
+            throw new IllegalArgumentException("iterationTimeMs must be positive.");
+        }
         if (holder.resultDir == null || holder.resultDir.isBlank()) {
             throw new IllegalArgumentException("resultDir must not be blank.");
         }
@@ -168,6 +179,7 @@ public final class BenchSettings {
                 holder.launchCount,
                 holder.warmupCount,
                 holder.iterationCount,
+                holder.iterationTimeMs,
                 holder.gcProfiler,
                 holder.resultDir);
     }
@@ -184,6 +196,7 @@ public final class BenchSettings {
                 DEFAULT_LAUNCH_COUNT,
                 SMOKE_WARMUP_COUNT,
                 SMOKE_ITERATION_COUNT,
+                DEFAULT_ITERATION_TIME_MS,
                 DEFAULT_GC_PROFILER,
                 resultDir);
     }
@@ -196,6 +209,7 @@ public final class BenchSettings {
         int launchCount = DEFAULT_LAUNCH_COUNT;
         int warmupCount = DEFAULT_WARMUP_COUNT;
         int iterationCount = DEFAULT_ITERATION_COUNT;
+        int iterationTimeMs = DEFAULT_ITERATION_TIME_MS;
         boolean gcProfiler = DEFAULT_GC_PROFILER;
         String resultDir = DEFAULT_RESULT_DIR;
     }
@@ -208,6 +222,7 @@ public final class BenchSettings {
                 + ", launchCount=" + launchCount
                 + ", warmupCount=" + warmupCount
                 + ", iterationCount=" + iterationCount
+                + ", iterationTimeMs=" + iterationTimeMs
                 + ", gcProfiler=" + gcProfiler
                 + ", resultDir='" + resultDir + "'}";
     }
