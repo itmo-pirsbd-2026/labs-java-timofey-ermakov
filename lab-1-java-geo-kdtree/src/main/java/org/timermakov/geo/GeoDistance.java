@@ -28,15 +28,33 @@ final class GeoDistance {
 
     /**
      * Lower bound (meters) of how far the query is from the region beyond the split axis.
-     * Only latitude crossings are bounded; longitude crossings are approximated by 0.0 —
-     * mirrors the C# baseline, which never prunes on the longitude axis.
+     * Latitude: the nearest point of a latitude circle sits at the query longitude, so the
+     * same-longitude crossing distance is the exact bound. Longitude: the nearest point of
+     * the meridian great circle is {@code R * asin(|cos(phi) * sin(deltaLng)|)} away — any
+     * point beyond the meridian lies on the other side of its plane, so its geodesic crosses
+     * the plane and cannot be shorter.
+     *
+     * <p>Longitude is cyclic, though: points just across the +/-180 seam are geographically
+     * near the query even when their value lies beyond the split, and their shortest arc
+     * crosses the seam instead of the split meridian. The plane bound is therefore only
+     * applied when the far side cannot reach the seam: {@code [splitValue, +180]} requires
+     * {@code queryLng >= 0}, {@code [-180, splitValue]} requires {@code queryLng <= 0}.
      */
     static double axisLowerBoundMeters(double queryLat, double queryLng, double splitValue, boolean splitByLatitude) {
         if (splitByLatitude) {
             return haversineMeters(queryLat, queryLng, splitValue, queryLng);
         }
 
-        return 0.0;
+        if (splitValue > queryLng && queryLng < 0) {
+            return 0.0;
+        }
+        if (splitValue < queryLng && queryLng > 0) {
+            return 0.0;
+        }
+
+        double deltaLng = degreesToRadians(splitValue - queryLng);
+        double planeAngle = Math.min(1.0, Math.abs(Math.cos(degreesToRadians(queryLat)) * Math.sin(deltaLng)));
+        return EARTH_RADIUS_METERS * Math.asin(planeAngle);
     }
 
     private static double degreesToRadians(double value) {

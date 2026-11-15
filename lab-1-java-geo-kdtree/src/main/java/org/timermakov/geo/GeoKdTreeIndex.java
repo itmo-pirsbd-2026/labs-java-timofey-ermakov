@@ -7,10 +7,11 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * In-memory KD-tree index over lat/lng points (baseline port of the C# <code>GeoKdTreeIndex</code>).
+ * In-memory KD-tree index over lat/lng points (port of the C# <code>GeoKdTreeIndex</code>).
  * Nodes alternate split axis by depth: even depth splits by latitude, odd by longitude.
- * Search prunes the far branch using a haversine-based lower bound — for the baseline only
- * latitude splits are pruned (see {@link GeoDistance#axisLowerBoundMeters}).
+ * Search prunes the far branch using a lower bound on the crossing distance
+ * (see {@link GeoDistance#axisLowerBoundMeters}); unlike the C# baseline, longitude
+ * splits are pruned too.
  */
 public final class GeoKdTreeIndex {
 
