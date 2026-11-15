@@ -28,9 +28,13 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.register<JavaExec>("bench") {
     group = "verification"
-    description = "Runs JMH benchmarks with parameters from config/bench.settings.json."
+    description = "Runs JMH benchmarks with parameters from config/bench.settings.json (or -PbenchConfig=<path>)."
     mainClass = "org.timermakov.geo.benchmarks.BenchMain"
     classpath = sourceSets["main"].runtimeClasspath
+    val benchConfig = providers.gradleProperty("benchConfig").orNull
+    if (benchConfig != null) {
+        environment("HW1_BENCH_CONFIG", rootProject.file(benchConfig).absolutePath)
+    }
 }
 
 tasks.register<JavaExec>("benchSmoke") {
