@@ -1,6 +1,7 @@
 package org.timermakov.geo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,8 +172,7 @@ public final class GeoKdTreeIndex {
     private static void tryAddBest(List<GeoSearchResult> best, GeoPoint point, double distanceMeters, int k) {
         GeoSearchResult candidate = new GeoSearchResult(point, distanceMeters);
         if (best.size() < k) {
-            best.add(candidate);
-            best.sort(GeoSearchResultComparators.WORST_FIRST);
+            insertSorted(best, candidate);
             return;
         }
 
@@ -181,8 +181,20 @@ public final class GeoKdTreeIndex {
             return;
         }
 
-        best.set(0, candidate);
-        best.sort(GeoSearchResultComparators.WORST_FIRST);
+        best.removeFirst();
+        insertSorted(best, candidate);
+    }
+
+    /**
+     * Keeps the best list ordered worst-first by inserting at the binary-search position
+     * instead of re-sorting the whole list for every candidate.
+     */
+    private static void insertSorted(List<GeoSearchResult> best, GeoSearchResult candidate) {
+        int index = Collections.binarySearch(best, candidate, GeoSearchResultComparators.WORST_FIRST);
+        if (index < 0) {
+            index = -index - 1;
+        }
+        best.add(index, candidate);
     }
 
     private static boolean isStrictlyBetter(GeoSearchResult candidate, GeoSearchResult currentWorst) {
