@@ -11,8 +11,12 @@ import java.util.Objects;
  * In-memory KD-tree index over lat/lng points (port of the C# <code>GeoKdTreeIndex</code>).
  * Nodes alternate split axis by depth: even depth splits by latitude, odd by longitude.
  * Search prunes the far branch using a lower bound on the crossing distance
- * (see {@link GeoDistance#axisLowerBoundMeters}); unlike the C# baseline, longitude
+ * (see {@link GeoDistance#axisLowerBoundA}); unlike the C# baseline, longitude
  * splits are pruned too.
+ *
+ * <p>Comparisons and pruning run in a-space ({@code a = sin^2(d/2R)}, strictly monotone in
+ * the distance), so the hot path avoids {@code sqrt}/{@code asin}; exact meters are computed
+ * only for radius hits and accepted kNN candidates.
  */
 public final class GeoKdTreeIndex {
 
@@ -24,6 +28,13 @@ public final class GeoKdTreeIndex {
 
     /** Absolute longitude limit, degrees. */
     private static final double LONGITUDE_LIMIT = 180.0;
+
+    /**
+     * a-space comparisons bridge a meters round-trip (a → meters → a), which can drift a
+     * few ulps; candidates within this margin of the worst entry fall through to the exact
+     * meters comparison instead of being rejected in a-space.
+     */
+    private static final double A_COMPARISON_MARGIN_ULPS = 8.0;
 
     private final Map<String, GeoPoint> pointsById = new HashMap<>();
     private Node root;
@@ -49,7 +60,7 @@ public final class GeoKdTreeIndex {
 
     /**
      * All indexed points within {@code radiusMeters} of the query position,
-     * ordered by distance then id. Baseline: results are fully sorted.
+     * ordered by distance then id.
      */
     public List<GeoSearchResult> searchRadius(double latitude, double longitude, double radiusMeters) {
         validateCoordinate(latitude, longitude);
@@ -61,15 +72,16 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
+        double radiusThreshold = GeoDistance.aFromMeters(radiusMeters);
         List<GeoSearchResult> results = new ArrayList<>();
-        searchRadiusCore(root, latitude, longitude, radiusMeters, results);
+        searchRadiusCore(root, latitude, longitude, radiusThreshold, results);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
     }
 
     /**
      * The {@code k} nearest indexed points to the query position, ordered by distance then id.
-     * Baseline: candidates are kept in a re-sorted best list (no heap) and results are re-sorted.
+     * Candidates are kept in a best list ordered worst-first; insertion is by binary search.
      */
     public List<GeoSearchResult> searchKNearest(double latitude, double longitude, int k) {
         validateCoordinate(latitude, longitude);
@@ -111,12 +123,11 @@ public final class GeoKdTreeIndex {
             Node node,
             double queryLat,
             double queryLng,
-            double radiusMeters,
+            double radiusThreshold,
             List<GeoSearchResult> results) {
-        double distance = GeoDistance.haversineMeters(
-                queryLat, queryLng, node.point.latitude(), node.point.longitude());
-        if (distance <= radiusMeters) {
-            results.add(new GeoSearchResult(node.point, distance));
+        double a = GeoDistance.haversineA(queryLat, queryLng, node.point.latitude(), node.point.longitude());
+        if (a <= radiusThreshold) {
+            results.add(new GeoSearchResult(node.point, GeoDistance.metersFromA(a)));
         }
 
         boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
@@ -126,16 +137,16 @@ public final class GeoKdTreeIndex {
         Node farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
-            searchRadiusCore(nearBranch, queryLat, queryLng, radiusMeters, results);
+            searchRadiusCore(nearBranch, queryLat, queryLng, radiusThreshold, results);
         }
 
         if (farBranch == null) {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundMeters(queryLat, queryLng, splitAxis, splitByLatitude);
-        if (axisLowerBound <= radiusMeters) {
-            searchRadiusCore(farBranch, queryLat, queryLng, radiusMeters, results);
+        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude);
+        if (axisLowerBound <= radiusThreshold) {
+            searchRadiusCore(farBranch, queryLat, queryLng, radiusThreshold, results);
         }
     }
 
@@ -145,9 +156,8 @@ public final class GeoKdTreeIndex {
             double queryLng,
             int k,
             List<GeoSearchResult> best) {
-        double distance = GeoDistance.haversineMeters(
-                queryLat, queryLng, node.point.latitude(), node.point.longitude());
-        tryAddBest(best, node.point, distance, k);
+        double a = GeoDistance.haversineA(queryLat, queryLng, node.point.latitude(), node.point.longitude());
+        tryAddBest(best, node.point, a, k);
 
         boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
         double queryAxis = splitByLatitude ? queryLat : queryLng;
@@ -163,26 +173,43 @@ public final class GeoKdTreeIndex {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundMeters(queryLat, queryLng, splitAxis, splitByLatitude);
-        if (best.size() < k || axisLowerBound <= currentWorstDistance(best)) {
+        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude);
+        if (best.size() < k || axisLowerBound <= worstA(best)) {
             searchKNearestCore(farBranch, queryLat, queryLng, k, best);
         }
     }
 
-    private static void tryAddBest(List<GeoSearchResult> best, GeoPoint point, double distanceMeters, int k) {
-        GeoSearchResult candidate = new GeoSearchResult(point, distanceMeters);
+    /**
+     * Accepts a candidate into the best list based on its a-space term. The list stays
+     * ordered worst-first by exact meters (insertion via binary search); exact meters are
+     * computed only when a candidate is accepted.
+     */
+    private static void tryAddBest(List<GeoSearchResult> best, GeoPoint point, double a, int k) {
         if (best.size() < k) {
-            insertSorted(best, candidate);
+            insertSorted(best, new GeoSearchResult(point, GeoDistance.metersFromA(a)));
             return;
         }
 
         GeoSearchResult worst = best.getFirst();
+        double worstA = GeoDistance.aFromMeters(worst.distanceMeters());
+        double margin = Math.ulp(worstA) * A_COMPARISON_MARGIN_ULPS;
+        if (a > worstA + margin) {
+            return;
+        }
+
+        // Borderline candidate: decide exactly, in meters, with the id tie-break.
+        GeoSearchResult candidate = new GeoSearchResult(point, GeoDistance.metersFromA(a));
         if (!isStrictlyBetter(candidate, worst)) {
             return;
         }
 
         best.removeFirst();
         insertSorted(best, candidate);
+    }
+
+    /** a-space term of the current worst entry (the list head, ordered worst-first). */
+    private static double worstA(List<GeoSearchResult> best) {
+        return GeoDistance.aFromMeters(best.getFirst().distanceMeters());
     }
 
     /**
@@ -204,10 +231,6 @@ public final class GeoKdTreeIndex {
         }
 
         return candidate.point().id().compareTo(currentWorst.point().id()) < 0;
-    }
-
-    private static double currentWorstDistance(List<GeoSearchResult> best) {
-        return best.isEmpty() ? Double.POSITIVE_INFINITY : best.getFirst().distanceMeters();
     }
 
     private static void validateCoordinate(double latitude, double longitude) {

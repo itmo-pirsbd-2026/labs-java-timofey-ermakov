@@ -2,18 +2,31 @@ package org.timermakov.geo;
 
 /**
  * Shared geo math helpers. Package-private for parity with the C# internal <code>GeoDistance</code>.
+ *
+ * <p>The haversine metric is expressed through the squared term
+ * {@code a = sin^2(dLat/2) + cos(lat1)*cos(lat2)*sin^2(dLng/2)}: the distance
+ * {@code 2R*asin(sqrt(a))} is a strictly monotone function of {@code a}, so search
+ * comparisons and pruning run in a-space without {@code sqrt}/{@code asin}; exact meters
+ * are computed only for hits and accepted candidates.
  */
 final class GeoDistance {
 
     /** Mean Earth radius in meters used by the haversine metric. */
     static final double EARTH_RADIUS_METERS = 6_371_000.0;
 
+    private static final double TWO_EARTH_RADIUS_METERS = 2 * EARTH_RADIUS_METERS;
+
     private static final double DEGREES_TO_RADIANS = Math.PI / 180.0;
 
     private GeoDistance() {
     }
 
-    static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {
+    /**
+     * Squared haversine term of the central angle between two points, clamped to [0, 1].
+     * Strictly monotone in the distance: comparing {@code a} values is equivalent to
+     * comparing distances in meters.
+     */
+    static double haversineA(double lat1, double lng1, double lat2, double lng2) {
         double dLat = degreesToRadians(lat2 - lat1);
         double dLng = degreesToRadians(lng2 - lng1);
         double rLat1 = degreesToRadians(lat1);
@@ -22,26 +35,37 @@ final class GeoDistance {
         double sinLat = Math.sin(dLat / 2);
         double sinLng = Math.sin(dLng / 2);
         double a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
-        double c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
-        return EARTH_RADIUS_METERS * c;
+        return Math.min(1.0, a);
+    }
+
+    /** Exact haversine distance in meters for an a-space term. */
+    static double metersFromA(double a) {
+        return TWO_EARTH_RADIUS_METERS * Math.asin(Math.sqrt(a));
+    }
+
+    /** a-space term of a distance in meters: {@code sin^2(meters / (2R))}. */
+    static double aFromMeters(double meters) {
+        double s = Math.sin(meters / TWO_EARTH_RADIUS_METERS);
+        return s * s;
     }
 
     /**
-     * Lower bound (meters) of how far the query is from the region beyond the split axis.
+     * Lower bound in a-space of how far the query is from the region beyond the split axis.
      * Latitude: the nearest point of a latitude circle sits at the query longitude, so the
-     * same-longitude crossing distance is the exact bound.
-     *
-     * <p>Longitude: the far branch is a contiguous longitude arc whose edges are the split
-     * meridian and the +/-180 seam. Every geodesic into the arc crosses its nearest edge —
-     * the meridian with the smaller separation from the query — so the distance to that
-     * edge meridian, {@code R * asin(|cos(phi) * sin(s)|)} with {@code s} the edge
-     * separation, bounds all points in the arc. Taking the seam as a candidate edge makes
-     * the bound valid across the +/-180 wrap, where points beyond the split in value can
-     * still be geographically near the query.
+     * bound is {@code sin^2(dPhi/2)} — the exact same-latitude-crossing term. Longitude: the
+     * far branch is a contiguous longitude arc whose edges are the split meridian and the
+     * +/-180 seam; every geodesic into the arc crosses its nearest edge — the meridian with
+     * the smaller separation {@code s} from the query — so the meters bound
+     * {@code R * asin(|cos(phi)| * sin(s))} converts to a-space as
+     * {@code (1 - sqrt(1 - x^2)) / 2} with {@code x = |cos(phi)| * sin(s)}. Taking the seam
+     * as a candidate edge keeps the bound valid across the +/-180 wrap, where points beyond
+     * the split in value can still be geographically near the query.
      */
-    static double axisLowerBoundMeters(double queryLat, double queryLng, double splitValue, boolean splitByLatitude) {
+    static double axisLowerBoundA(double queryLat, double queryLng, double splitValue, boolean splitByLatitude) {
         if (splitByLatitude) {
-            return haversineMeters(queryLat, queryLng, splitValue, queryLng);
+            double dPhi = degreesToRadians(splitValue - queryLat);
+            double s = Math.sin(dPhi / 2);
+            return s * s;
         }
 
         double qLat = degreesToRadians(queryLat);
@@ -51,8 +75,8 @@ final class GeoDistance {
         double seamSeparation = Math.PI - Math.abs(qLng);
         double entrySeparation = Math.min(splitSeparation, seamSeparation);
 
-        double planeAngle = Math.min(1.0, Math.abs(Math.cos(qLat)) * Math.sin(entrySeparation));
-        return EARTH_RADIUS_METERS * Math.asin(planeAngle);
+        double x = Math.abs(Math.cos(qLat)) * Math.sin(entrySeparation);
+        return (1 - Math.sqrt(1 - x * x)) / 2;
     }
 
     private static double degreesToRadians(double value) {
