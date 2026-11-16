@@ -27,7 +27,7 @@ public final class BenchSettings {
     private static final String SMOKE_ENV_VALUE = "1";
     private static final String CONFIG_FILE_NAME = "bench.settings.json";
 
-    private static final int[] DEFAULT_N_VALUES = {10_000, 21_544, 35_938};
+    private static final int[] DEFAULT_N_VALUES = {100, 200, 500, 1000, 2500, 5000, 10_000, 20_000, 35_000, 50_000, 75_000, 100_000};
     private static final int[] DEFAULT_K_VALUES = {1, 20};
     private static final int[] DEFAULT_RADIUS_VALUES = {100, 5_000};
     private static final int DEFAULT_LAUNCH_COUNT = 1;
