@@ -5,6 +5,10 @@ build/
 !**/src/test/**/build/
 .kotlin
 
+# Local benchmark staging (scripts, configs, logs of the measurement runs)
+.bench-collection/
+tools/__pycache__/
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml

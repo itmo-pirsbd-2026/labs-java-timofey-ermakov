@@ -16,6 +16,7 @@
 ./gradlew build                # сборка + все тесты (включая perf smoke)
 ./gradlew test                 # тесты (property: 80 детерминированных кейсов vs full-scan oracle + unit + perf)
 ./gradlew :benchmarks:bench    # полный JMH-прогон (warmup 15 x 0.5s, 40 итераций — долго)
+./gradlew :benchmarks:benchPublic   # бенчмарки публичной библиотеки (Smile KDTree на ECEF-3D)
 ./gradlew :benchmarks:benchSmoke    # один быстрый прогон для проверки запуска (HW1_BENCH_SMOKE=1)
 ./gradlew :profile-runner:run --args="--mode radius --seconds 120 --n 100000 --radius 1000 --k 20"
 ```
@@ -26,7 +27,7 @@
 
 | Поле | Значение по умолчанию | Смысл |
 |---|---|---|
-| `nValues` | `[10000, 21544, 35938]` | сетка размеров датасета (аналог `[Params]` в C#) |
+| `nValues` | `[100, 200, 500, 1000, 2500, 5000, 10000, 20000, 35000, 50000, 75000, 100000]` | сетка размеров датасета (аналог `[Params]` в C#) |
 | `kValues` | `[1, 20]` | параметры K для kNN |
 | `radiusValues` | `[100, 5000]` | радиусы для radius-поиска |
 | `launchCount` | `1` | число fork'ов JMH на бенчмарк |
@@ -36,7 +37,7 @@
 | `gcProfiler` | `true` | JMH gc-профайлер (аналог MemoryDiagnoser) |
 | `resultDir` | `build/jmh-results` | каталог текстовых результатов |
 
-Переопределения:
+Замеры цикла оптимизаций снимались в двух конфигурациях: baseline и финальное состояние — warmup 15 + 40 итераций (`config/bench.settings.json`), промежуточные состояния — warmup 10 + 20 итераций (переопределение `HW1_BENCH_CONFIG`). Переопределения:
 - `HW1_BENCH_CONFIG=<путь>` — нестандартный путь к конфигу
 - `HW1_BENCH_SMOKE=1` — smoke-режим (один кейс, без warmup; эквивалент `benchSmoke`)
 
@@ -64,15 +65,16 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 
 ## Baseline и оптимизации
 
-Изначально я перенёс C# код на Java без оптимизаций. 
+Изначально я перенёс C# код на Java без оптимизаций.
 
-Поверх него выполнено исследование производительности и оптимизации: отсечение дальних веток по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарная вставка в best-лист, кэш косинусов широт. 
+Поверх него выполнено исследование производительности и оптимизации: отсечение дальних веток по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарная вставка в best-лист, кэш косинусов широт.
 
-Итог на n=21 544: radius ×7.9 (112 608 ops/s), kNN k=1 ×8.2 (114 157), kNN k=20 ×3.5 (27 325).
+Итог на расширенной сетке (N до 100000, см. [report/perf.md](report/perf.md)): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20; финал быстрее полного перебора в 570–1075 раз на n=100000. Есть сравнение с C#-версией и с публичной библиотекой Smile (ECEF-3D).
 
 ## Отчёты
 
 - [baseline.md](baseline.md) — анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и план оптимизаций
-- [report/perf.md](report/perf.md) — журнал perf-цикла: замеры до/после каждого шага, разбор профилей, финальный полный прогон
-- `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/images/` — скриншоты
-- `report/bench/` — сырые JMH-результаты по каждому шагу
+- [report/perf.md](report/perf.md) — журнал perf-цикла: методика, замеры по каждому состоянию, сравнение с C# и Smile, выводы
+- `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/` — по каждому состоянию на расширенной сетке; `report/profiles/images/` — скриншоты
+- `report/bench/` — сырые JMH-результаты; `report/bench/grid/` — замеры по состояниям на расширенной сетке + сводные таблицы
+- `report/charts/` — графики (throughput, speedup, кратности, Java против C#, против Smile), генератор — `tools/make_charts.py`
