@@ -74,7 +74,8 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 ## Отчёты
 
 - [baseline.md](baseline.md) — анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и план оптимизаций
-- [report/perf.md](report/perf.md) — журнал perf-цикла: методика, замеры по каждому состоянию, сравнение с C# и Smile, выводы
+- [report/perf.md](report/perf.md) — журнал perf-цикла: методика, замеры по каждому состоянию, сравнение с C#, выводы
+- [report/smile-comparison.md](report/smile-comparison.md) — сравнение финала с публичной библиотекой Smile (ECEF): разбор разрыва, точность, план улучшения сравнения
 - `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/` — по каждому состоянию на расширенной сетке; `report/profiles/images/` — скриншоты
 - `report/bench/` — сырые JMH-результаты; `report/bench/grid/` — замеры по состояниям на расширенной сетке + сводные таблицы
 - `report/charts/` — графики (throughput, speedup, кратности, Java против C#, против Smile), генератор — `tools/make_charts.py`
