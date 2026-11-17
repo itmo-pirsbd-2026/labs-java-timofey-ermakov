@@ -1,0 +1,121 @@
+Benchmark                                                              (n)  (radiusMeters)   Mode  Cnt         Score        Error   Units
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        100             100  thrpt   40  31625026.525 ± 530143.918   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          100             100  thrpt   40       964.613 ±     16.152  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     100             100  thrpt   40        32.000 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               100             100  thrpt   40       108.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                100             100  thrpt   40        65.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        100            5000  thrpt   40  23623049.115 ± 384952.283   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          100            5000  thrpt   40       720.532 ±     11.729  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     100            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               100            5000  thrpt   40        98.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                100            5000  thrpt   40        53.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        200             100  thrpt   40  29461191.936 ± 431344.704   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          200             100  thrpt   40       898.661 ±     13.161  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     200             100  thrpt   40        32.000 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               200             100  thrpt   40       101.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                200             100  thrpt   40        58.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        200            5000  thrpt   40  21813809.987 ± 211613.621   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          200            5000  thrpt   40       665.405 ±      6.454  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     200            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               200            5000  thrpt   40        90.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                200            5000  thrpt   40        48.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        500             100  thrpt   40  25833065.338 ± 361617.356   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          500             100  thrpt   40       787.886 ±     11.019  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     500             100  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               500             100  thrpt   40       107.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                500             100  thrpt   40        56.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                        500            5000  thrpt   40  22698909.070 ± 300208.715   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate          500            5000  thrpt   40       692.322 ±      9.169  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm     500            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count               500            5000  thrpt   40        94.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time                500            5000  thrpt   40        50.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       1000             100  thrpt   40  22362924.624 ± 295677.481   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         1000             100  thrpt   40       682.122 ±      9.018  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    1000             100  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              1000             100  thrpt   40        92.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               1000             100  thrpt   40        50.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       1000            5000  thrpt   40  19866289.667 ± 281298.842   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         1000            5000  thrpt   40       605.971 ±      8.573  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    1000            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              1000            5000  thrpt   40        82.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               1000            5000  thrpt   40        46.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       2500             100  thrpt   40  20541090.224 ± 325275.549   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         2500             100  thrpt   40       626.543 ±      9.913  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    2500             100  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              2500             100  thrpt   40        85.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               2500             100  thrpt   40        48.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       2500            5000  thrpt   40  18274376.557 ± 360149.541   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         2500            5000  thrpt   40       557.387 ±     10.977  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    2500            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              2500            5000  thrpt   40        75.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               2500            5000  thrpt   40        41.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       5000             100  thrpt   40  18742184.756 ± 374255.248   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         5000             100  thrpt   40       571.653 ±     11.409  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    5000             100  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              5000             100  thrpt   40        77.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               5000             100  thrpt   40        41.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                       5000            5000  thrpt   40  17903457.520 ± 319860.698   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate         5000            5000  thrpt   40       546.124 ±      9.759  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm    5000            5000  thrpt   40        32.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count              5000            5000  thrpt   40        74.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time               5000            5000  thrpt   40        40.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      10000             100  thrpt   40  14922083.890 ± 382213.968   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        10000             100  thrpt   40       910.259 ±     23.284  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   10000             100  thrpt   40        64.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             10000             100  thrpt   40        84.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              10000             100  thrpt   40        52.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      10000            5000  thrpt   40  13401043.835 ± 266850.455   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        10000            5000  thrpt   40       817.461 ±     16.317  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   10000            5000  thrpt   40        64.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             10000            5000  thrpt   40        91.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              10000            5000  thrpt   40        52.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      20000             100  thrpt   40  11791042.617 ± 513885.442   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        20000             100  thrpt   40      1078.990 ±     47.026  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   20000             100  thrpt   40        96.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             20000             100  thrpt   40        83.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              20000             100  thrpt   40        57.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      20000            5000  thrpt   40  12196161.803 ± 203910.125   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        20000            5000  thrpt   40      1116.052 ±     18.657  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   20000            5000  thrpt   40        96.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             20000            5000  thrpt   40       103.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              20000            5000  thrpt   40        63.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      35000             100  thrpt   40   9461526.062 ± 161744.159   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        35000             100  thrpt   40      1442.853 ±     24.719  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   35000             100  thrpt   40       160.001 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             35000             100  thrpt   40        98.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              35000             100  thrpt   40        68.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      35000            5000  thrpt   40   8731711.278 ± 137952.599   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        35000            5000  thrpt   40      1331.676 ±     21.044  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   35000            5000  thrpt   40       160.002 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             35000            5000  thrpt   40        95.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              35000            5000  thrpt   40        66.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      50000             100  thrpt   40   7880860.450 ± 108463.126   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        50000             100  thrpt   40      1682.730 ±     23.202  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   50000             100  thrpt   40       224.002 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             50000             100  thrpt   40       111.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              50000             100  thrpt   40        79.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      50000            5000  thrpt   40   6311863.764 ±  95694.493   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        50000            5000  thrpt   40      1347.718 ±     20.465  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   50000            5000  thrpt   40       224.002 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             50000            5000  thrpt   40       104.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              50000            5000  thrpt   40        69.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      75000             100  thrpt   40   5801529.977 ±  94454.758   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        75000             100  thrpt   40      1769.467 ±     28.803  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   75000             100  thrpt   40       320.002 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             75000             100  thrpt   40       109.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              75000             100  thrpt   40        80.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                      75000            5000  thrpt   40   4771243.180 ±  74266.819   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate        75000            5000  thrpt   40      1455.266 ±     22.635  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm   75000            5000  thrpt   40       320.003 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count             75000            5000  thrpt   40       100.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time              75000            5000  thrpt   40        67.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                     100000             100  thrpt   40   4513280.778 ±  80928.523   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate       100000             100  thrpt   40      1789.676 ±     32.090  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm  100000             100  thrpt   40       416.003 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count            100000             100  thrpt   40       110.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time             100000             100  thrpt   40        83.000                   ms
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius                     100000            5000  thrpt   40   3546430.909 ±  78281.938   ops/s
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate       100000            5000  thrpt   40      1406.319 ±     31.048  MB/sec
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.alloc.rate.norm  100000            5000  thrpt   40       416.004 ±      0.001    B/op
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.count            100000            5000  thrpt   40        94.000               counts
+GeoKdTreeSmileRadiusBenchmarks.querySmileRadius:gc.time             100000            5000  thrpt   40        68.000                   ms
