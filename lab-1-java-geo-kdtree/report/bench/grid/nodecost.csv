@@ -1,0 +1,9 @@
+dataset,query,v6_nodes,v6_nsnode,v7_nodes,v7_nsnode,smile_nodes,smile_nsnode
+uniform,radius r=100,261.8,52.3,261.9,12.2,30.5,18.3
+uniform,radius r=5000,273.8,75.1,316.8,14.4,39.0,21.9
+uniform,kNN k=1,261.8,96.5,260.3,41.9,28.3,32.0
+uniform,kNN k=20,307.4,147.1,409.5,55.1,62.6,53.3
+clustered,radius r=100,33.3,50.1,33.3,36.2,20.6,41.2
+clustered,radius r=5000,46.0,58.3,49.1,44.6,45.7,26.5
+clustered,kNN k=1,33.1,143.1,33.0,73.0,20.3,42.2
+clustered,kNN k=20,115.4,187.4,136.4,101.0,192.3,33.5
