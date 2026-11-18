@@ -175,6 +175,10 @@ public final class GeoKdTreeIndex {
             int k,
             double queryCosLat,
             List<GeoSearchResult> best) {
+        if (PROFILING_COUNT_NODES) {
+            PROFILING_VISITED_NODES++;
+        }
+
         double a = GeoDistance.haversineA(
                 queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         tryAddBest(best, node.point, a, k);

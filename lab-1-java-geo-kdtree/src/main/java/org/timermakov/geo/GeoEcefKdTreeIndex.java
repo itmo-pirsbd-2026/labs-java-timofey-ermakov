@@ -155,7 +155,7 @@ public final class GeoEcefKdTreeIndex {
             return;
         }
 
-        double bound = axisLowerBoundChordSq(node, splitByLatitude, q);
+        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
         if (bound <= chordSqThreshold) {
             searchRadiusCore(farBranch, q, queryLat, queryLng, chordSqThreshold, results);
         }
@@ -189,29 +189,47 @@ public final class GeoEcefKdTreeIndex {
             return;
         }
 
-        double bound = axisLowerBoundChordSq(node, splitByLatitude, q);
+        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
         if (best.size() < k || bound <= best.getFirst().chordSq()) {
             searchKNearestCore(farBranch, q, queryLat, queryLng, k, best);
         }
     }
 
     /**
-     * Lower bound of the squared chord distance from the query to any point beyond this
-     * node's split. Latitude far side is the half-space z ≥ R·sin φ0 — exact distance.
-     * Longitude far side is the raw-degree wedge: for split ≥ 0 it is an intersection of
-     * two half-planes (bound = max of the two face distances), for split < 0 a union
-     * (bound = min) — both are exact; the anti-meridian face handles the ±180 wrap.
+     * Lower bound of the squared chord distance from the query to the far side of this
+     * node's split, sign-aware: the far region depends on which side the query is on.
+     * Latitude far side is a half-space z ≥ R·sin φ0 or z ≤ R·sin φ0 — exact distance.
+     * Longitude far side is the raw-degree wedge on one side of the split meridian;
+     * for split ≥ 0 the wedge is an intersection of two half-planes (bound = max of
+     * the two face distances), for split < 0 a union (bound = min) — exact, with the
+     * anti-meridian face carrying the ±180 wrap. The mirror cases flip both violation
+     * signs and the union/intersection flag.
      */
-    private static double axisLowerBoundChordSq(Node node, boolean splitByLatitude, double[] q) {
+    private static double axisLowerBoundChordSq(Node node, boolean splitByLatitude, double[] q,
+                                                double queryLat, double queryLng) {
         if (splitByLatitude) {
-            double gap = node.latPlaneZ - q[2];
+            double gap = queryLat < node.point.latitude()
+                    ? node.latPlaneZ - q[2]
+                    : q[2] - node.latPlaneZ;
             return gap > 0.0 ? gap * gap : 0.0;
         }
 
         double v1 = node.lngPlaneNx * q[0] + node.lngPlaneNy * q[1];
-        double viol1 = v1 < 0.0 ? -v1 : 0.0;
-        double viol2 = q[1] < 0.0 ? -q[1] : 0.0;
-        double chosen = node.lngFarIsUnion ? Math.min(viol1, viol2) : Math.max(viol1, viol2);
+        double splitLng = node.point.longitude();
+        boolean farRight = queryLng < splitLng;
+        boolean union = farRight ? splitLng < 0.0 : splitLng > 0.0;
+
+        double viol1;
+        double viol2;
+        if (farRight) {
+            viol1 = v1 < 0.0 ? -v1 : 0.0;
+            viol2 = q[1] < 0.0 ? -q[1] : 0.0;
+        } else {
+            viol1 = v1 > 0.0 ? v1 : 0.0;
+            viol2 = q[1] > 0.0 ? q[1] : 0.0;
+        }
+
+        double chosen = union ? Math.min(viol1, viol2) : Math.max(viol1, viol2);
         return chosen * chosen;
     }
 
@@ -284,7 +302,8 @@ public final class GeoEcefKdTreeIndex {
         return TWO_EARTH_RADIUS_METERS * Math.asin(ratio);
     }
 
-    static void toEcef(double latitude, double longitude, double[] out) {
+    /** Converts lat/lng degrees to ECEF coordinates on the library's sphere. */
+    public static void toEcef(double latitude, double longitude, double[] out) {
         double lat = latitude * DEGREES_TO_RADIANS;
         double lng = longitude * DEGREES_TO_RADIANS;
         double cosLat = Math.cos(lat);
@@ -318,9 +337,6 @@ public final class GeoEcefKdTreeIndex {
         final double lngPlaneNx;
         final double lngPlaneNy;
 
-        /** Longitude far region is a union of half-planes (split < 0) or an intersection. */
-        final boolean lngFarIsUnion;
-
         Node left;
         Node right;
 
@@ -339,10 +355,8 @@ public final class GeoEcefKdTreeIndex {
                     ? EARTH_RADIUS_METERS * Math.sin(point.latitude() * DEGREES_TO_RADIANS)
                     : 0.0;
 
-            double splitLngRadians = point.longitude() * DEGREES_TO_RADIANS;
-            this.lngPlaneNx = splitByLatitude ? 0.0 : -Math.sin(splitLngRadians);
+            double splitLngRadians = point.longitude() * DEGREES_TO_RADIANS;            this.lngPlaneNx = splitByLatitude ? 0.0 : -Math.sin(splitLngRadians);
             this.lngPlaneNy = splitByLatitude ? 0.0 : Math.cos(splitLngRadians);
-            this.lngFarIsUnion = !splitByLatitude && point.longitude() < 0.0;
         }
     }
 }
