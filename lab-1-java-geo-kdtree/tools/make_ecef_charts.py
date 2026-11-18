@@ -171,15 +171,19 @@ def chart_nodecost():
         width = 0.2
 
         fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+        present = [i for i in IMPLS if (dataset, queries[0], i.lower()) in groups]
+        slot = {impl: i for i, impl in enumerate(present)}
         for ax, metric, ylabel, title in (
             (axes[0], "nodes", "узлов / запрос", "Посещённые узлы на запрос, среднее ± 95% ДИ"),
             (axes[1], "nsnode", "нс / узел", "Цена одного узла, среднее ± 95% ДИ"),
         ):
-            for i, impl in enumerate(IMPLS):
+            for impl in present:
                 col = impl.lower()
                 vals = [groups[(dataset, q, col)][metric][0] for q in queries]
                 errs = [groups[(dataset, q, col)][metric][1] for q in queries]
-                ax.bar([p + (i - 1) * width for p in x], vals, width=width * 0.9,
+                i = slot[impl]
+                ax.bar([p + (i - (len(present) - 1) / 2.0) * width for p in x], vals,
+                       width=width * 0.9,
                        yerr=errs, capsize=3, label=impl, color=IMPL_COLORS[impl])
             ax.set_xticks(x)
             ax.set_xticklabels(queries, fontsize=8, rotation=12)
@@ -233,11 +237,12 @@ def chart_realdata():
                 if q not in queries:
                     queries.append(q)
         x = list(range(len(queries)))
-        width = 0.27
+        present = [i for i in IMPLS if (full_ds, queries[0], i.lower()) in groups]
+        width = 0.8 / max(len(present), 1)
         fig, ax = plt.subplots(figsize=(9, 5.5))
         all_means = []
         bar_data = []
-        for i, impl in enumerate(IMPLS):
+        for i, impl in enumerate(present):
             col = impl.lower()
             vals = []
             errs = []
@@ -251,7 +256,8 @@ def chart_realdata():
         # log-scale bars cannot start at 0; start slightly below the smallest mean
         bottom = max(min(all_means) * 0.3, 1e-3)
         for i, (impl, vals, errs) in enumerate(bar_data):
-            ax.bar([p + (i - 1) * width for p in x], [v - bottom for v in vals],
+            ax.bar([p + (i - (len(bar_data) - 1) / 2.0) * width for p in x],
+                   [v - bottom for v in vals],
                    bottom=bottom, width=width * 0.9,
                    yerr=errs, capsize=3, label=impl, color=IMPL_COLORS[impl])
         ax.set_yscale("log")
