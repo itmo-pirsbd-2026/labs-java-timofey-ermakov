@@ -1,7 +1,7 @@
 package org.timermakov.geo;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,12 +95,12 @@ public final class GeoEcefKdTreeIndex {
 
         double[] q = new double[3];
         toEcef(latitude, longitude, q);
-        List<Candidate> best = new ArrayList<>(k);
+        BestBuffer best = new BestBuffer(k);
         searchKNearestCore(root, q, latitude, longitude, k, best);
 
-        List<GeoSearchResult> results = new ArrayList<>(best.size());
-        for (Candidate candidate : best) {
-            results.add(new GeoSearchResult(candidate.point(), metersFromChordSq(candidate.chordSq())));
+        List<GeoSearchResult> results = new ArrayList<>(best.size);
+        for (int i = 0; i < best.size; i++) {
+            results.add(new GeoSearchResult(best.points[i], metersFromChordSq(best.chordSq[i])));
         }
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
@@ -167,7 +167,7 @@ public final class GeoEcefKdTreeIndex {
             double queryLat,
             double queryLng,
             int k,
-            List<Candidate> best) {
+            BestBuffer best) {
         if (PROFILING_COUNT_NODES) {
             PROFILING_VISITED_NODES++;
         }
@@ -190,7 +190,7 @@ public final class GeoEcefKdTreeIndex {
         }
 
         double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
-        if (best.size() < k || bound <= best.getFirst().chordSq()) {
+        if (best.size < k || bound <= best.worstChordSq()) {
             searchKNearestCore(farBranch, q, queryLat, queryLng, k, best);
         }
     }
@@ -233,53 +233,73 @@ public final class GeoEcefKdTreeIndex {
         return chosen * chosen;
     }
 
-    /** Accepts a candidate into the worst-first best list kept in chord-squared space. */
-    private static void tryAddBest(List<Candidate> best, GeoPoint point, double chordSq, int k) {
-        if (best.size() < k) {
-            insertSorted(best, new Candidate(point, chordSq));
+    /**
+     * Primitive best buffer: chord-squared values in one array, points in another,
+     * kept ascending by chord-squared so the last slot is the current worst. Replaces
+     * the object list + comparator path (H3): no per-candidate allocations, binary
+     * search over a primitive array, element moves via arraycopy.
+     */
+    private static final class BestBuffer {
+        final double[] chordSq;
+        final GeoPoint[] points;
+        int size;
+
+        BestBuffer(int k) {
+            this.chordSq = new double[k];
+            this.points = new GeoPoint[k];
+        }
+
+        double worstChordSq() {
+            return chordSq[size - 1];
+        }
+
+        void insertAscending(GeoPoint point, double value) {
+            int index = Arrays.binarySearch(chordSq, 0, size, value);
+            if (index < 0) {
+                index = -index - 1;
+            }
+            int move = size - index;
+            if (move > 0) {
+                System.arraycopy(chordSq, index, chordSq, index + 1, move);
+                System.arraycopy(points, index, points, index + 1, move);
+            }
+            chordSq[index] = value;
+            points[index] = point;
+            size++;
+        }
+
+        void dropWorst() {
+            size--;
+            points[size] = null;
+        }
+    }
+
+    /** Accepts a candidate into the primitive worst-first best buffer. */
+    private static void tryAddBest(BestBuffer best, GeoPoint point, double chordSq, int k) {
+        if (best.size < k) {
+            best.insertAscending(point, chordSq);
             return;
         }
 
-        Candidate worst = best.getFirst();
-        double margin = Math.ulp(worst.chordSq()) * CHORD_COMPARISON_MARGIN_ULPS;
-        if (chordSq > worst.chordSq() + margin) {
+        double worstChordSq = best.worstChordSq();
+        double margin = Math.ulp(worstChordSq) * CHORD_COMPARISON_MARGIN_ULPS;
+        if (chordSq > worstChordSq + margin) {
             return;
         }
 
         // Borderline: decide exactly, in meters, with the id tie-break.
         double candidateMeters = metersFromChordSq(chordSq);
-        double worstMeters = metersFromChordSq(worst.chordSq());
+        double worstMeters = metersFromChordSq(worstChordSq);
         int byDistance = Double.compare(candidateMeters, worstMeters);
-        if (byDistance == 0 && point.id().compareTo(worst.point().id()) >= 0) {
+        if (byDistance == 0 && point.id().compareTo(best.points[k - 1].id()) >= 0) {
             return;
         }
         if (byDistance > 0) {
             return;
         }
 
-        best.removeFirst();
-        insertSorted(best, new Candidate(point, chordSq));
-    }
-
-    private static void insertSorted(List<Candidate> best, Candidate candidate) {
-        int index = Collections.binarySearch(best, candidate);
-        if (index < 0) {
-            index = -index - 1;
-        }
-        best.add(index, candidate);
-    }
-
-    private record Candidate(GeoPoint point, double chordSq) implements Comparable<Candidate> {
-        /** Worst-first: the list head is the largest chord-squared (the current worst). */
-        @Override
-        public int compareTo(Candidate other) {
-            int byChord = Double.compare(other.chordSq, chordSq);
-            if (byChord != 0) {
-                return byChord;
-            }
-
-            return point.id().compareTo(other.point.id());
-        }
+        best.dropWorst();
+        best.insertAscending(point, chordSq);
     }
 
     private static double chordSq(double[] q, Node node) {
