@@ -1,7 +1,6 @@
 package org.timermakov.geo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -234,50 +233,63 @@ public final class GeoEcefKdTreeIndex {
     }
 
     /**
-     * Primitive best buffer: chord-squared values in one array, points in another,
-     * kept ascending by chord-squared so the last slot is the current worst. Replaces
-     * the object list + comparator path (H3): no per-candidate allocations, binary
-     * search over a primitive array, element moves via arraycopy.
+     * Primitive best buffer, unsorted: candidates land at a free slot or overwrite the
+     * current worst slot; the worst slot is found by an O(k) scan only on replacement.
+     * No shifts, no per-candidate allocations (H3, iteration 2 — the sorted-array
+     * variant won in k=1 but its double arraycopy per accept regressed k=20).
      */
     private static final class BestBuffer {
         final double[] chordSq;
         final GeoPoint[] points;
+        final int capacity;
         int size;
+        int maxIndex;
 
         BestBuffer(int k) {
             this.chordSq = new double[k];
             this.points = new GeoPoint[k];
+            this.capacity = k;
         }
 
         double worstChordSq() {
-            return chordSq[size - 1];
+            return chordSq[maxIndex];
         }
 
-        void insertAscending(GeoPoint point, double value) {
-            int index = Arrays.binarySearch(chordSq, 0, size, value);
-            if (index < 0) {
-                index = -index - 1;
-            }
-            int move = size - index;
-            if (move > 0) {
-                System.arraycopy(chordSq, index, chordSq, index + 1, move);
-                System.arraycopy(points, index, points, index + 1, move);
-            }
-            chordSq[index] = value;
-            points[index] = point;
-            size++;
+        GeoPoint worstPoint() {
+            return points[maxIndex];
         }
 
-        void dropWorst() {
-            size--;
-            points[size] = null;
+        void consider(GeoPoint point, double value) {
+            if (size < capacity) {
+                chordSq[size] = value;
+                points[size] = point;
+                if (size == 0 || value > chordSq[maxIndex]) {
+                    maxIndex = size;
+                }
+                size++;
+                return;
+            }
+
+            chordSq[maxIndex] = value;
+            points[maxIndex] = point;
+            rescanMax();
+        }
+
+        private void rescanMax() {
+            int max = 0;
+            for (int i = 1; i < size; i++) {
+                if (chordSq[i] > chordSq[max]) {
+                    max = i;
+                }
+            }
+            maxIndex = max;
         }
     }
 
-    /** Accepts a candidate into the primitive worst-first best buffer. */
+    /** Accepts a candidate into the primitive best buffer (unsorted, worst-slot rewrite). */
     private static void tryAddBest(BestBuffer best, GeoPoint point, double chordSq, int k) {
         if (best.size < k) {
-            best.insertAscending(point, chordSq);
+            best.consider(point, chordSq);
             return;
         }
 
@@ -291,15 +303,14 @@ public final class GeoEcefKdTreeIndex {
         double candidateMeters = metersFromChordSq(chordSq);
         double worstMeters = metersFromChordSq(worstChordSq);
         int byDistance = Double.compare(candidateMeters, worstMeters);
-        if (byDistance == 0 && point.id().compareTo(best.points[k - 1].id()) >= 0) {
+        if (byDistance == 0 && point.id().compareTo(best.worstPoint().id()) >= 0) {
             return;
         }
         if (byDistance > 0) {
             return;
         }
 
-        best.dropWorst();
-        best.insertAscending(point, chordSq);
+        best.consider(point, chordSq);
     }
 
     private static double chordSq(double[] q, Node node) {
