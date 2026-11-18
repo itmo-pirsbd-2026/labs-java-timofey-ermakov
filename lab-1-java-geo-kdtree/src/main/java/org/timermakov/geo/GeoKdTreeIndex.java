@@ -36,6 +36,16 @@ public final class GeoKdTreeIndex {
      */
     private static final double A_COMPARISON_MARGIN_ULPS = 8.0;
 
+    /**
+     * Testing/benchmarking hook: when enabled, both search cores count every visited node
+     * into {@link #PROFILING_VISITED_NODES}. Disabled by default; the hot path cost is a
+     * single predictable branch per node.
+     */
+    public static volatile boolean PROFILING_COUNT_NODES = false;
+
+    /** Accumulator for {@link #PROFILING_COUNT_NODES}, reset by the caller between runs. */
+    public static long PROFILING_VISITED_NODES = 0;
+
     private final Map<String, GeoPoint> pointsById = new HashMap<>();
     private Node root;
 
@@ -128,6 +138,10 @@ public final class GeoKdTreeIndex {
             double radiusThreshold,
             double queryCosLat,
             List<GeoSearchResult> results) {
+        if (PROFILING_COUNT_NODES) {
+            PROFILING_VISITED_NODES++;
+        }
+
         double a = GeoDistance.haversineA(
                 queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         if (a <= radiusThreshold) {
