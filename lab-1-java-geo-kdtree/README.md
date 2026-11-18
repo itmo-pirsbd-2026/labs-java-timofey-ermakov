@@ -17,6 +17,7 @@
 ./gradlew test                 # тесты (property: 80 детерминированных кейсов vs full-scan oracle + unit + perf)
 ./gradlew :benchmarks:bench    # полный JMH-прогон (warmup 15 x 0.5s, 40 итераций — долго)
 ./gradlew :benchmarks:benchPublic   # бенчмарки публичной библиотеки (Smile KDTree на ECEF-3D)
+./gradlew :benchmarks:benchEcef     # бенчмарки экспериментального ECEF-ядра (см. report/smile-comparison.md)
 ./gradlew :benchmarks:benchSmoke    # один быстрый прогон для проверки запуска (HW1_BENCH_SMOKE=1)
 ./gradlew :profile-runner:run --args="--mode radius --seconds 120 --n 100000 --radius 1000 --k 20"
 ```
