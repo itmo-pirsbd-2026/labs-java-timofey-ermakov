@@ -12,6 +12,7 @@ Outputs PNG charts into report/charts/ecef/ and report/charts/realdata/.
 from __future__ import annotations
 
 import csv
+import statistics
 import sys
 from pathlib import Path
 
@@ -22,6 +23,24 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from make_charts import Measurement, parse_jmh  # noqa: E402
+
+# Student t two-sided 95% critical values by degrees of freedom (n-1), n <= 30.
+T95 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365,
+       8: 2.306, 9: 2.262, 10: 2.228, 11: 2.201, 12: 2.179, 13: 2.160, 14: 2.145,
+       15: 2.131, 16: 2.120, 17: 2.110, 18: 2.101, 19: 2.093, 20: 2.086,
+       21: 2.080, 22: 2.074, 23: 2.069, 24: 2.064, 25: 2.060, 26: 2.056,
+       27: 2.052, 28: 2.048, 29: 2.045}
+
+
+def ci95(values):
+    """Mean and half-width of the two-sided 95% CI (Student t)."""
+    n = len(values)
+    mean = statistics.fmean(values)
+    if n < 2:
+        return mean, 0.0
+    sd = statistics.stdev(values)
+    half = T95[min(n - 1, 29)] * sd / (n ** 0.5)
+    return mean, half
 
 plt.rcParams.update({
     "font.size": 11,
@@ -97,32 +116,77 @@ def chart_throughput(data):
         plt.close(fig)
 
 
+def _group_raw(raw_file: Path):
+    """-> {(dataset, query, impl): dict(nodes=(mean,ci), nsnode=(mean,ci))}"""
+    groups: dict = {}
+    for r in csv.DictReader(raw_file.open(encoding="utf-8")):
+        key = (r["dataset"], r["query"], r["impl"])
+        groups.setdefault(key, []).append((int(r["total_ns"]), int(r["units"])))
+    out = {}
+    per_query = 500
+    for key, reps in groups.items():
+        nodes, nodes_ci = ci95([u / per_query for _, u in reps])
+        per_node = [ns / u for ns, u in reps if u > 0]
+        nsnode, nsnode_ci = ci95(per_node) if per_node else (0.0, 0.0)
+        out[key] = {"nodes": (nodes, nodes_ci), "nsnode": (nsnode, nsnode_ci)}
+    return out
+
+
+def _write_summary(raw_file: Path, summary_file: Path):
+    groups = _group_raw(raw_file)
+    with summary_file.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["dataset", "query", "v6_nodes", "v6_nsnode", "v7_nodes", "v7_nsnode",
+                    "smile_nodes", "smile_nsnode"])
+        seen = []
+        for (dataset, query, _) in groups:
+            if (dataset, query) not in seen:
+                seen.append((dataset, query))
+        for dataset, query in seen:
+            row = [dataset, query]
+            for impl in ("v6", "v7", "smile"):
+                m = groups.get((dataset, query, impl), {})
+                row += [f"{m.get('nodes', (0, 0))[0]:.1f}", f"{m.get('nsnode', (0, 0))[0]:.1f}"]
+            w.writerow(row)
+
+
 def chart_nodecost():
     out = CHARTS / "ecef"
     out.mkdir(parents=True, exist_ok=True)
-    rows = list(csv.DictReader((GRID / "nodecost.csv").open(encoding="utf-8")))
-    for dataset in ("uniform", "clustered"):
-        subset = [r for r in rows if r["dataset"] == dataset]
-        labels = [r["query"] for r in subset]
-        x = list(range(len(labels)))
+    raw = GRID / "nodecost-raw.csv"
+    if not raw.exists():
+        return
+    _write_summary(raw, GRID / "nodecost.csv")
+    groups = _group_raw(raw)
+    datasets = []
+    for (dataset, _, _) in groups:
+        if dataset not in datasets:
+            datasets.append(dataset)
+    for dataset in datasets:
+        queries = []
+        for (ds, q, _) in groups:
+            if ds == dataset and q not in queries:
+                queries.append(q)
+        x = list(range(len(queries)))
         width = 0.27
 
         fig, axes = plt.subplots(1, 2, figsize=(13, 5))
         for ax, metric, ylabel, title in (
-            (axes[0], "nodes", "узлов / запрос", "Посещённые узлы на запрос"),
-            (axes[1], "nsnode", "нс / узел", "Цена одного узла"),
+            (axes[0], "nodes", "узлов / запрос", "Посещённые узлы на запрос, среднее ± 95% ДИ"),
+            (axes[1], "nsnode", "нс / узел", "Цена одного узла, среднее ± 95% ДИ"),
         ):
             for i, impl in enumerate(IMPLS):
                 col = impl.lower()
-                vals = [float(r[f"{col}_{metric}"]) for r in subset]
+                vals = [groups[(dataset, q, col)][metric][0] for q in queries]
+                errs = [groups[(dataset, q, col)][metric][1] for q in queries]
                 ax.bar([p + (i - 1) * width for p in x], vals, width=width * 0.9,
-                       label=impl, color=IMPL_COLORS[impl])
+                       yerr=errs, capsize=3, label=impl, color=IMPL_COLORS[impl])
             ax.set_xticks(x)
-            ax.set_xticklabels(labels, fontsize=8, rotation=12)
+            ax.set_xticklabels(queries, fontsize=8, rotation=12)
             ax.set_ylabel(ylabel)
             ax.set_title(title)
             ax.legend(fontsize=9)
-        fig.suptitle(f"Разложение стоимости запроса — {dataset}, n=100000 (NodeCostRunner)", y=1.02)
+        fig.suptitle(f"Разложение стоимости запроса — {dataset}, n=100000, 15 прогонов (NodeCostRunner)", y=1.02)
         fig.savefig(out / f"nodecost-{dataset}.png")
         plt.close(fig)
 
@@ -130,25 +194,71 @@ def chart_nodecost():
 def chart_realdata():
     out = CHARTS / "realdata"
     out.mkdir(parents=True, exist_ok=True)
-    rows = list(csv.DictReader((GRID / "realdata.csv").open(encoding="utf-8")))
+    raw = GRID / "realdata-raw.csv"
+    if not raw.exists():
+        return
+
+    per_query = 500
+    groups: dict = {}
+    for r in csv.DictReader(raw.open(encoding="utf-8")):
+        key = (r["dataset"], r["query"], r["impl"])
+        groups.setdefault(key, []).append(int(r["total_ns"]))
+
+    # regenerate the summary csv as means (microseconds per query)
+    with (GRID / "realdata.csv").open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["dataset", "query", "v6_us", "v7_us", "smile_us"])
+        seen = []
+        for (dataset, query, _) in groups:
+            if (dataset, query) not in seen:
+                seen.append((dataset, query))
+        for dataset, query in seen:
+            row = [dataset, query]
+            for impl in ("v6", "v7", "smile"):
+                vals = [ns / per_query / 1000.0 for ns in groups.get((dataset, query, impl), [0])]
+                row.append(f"{statistics.fmean(vals):.2f}")
+            w.writerow(row)
+
+    prefixes = {"taxi": "NYC Taxi", "poi": "NYC OSM POIs"}
     for dataset, title in (
         ("taxi", "NYC Taxi, n=1 515 132 (кластеризован)"),
         ("poi", "NYC OSM POI, n=870 540 (proxy Twitter)"),
     ):
-        subset = [r for r in rows if r["dataset"] == dataset]
-        labels = [r["query"] for r in subset]
-        x = list(range(len(labels)))
+        prefix = prefixes[dataset]
+        queries = []
+        full_ds = None
+        for (ds, q, _) in groups:
+            if ds.startswith(prefix):
+                full_ds = ds
+                if q not in queries:
+                    queries.append(q)
+        x = list(range(len(queries)))
         width = 0.27
         fig, ax = plt.subplots(figsize=(9, 5.5))
+        all_means = []
+        bar_data = []
         for i, impl in enumerate(IMPLS):
-            vals = [float(r[f"{impl.lower() if impl == 'Smile' else impl}_us"]) for r in subset]
-            ax.bar([p + (i - 1) * width for p in x], vals, width=width * 0.9,
-                   label=impl, color=IMPL_COLORS[impl])
+            col = impl.lower()
+            vals = []
+            errs = []
+            for q in queries:
+                reps_us = [ns / per_query / 1000.0 for ns in groups[(full_ds, q, col)]]
+                mean, half = ci95(reps_us)
+                vals.append(mean)
+                errs.append(half)
+            bar_data.append((impl, vals, errs))
+            all_means.extend(vals)
+        # log-scale bars cannot start at 0; start slightly below the smallest mean
+        bottom = max(min(all_means) * 0.3, 1e-3)
+        for i, (impl, vals, errs) in enumerate(bar_data):
+            ax.bar([p + (i - 1) * width for p in x], [v - bottom for v in vals],
+                   bottom=bottom, width=width * 0.9,
+                   yerr=errs, capsize=3, label=impl, color=IMPL_COLORS[impl])
         ax.set_yscale("log")
         ax.set_xticks(x)
-        ax.set_xticklabels(labels, fontsize=9)
-        ax.set_ylabel("время на запрос, мкс (лог)")
-        ax.set_title(title + " — RealDataRunner, 500 равномерных запросов")
+        ax.set_xticklabels(queries, fontsize=9)
+        ax.set_ylabel("время на запрос, мкс (лог), среднее ± 95% ДИ")
+        ax.set_title(title + " — RealDataRunner, 500 равномерных запросов, 15 прогонов")
         ax.legend(fontsize=9)
         fig.savefig(out / f"{dataset}.png")
         plt.close(fig)

@@ -1,11 +1,11 @@
 dataset,query,v6_us,v7_us,smile_us
-taxi,radius r=100,14.79,8.10,6.37
-taxi,radius r=1000,907.21,594.50,399.43
-taxi,radius r=5000,21536.77,15371.10,9548.50
-taxi,kNN k=1,8.21,3.28,2.37
-taxi,kNN k=20,228.84,216.52,278.82
-poi,radius r=100,11.18,8.33,3.65
-poi,radius r=1000,355.53,269.02,127.52
-poi,radius r=5000,7003.54,5491.66,2088.86
-poi,kNN k=1,743.81,410.66,292.82
-poi,kNN k=20,1196.67,690.33,613.95
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=100,24.33,14.00,11.44
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=1000,1464.62,1029.15,876.66
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=5000,27757.36,19821.65,17160.65
+"NYC Taxi pickups (clustered, TUM paper dataset)",kNN k=1,17.74,9.03,4.37
+"NYC Taxi pickups (clustered, TUM paper dataset)",kNN k=20,336.49,561.75,702.55
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=100,18.95,11.01,6.96
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=1000,532.31,381.47,184.26
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=5000,9299.37,7477.41,3457.59
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",kNN k=1,1083.79,1047.77,476.53
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",kNN k=20,2107.26,1521.06,870.32
