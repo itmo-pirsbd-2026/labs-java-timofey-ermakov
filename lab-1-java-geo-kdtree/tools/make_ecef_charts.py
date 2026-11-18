@@ -72,8 +72,8 @@ FAMILIES = [
     ("knn", "1", "kNN, k = 1"),
     ("knn", "20", "kNN, k = 20"),
 ]
-IMPLS = ["v6", "v7", "Smile"]
-IMPL_COLORS = {"v6": "#d62728", "v7": "#9467bd", "Smile": "#8c564b"}
+IMPLS = ["v6", "v7", "v8", "Smile"]
+IMPL_COLORS = {"v6": "#d62728", "v7": "#9467bd", "v8": "#7f7f7f", "Smile": "#8c564b"}
 
 
 def load_grid():
@@ -137,14 +137,14 @@ def _write_summary(raw_file: Path, summary_file: Path):
     with summary_file.open("w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["dataset", "query", "v6_nodes", "v6_nsnode", "v7_nodes", "v7_nsnode",
-                    "smile_nodes", "smile_nsnode"])
+                    "v8_nodes", "v8_nsnode", "smile_nodes", "smile_nsnode"])
         seen = []
         for (dataset, query, _) in groups:
             if (dataset, query) not in seen:
                 seen.append((dataset, query))
         for dataset, query in seen:
             row = [dataset, query]
-            for impl in ("v6", "v7", "smile"):
+            for impl in ("v6", "v7", "v8", "smile"):
                 m = groups.get((dataset, query, impl), {})
                 row += [f"{m.get('nodes', (0, 0))[0]:.1f}", f"{m.get('nsnode', (0, 0))[0]:.1f}"]
             w.writerow(row)
@@ -168,7 +168,7 @@ def chart_nodecost():
             if ds == dataset and q not in queries:
                 queries.append(q)
         x = list(range(len(queries)))
-        width = 0.27
+        width = 0.2
 
         fig, axes = plt.subplots(1, 2, figsize=(13, 5))
         for ax, metric, ylabel, title in (
