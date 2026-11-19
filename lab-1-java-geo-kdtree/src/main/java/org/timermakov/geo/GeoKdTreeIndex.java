@@ -1,6 +1,7 @@
 package org.timermakov.geo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,12 @@ public final class GeoKdTreeIndex {
     /** Borderline margin for exact-meter tie decisions, in ulps of the chord-squared term. */
     private static final double CHORD_COMPARISON_MARGIN_ULPS = 8.0;
 
+    /** Scapegoat balance factor as numerator/denominator: a child bigger than 0.7 of the
+     * subtree forces a rebuild. Bounds depth by ~log_{1/0.7}(n), keeping inserts amortized
+     * O(log n) even on sorted input (H6 follow-up). */
+    private static final int BALANCE_NUM = 7;
+    private static final int BALANCE_DEN = 10;
+
     /** Testing/benchmarking hook, same contract as in {@link GeoKdTreeIndex}. */
     public static volatile boolean PROFILING_COUNT_NODES = false;
 
@@ -44,6 +51,17 @@ public final class GeoKdTreeIndex {
 
     public int count() {
         return pointsById.size();
+    }
+
+    /** Deepest root-to-leaf path; testing hook for the balance guarantee. */
+    int maxDepth() {
+        return root == null ? 0 : maxDepth(root, 1);
+    }
+
+    private static int maxDepth(Node node, int depth) {
+        int left = node.left == null ? depth : maxDepth(node.left, depth + 1);
+        int right = node.right == null ? depth : maxDepth(node.right, depth + 1);
+        return Math.max(left, right);
     }
 
     public void insert(GeoPoint point) {
@@ -120,7 +138,70 @@ public final class GeoKdTreeIndex {
             node.right = insertNode(node.right, point, depth + 1);
         }
 
+        node.size = 1 + size(node.left) + size(node.right);
+        if (isUnbalanced(node)) {
+            return rebuild(node, depth);
+        }
+
         return node;
+    }
+
+    private static int size(Node node) {
+        return node == null ? 0 : node.size;
+    }
+
+    private static boolean isUnbalanced(Node node) {
+        int n = node.size;
+        return (node.left != null && node.left.size * BALANCE_DEN > BALANCE_NUM * n)
+                || (node.right != null && node.right.size * BALANCE_DEN > BALANCE_NUM * n);
+    }
+
+    /**
+     * Scapegoat rebuild: collect the subtree points and rebuild it balanced, splitting by
+     * the alternating axis at each level (median split). Regions stay non-strict on both
+     * sides (left subset of {axis <= split}, right subset of {axis >= split}), which keeps
+     * every pruning bound valid. Rebuilds are rare (amortized O(log n) per insert).
+     */
+    private static Node rebuild(Node node, int depth) {
+        List<GeoPoint> points = new ArrayList<>(node.size);
+        collect(node, points);
+        return buildBalanced(points, 0, points.size(), depth);
+    }
+
+    private static void collect(Node node, List<GeoPoint> out) {
+        if (node == null) {
+            return;
+        }
+        collect(node.left, out);
+        out.add(node.point);
+        collect(node.right, out);
+    }
+
+    private static Node buildBalanced(List<GeoPoint> points, int lo, int hi, int depth) {
+        if (lo >= hi) {
+            return null;
+        }
+
+        boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+        points.subList(lo, hi).sort(splitByLatitude ? LATITUDE_ORDER : LONGITUDE_ORDER);
+
+        int mid = (lo + hi) >>> 1;
+        GeoPoint median = points.get(mid);
+        while (mid + 1 < hi && sameKey(points.get(mid + 1), median, splitByLatitude)) {
+            mid++;
+        }
+
+        Node node = new Node(points.get(mid), depth);
+        node.left = buildBalanced(points, lo, mid, depth + 1);
+        node.right = buildBalanced(points, mid + 1, hi, depth + 1);
+        node.size = 1 + size(node.left) + size(node.right);
+        return node;
+    }
+
+    private static boolean sameKey(GeoPoint a, GeoPoint b, boolean splitByLatitude) {
+        return splitByLatitude
+                ? a.latitude() == b.latitude()
+                : a.longitude() == b.longitude();
     }
 
     private static void searchRadiusCore(
@@ -352,9 +433,17 @@ public final class GeoKdTreeIndex {
         }
     }
 
+    private static final Comparator<GeoPoint> LATITUDE_ORDER =
+            Comparator.comparingDouble(GeoPoint::latitude);
+    private static final Comparator<GeoPoint> LONGITUDE_ORDER =
+            Comparator.comparingDouble(GeoPoint::longitude);
+
     private static final class Node {
         final GeoPoint point;
         final int depth;
+
+        /** Subtree point count, maintained on insert; drives scapegoat balance checks. */
+        int size = 1;
 
         final double x;
         final double y;
