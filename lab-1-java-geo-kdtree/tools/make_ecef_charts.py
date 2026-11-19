@@ -211,16 +211,20 @@ def chart_realdata():
         groups.setdefault(key, []).append(int(r["total_ns"]))
 
     # regenerate the summary csv as means (microseconds per query)
+    all_impls = []
+    for (_, _, impl) in groups:
+        if impl not in all_impls:
+            all_impls.append(impl)
     with (GRID / "realdata.csv").open("w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["dataset", "query", "v6_us", "v7_us", "smile_us"])
+        w.writerow(["dataset", "query"] + [f"{i}_us" for i in all_impls])
         seen = []
         for (dataset, query, _) in groups:
             if (dataset, query) not in seen:
                 seen.append((dataset, query))
         for dataset, query in seen:
             row = [dataset, query]
-            for impl in ("v6", "v7", "smile"):
+            for impl in all_impls:
                 vals = [ns / per_query / 1000.0 for ns in groups.get((dataset, query, impl), [0])]
                 row.append(f"{statistics.fmean(vals):.2f}")
             w.writerow(row)
@@ -238,6 +242,8 @@ def chart_realdata():
                 full_ds = ds
                 if q not in queries:
                     queries.append(q)
+        if full_ds is None:
+            continue
         x = list(range(len(queries)))
         present = [i for i in IMPLS if (full_ds, queries[0], i.lower()) in groups]
         width = 0.8 / max(len(present), 1)
