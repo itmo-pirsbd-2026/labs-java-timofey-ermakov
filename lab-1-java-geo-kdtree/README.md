@@ -1,6 +1,6 @@
 # Лабораторная 1 — Geo KD-tree (профилирование и тестирование производительности)
 
-Структура: корневой модуль — библиотека `org.timermakov.geo` (KD-tree), `:benchmarks` — JMH, `:profile-runner` — tight-loop прогон для профилировщика.
+Структура: корневой модуль — библиотека `org.timermakov.geo` (KD-tree, с ноября 2026 каноническое ядро — ECEF: `GeoKdTreeIndex`; геодезический вариант сохранён как `GeoGeodesicKdTreeIndex` для экспериментов), `:benchmarks` — JMH, `:profile-runner` — tight-loop прогон для профилировщика.
 
 1. Geo KD-tree для точек `Lat/Lng`
 2. Вставка объектов `Insert`
@@ -17,8 +17,7 @@
 ./gradlew test                 # тесты (property: 80 детерминированных кейсов vs full-scan oracle + unit + perf)
 ./gradlew :benchmarks:bench    # полный JMH-прогон (warmup 15 x 0.5s, 40 итераций — долго)
 ./gradlew :benchmarks:benchPublic   # бенчмарки публичной библиотеки (Smile KDTree на ECEF-3D)
-./gradlew :benchmarks:benchEcef     # бенчмарки экспериментального ECEF-ядра (см. report/smile-comparison.md)
-./gradlew :benchmarks:benchS2       # бенчмарки Google S2 (второй публичный ориентир)
+./gradlew :benchmarks:benchS2       # бенчмарки Google S2 (публичный ориентир)
 ./gradlew :benchmarks:benchSmoke    # один быстрый прогон для проверки запуска (HW1_BENCH_SMOKE=1)
 ./gradlew :profile-runner:run --args="--mode radius --seconds 120 --n 100000 --radius 1000 --k 20"
 ```
