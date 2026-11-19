@@ -1,46 +1,39 @@
 package org.timermakov.geo;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 /**
- * In-memory KD-tree index over lat/lng points (port of the C# <code>GeoKdTreeIndex</code>).
- * Nodes alternate split axis by depth: even depth splits by latitude, odd by longitude.
- * Search prunes the far branch using a lower bound on the crossing distance
- * (see {@link GeoDistance#axisLowerBoundA}); unlike the C# baseline, longitude
- * splits are pruned too.
+ * Canonical in-memory KD-tree index over lat/lng points (ECEF core, successor of the C# port).
+ * Nodes store 3D Earth-Centered Earth-Fixed coordinates; the tree topology still splits by
+ * alternating raw lat/lng, but all traversal math is euclidean on chords: squared chord distance
+ * per node, pruning from half-spaces (a latitude split is the plane z = R·sin φ0, a longitude
+ * split a dihedral wedge whose faces are precomputed at insert; the ±180 seam falls out of the
+ * raw-degree wedge geometry exactly). No trigonometry runs inside the traversal; exact meters
+ * are computed only for radius hits and accepted kNN candidates, so the public contract
+ * (lat/lng in, meters out) is unchanged from the geodesic variant
+ * ({@link GeoGeodesicKdTreeIndex}, kept for reference).
  *
- * <p>Comparisons and pruning run in a-space ({@code a = sin^2(d/2R)}, strictly monotone in
- * the distance), so the hot path avoids {@code sqrt}/{@code asin}; exact meters are computed
- * only for radius hits and accepted kNN candidates.
+ * <p>History: baseline port → geodesic optimizations (a-space, seam-aware bounds) →
+ * ECEF core with primitive best buffer. Measurements: report/smile-comparison.md.
  */
 public final class GeoKdTreeIndex {
 
-    /** Depth values with depth % SPLIT_AXIS_MODULUS == 0 split by latitude. */
     private static final int SPLIT_AXIS_MODULUS = 2;
-
-    /** Absolute latitude limit, degrees. */
     private static final double LATITUDE_LIMIT = 90.0;
-
-    /** Absolute longitude limit, degrees. */
     private static final double LONGITUDE_LIMIT = 180.0;
+    private static final double EARTH_RADIUS_METERS = 6_371_000.0;
+    private static final double TWO_EARTH_RADIUS_METERS = 2 * EARTH_RADIUS_METERS;
+    private static final double DEGREES_TO_RADIANS = Math.PI / 180.0;
 
-    /**
-     * a-space comparisons bridge a meters round-trip (a → meters → a), which can drift a
-     * few ulps; candidates within this margin of the worst entry fall through to the exact
-     * meters comparison instead of being rejected in a-space.
-     */
-    private static final double A_COMPARISON_MARGIN_ULPS = 8.0;
+    /** Borderline margin for exact-meter tie decisions, in ulps of the chord-squared term. */
+    private static final double CHORD_COMPARISON_MARGIN_ULPS = 8.0;
 
-    /**
-     * Testing/benchmarking hook: when enabled, both search cores count every visited node
-     * into {@link #PROFILING_VISITED_NODES}. Disabled by default; the hot path cost is a
-     * single predictable branch per node.
-     */
+    /** Testing/benchmarking hook, same contract as in {@link GeoKdTreeIndex}. */
     public static volatile boolean PROFILING_COUNT_NODES = false;
 
     /** Accumulator for {@link #PROFILING_COUNT_NODES}, reset by the caller between runs. */
@@ -49,7 +42,6 @@ public final class GeoKdTreeIndex {
     private final Map<String, GeoPoint> pointsById = new HashMap<>();
     private Node root;
 
-    /** Number of points currently indexed. */
     public int count() {
         return pointsById.size();
     }
@@ -68,10 +60,7 @@ public final class GeoKdTreeIndex {
         pointsById.put(point.id(), point);
     }
 
-    /**
-     * All indexed points within {@code radiusMeters} of the query position,
-     * ordered by distance then id.
-     */
+    /** All indexed points within {@code radiusMeters}, ordered by distance then id. */
     public List<GeoSearchResult> searchRadius(double latitude, double longitude, double radiusMeters) {
         validateCoordinate(latitude, longitude);
         if (radiusMeters < 0) {
@@ -82,18 +71,16 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
-        double radiusThreshold = GeoDistance.aFromMeters(radiusMeters);
-        double queryCosLat = Math.cos(Math.toRadians(latitude));
+        double[] q = new double[3];
+        toEcef(latitude, longitude, q);
+        double chordSqThreshold = chordSqFromMeters(radiusMeters);
         List<GeoSearchResult> results = new ArrayList<>();
-        searchRadiusCore(root, latitude, longitude, radiusThreshold, queryCosLat, results);
+        searchRadiusCore(root, q, latitude, longitude, chordSqThreshold, results);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
     }
 
-    /**
-     * The {@code k} nearest indexed points to the query position, ordered by distance then id.
-     * Candidates are kept in a best list ordered worst-first; insertion is by binary search.
-     */
+    /** The {@code k} nearest indexed points, ordered by distance then id. */
     public List<GeoSearchResult> searchKNearest(double latitude, double longitude, int k) {
         validateCoordinate(latitude, longitude);
         if (k <= 0) {
@@ -104,10 +91,15 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
-        double queryCosLat = Math.cos(Math.toRadians(latitude));
-        List<GeoSearchResult> best = new ArrayList<>(k);
-        searchKNearestCore(root, latitude, longitude, k, queryCosLat, best);
-        List<GeoSearchResult> results = new ArrayList<>(best);
+        double[] q = new double[3];
+        toEcef(latitude, longitude, q);
+        BestBuffer best = new BestBuffer(k);
+        searchKNearestCore(root, q, latitude, longitude, k, best);
+
+        List<GeoSearchResult> results = new ArrayList<>(best.size);
+        for (int i = 0; i < best.size; i++) {
+            results.add(new GeoSearchResult(best.points[i], metersFromChordSq(best.chordSq[i])));
+        }
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
     }
@@ -133,19 +125,18 @@ public final class GeoKdTreeIndex {
 
     private static void searchRadiusCore(
             Node node,
+            double[] q,
             double queryLat,
             double queryLng,
-            double radiusThreshold,
-            double queryCosLat,
+            double chordSqThreshold,
             List<GeoSearchResult> results) {
         if (PROFILING_COUNT_NODES) {
             PROFILING_VISITED_NODES++;
         }
 
-        double a = GeoDistance.haversineA(
-                queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
-        if (a <= radiusThreshold) {
-            results.add(new GeoSearchResult(node.point, GeoDistance.metersFromA(a)));
+        double chordSq = chordSq(q, node);
+        if (chordSq <= chordSqThreshold) {
+            results.add(new GeoSearchResult(node.point, metersFromChordSq(chordSq)));
         }
 
         boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
@@ -155,33 +146,32 @@ public final class GeoKdTreeIndex {
         Node farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
-            searchRadiusCore(nearBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
+            searchRadiusCore(nearBranch, q, queryLat, queryLng, chordSqThreshold, results);
         }
 
         if (farBranch == null) {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
-        if (axisLowerBound <= radiusThreshold) {
-            searchRadiusCore(farBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
+        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
+        if (bound <= chordSqThreshold) {
+            searchRadiusCore(farBranch, q, queryLat, queryLng, chordSqThreshold, results);
         }
     }
 
     private static void searchKNearestCore(
             Node node,
+            double[] q,
             double queryLat,
             double queryLng,
             int k,
-            double queryCosLat,
-            List<GeoSearchResult> best) {
+            BestBuffer best) {
         if (PROFILING_COUNT_NODES) {
             PROFILING_VISITED_NODES++;
         }
 
-        double a = GeoDistance.haversineA(
-                queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
-        tryAddBest(best, node.point, a, k);
+        double chordSq = chordSq(q, node);
+        tryAddBest(best, node.point, chordSq, k);
 
         boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
         double queryAxis = splitByLatitude ? queryLat : queryLng;
@@ -190,71 +180,166 @@ public final class GeoKdTreeIndex {
         Node farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
-            searchKNearestCore(nearBranch, queryLat, queryLng, k, queryCosLat, best);
+            searchKNearestCore(nearBranch, q, queryLat, queryLng, k, best);
         }
 
         if (farBranch == null) {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
-        if (best.size() < k || axisLowerBound <= worstA(best)) {
-            searchKNearestCore(farBranch, queryLat, queryLng, k, queryCosLat, best);
+        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
+        if (best.size < k || bound <= best.worstChordSq()) {
+            searchKNearestCore(farBranch, q, queryLat, queryLng, k, best);
         }
     }
 
     /**
-     * Accepts a candidate into the best list based on its a-space term. The list stays
-     * ordered worst-first by exact meters (insertion via binary search); exact meters are
-     * computed only when a candidate is accepted.
+     * Lower bound of the squared chord distance from the query to the far side of this
+     * node's split, sign-aware: the far region depends on which side the query is on.
+     * Latitude far side is a half-space z ≥ R·sin φ0 or z ≤ R·sin φ0 — exact distance.
+     * Longitude far side is the raw-degree wedge on one side of the split meridian;
+     * for split ≥ 0 the wedge is an intersection of two half-planes (bound = max of
+     * the two face distances), for split < 0 a union (bound = min) — exact, with the
+     * anti-meridian face carrying the ±180 wrap. The mirror cases flip both violation
+     * signs and the union/intersection flag.
      */
-    private static void tryAddBest(List<GeoSearchResult> best, GeoPoint point, double a, int k) {
-        if (best.size() < k) {
-            insertSorted(best, new GeoSearchResult(point, GeoDistance.metersFromA(a)));
-            return;
+    private static double axisLowerBoundChordSq(Node node, boolean splitByLatitude, double[] q,
+                                                double queryLat, double queryLng) {
+        if (splitByLatitude) {
+            double gap = queryLat < node.point.latitude()
+                    ? node.latPlaneZ - q[2]
+                    : q[2] - node.latPlaneZ;
+            return gap > 0.0 ? gap * gap : 0.0;
         }
 
-        GeoSearchResult worst = best.getFirst();
-        double worstA = GeoDistance.aFromMeters(worst.distanceMeters());
-        double margin = Math.ulp(worstA) * A_COMPARISON_MARGIN_ULPS;
-        if (a > worstA + margin) {
-            return;
+        double v1 = node.lngPlaneNx * q[0] + node.lngPlaneNy * q[1];
+        double splitLng = node.point.longitude();
+        boolean farRight = queryLng < splitLng;
+        boolean union = farRight ? splitLng < 0.0 : splitLng > 0.0;
+
+        double viol1;
+        double viol2;
+        if (farRight) {
+            viol1 = v1 < 0.0 ? -v1 : 0.0;
+            viol2 = q[1] < 0.0 ? -q[1] : 0.0;
+        } else {
+            viol1 = v1 > 0.0 ? v1 : 0.0;
+            viol2 = q[1] > 0.0 ? q[1] : 0.0;
         }
 
-        // Borderline candidate: decide exactly, in meters, with the id tie-break.
-        GeoSearchResult candidate = new GeoSearchResult(point, GeoDistance.metersFromA(a));
-        if (!isStrictlyBetter(candidate, worst)) {
-            return;
-        }
-
-        best.removeFirst();
-        insertSorted(best, candidate);
-    }
-
-    /** a-space term of the current worst entry (the list head, ordered worst-first). */
-    private static double worstA(List<GeoSearchResult> best) {
-        return GeoDistance.aFromMeters(best.getFirst().distanceMeters());
+        double chosen = union ? Math.min(viol1, viol2) : Math.max(viol1, viol2);
+        return chosen * chosen;
     }
 
     /**
-     * Keeps the best list ordered worst-first by inserting at the binary-search position
-     * instead of re-sorting the whole list for every candidate.
+     * Primitive best buffer, unsorted: candidates land at a free slot or overwrite the
+     * current worst slot; the worst slot is found by an O(k) scan only on replacement.
+     * No shifts, no per-candidate allocations (H3, iteration 2 — the sorted-array
+     * variant won in k=1 but its double arraycopy per accept regressed k=20).
      */
-    private static void insertSorted(List<GeoSearchResult> best, GeoSearchResult candidate) {
-        int index = Collections.binarySearch(best, candidate, GeoSearchResultComparators.WORST_FIRST);
-        if (index < 0) {
-            index = -index - 1;
+    private static final class BestBuffer {
+        final double[] chordSq;
+        final GeoPoint[] points;
+        final int capacity;
+        int size;
+        int maxIndex;
+
+        BestBuffer(int k) {
+            this.chordSq = new double[k];
+            this.points = new GeoPoint[k];
+            this.capacity = k;
         }
-        best.add(index, candidate);
+
+        double worstChordSq() {
+            return chordSq[maxIndex];
+        }
+
+        GeoPoint worstPoint() {
+            return points[maxIndex];
+        }
+
+        void consider(GeoPoint point, double value) {
+            if (size < capacity) {
+                chordSq[size] = value;
+                points[size] = point;
+                if (size == 0 || value > chordSq[maxIndex]) {
+                    maxIndex = size;
+                }
+                size++;
+                return;
+            }
+
+            chordSq[maxIndex] = value;
+            points[maxIndex] = point;
+            rescanMax();
+        }
+
+        private void rescanMax() {
+            int max = 0;
+            for (int i = 1; i < size; i++) {
+                if (chordSq[i] > chordSq[max]) {
+                    max = i;
+                }
+            }
+            maxIndex = max;
+        }
     }
 
-    private static boolean isStrictlyBetter(GeoSearchResult candidate, GeoSearchResult currentWorst) {
-        int byDistance = Double.compare(candidate.distanceMeters(), currentWorst.distanceMeters());
-        if (byDistance != 0) {
-            return byDistance < 0;
+    /** Accepts a candidate into the primitive best buffer (unsorted, worst-slot rewrite). */
+    private static void tryAddBest(BestBuffer best, GeoPoint point, double chordSq, int k) {
+        if (best.size < k) {
+            best.consider(point, chordSq);
+            return;
         }
 
-        return candidate.point().id().compareTo(currentWorst.point().id()) < 0;
+        double worstChordSq = best.worstChordSq();
+        double margin = Math.ulp(worstChordSq) * CHORD_COMPARISON_MARGIN_ULPS;
+        if (chordSq > worstChordSq + margin) {
+            return;
+        }
+
+        // Borderline: decide exactly, in meters, with the id tie-break.
+        double candidateMeters = metersFromChordSq(chordSq);
+        double worstMeters = metersFromChordSq(worstChordSq);
+        int byDistance = Double.compare(candidateMeters, worstMeters);
+        if (byDistance == 0 && point.id().compareTo(best.worstPoint().id()) >= 0) {
+            return;
+        }
+        if (byDistance > 0) {
+            return;
+        }
+
+        best.consider(point, chordSq);
+    }
+
+    private static double chordSq(double[] q, Node node) {
+        double dx = q[0] - node.x;
+        double dy = q[1] - node.y;
+        double dz = q[2] - node.z;
+        return dx * dx + dy * dy + dz * dz;
+    }
+
+    /** Squared chord radius for a spherical distance in meters: (2R·sin(m/2R))². */
+    static double chordSqFromMeters(double meters) {
+        double chord = TWO_EARTH_RADIUS_METERS * Math.sin(meters / TWO_EARTH_RADIUS_METERS);
+        return chord * chord;
+    }
+
+    /** Exact spherical distance in meters for a squared chord. */
+    static double metersFromChordSq(double chordSq) {
+        double chord = Math.sqrt(chordSq);
+        double ratio = Math.min(1.0, chord / TWO_EARTH_RADIUS_METERS);
+        return TWO_EARTH_RADIUS_METERS * Math.asin(ratio);
+    }
+
+    /** Converts lat/lng degrees to ECEF coordinates on the library's sphere. */
+    public static void toEcef(double latitude, double longitude, double[] out) {
+        double lat = latitude * DEGREES_TO_RADIANS;
+        double lng = longitude * DEGREES_TO_RADIANS;
+        double cosLat = Math.cos(lat);
+        out[0] = EARTH_RADIUS_METERS * cosLat * Math.cos(lng);
+        out[1] = EARTH_RADIUS_METERS * cosLat * Math.sin(lng);
+        out[2] = EARTH_RADIUS_METERS * Math.sin(lat);
     }
 
     private static void validateCoordinate(double latitude, double longitude) {
@@ -271,8 +356,16 @@ public final class GeoKdTreeIndex {
         final GeoPoint point;
         final int depth;
 
-        /** cos of the point latitude in radians — fixed per node, reused by every search. */
-        final double cosLatitude;
+        final double x;
+        final double y;
+        final double z;
+
+        /** Latitude splits: z level of the bounding plane R·sin φ0. */
+        final double latPlaneZ;
+
+        /** Longitude splits: normal of the split face plane (horizontal, unit length). */
+        final double lngPlaneNx;
+        final double lngPlaneNy;
 
         Node left;
         Node right;
@@ -280,7 +373,20 @@ public final class GeoKdTreeIndex {
         Node(GeoPoint point, int depth) {
             this.point = point;
             this.depth = depth;
-            this.cosLatitude = Math.cos(Math.toRadians(point.latitude()));
+
+            double[] ecef = new double[3];
+            toEcef(point.latitude(), point.longitude(), ecef);
+            this.x = ecef[0];
+            this.y = ecef[1];
+            this.z = ecef[2];
+
+            boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+            this.latPlaneZ = splitByLatitude
+                    ? EARTH_RADIUS_METERS * Math.sin(point.latitude() * DEGREES_TO_RADIANS)
+                    : 0.0;
+
+            double splitLngRadians = point.longitude() * DEGREES_TO_RADIANS;            this.lngPlaneNx = splitByLatitude ? 0.0 : -Math.sin(splitLngRadians);
+            this.lngPlaneNy = splitByLatitude ? 0.0 : Math.cos(splitLngRadians);
         }
     }
 }

@@ -16,18 +16,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
 
 /**
- * Property-based tests ported from the C# FsCheck suite: tree queries must match an
- * independent full-scan oracle. Deterministic replacement for [Property(MaxTest = 40)].
+ * Property tests for the experimental {@link GeoKdTreeIndex}: the chord-metric
+ * variant must match the same independent full-scan haversine oracle as
+ * {@link GeoKdTreeIndexPropertyTests}. Deterministic, mirrors the C# FsCheck suite.
  */
 class GeoKdTreeIndexPropertyTests {
 
-    /** Number of randomized cases per property — mirrors FsCheck MaxTest = 40. */
     private static final int PROPERTY_CASES = 40;
-
-    /** Base seed for per-case generators (fixed so failures are reproducible). */
     private static final long PROPERTY_BASE_SEED = 42L;
-
-    /** Upper bound of the generated raw value arrays (>= 2 * max point count of any property). */
     private static final int MAX_RAW_VALUES_LENGTH = 1_200;
 
     private static final int RADIUS_PROPERTY_MAX_POINTS = 300;
@@ -47,7 +43,6 @@ class GeoKdTreeIndexPropertyTests {
     private static final double NORM_LNG_MIN = -179.9;
     private static final double NORM_LNG_MAX = 179.9;
 
-    /** (double) uint.MaxValue — span of the int random values used by the normalizer. */
     private static final double INT_VALUE_SPAN = 4294967295.0;
 
     private static final double MOSCOW_LATITUDE = 55.7558;
@@ -57,7 +52,6 @@ class GeoKdTreeIndexPropertyTests {
     private static final double SAMPLE_RADIUS_METERS = 1_000;
     private static final int SAMPLE_K = 10;
 
-    /** Oracle ordering: by distance, ties by id — independent of the index comparators. */
     private static final Comparator<GeoSearchResult> EXPECTED_ORDER =
             Comparator.comparingDouble(GeoSearchResult::distanceMeters)
                     .thenComparing(result -> result.point().id());
@@ -190,10 +184,6 @@ class GeoKdTreeIndexPropertyTests {
         return min + (max - min) * unit;
     }
 
-    // Independent re-implementation of the haversine metric (mirrors the C# tests):
-    // keeps the full-scan oracle decoupled from the library's GeoDistance.
-
-    /** Mean Earth radius in meters used by the oracle metric. */
     private static final double ORACLE_EARTH_RADIUS_METERS = 6_371_000.0;
 
     private static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {

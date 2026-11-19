@@ -68,14 +68,3 @@ tasks.register<JavaExec>("benchS2") {
         environment("HW1_BENCH_CONFIG", rootProject.file(benchConfig).absolutePath)
     }
 }
-
-tasks.register<JavaExec>("benchEcef") {
-    group = "verification"
-    description = "Runs the experimental ECEF-core JMH benchmarks with parameters from config/bench.settings.json (or -PbenchConfig=<path>)."
-    mainClass = "org.timermakov.geo.benchmarks.EcefBenchMain"
-    classpath = sourceSets["main"].runtimeClasspath
-    val benchConfig = providers.gradleProperty("benchConfig").orNull
-    if (benchConfig != null) {
-        environment("HW1_BENCH_CONFIG", rootProject.file(benchConfig).absolutePath)
-    }
-}

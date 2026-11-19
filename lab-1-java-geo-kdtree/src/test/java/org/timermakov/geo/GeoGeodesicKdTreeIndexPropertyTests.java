@@ -16,14 +16,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
 
 /**
- * Property tests for the experimental {@link GeoEcefBoxKdTreeIndex}: the chord-metric with bounding boxes
- * variant must match the same independent full-scan haversine oracle as
- * {@link GeoKdTreeIndexPropertyTests}. Deterministic, mirrors the C# FsCheck suite.
+ * Property-based tests ported from the C# FsCheck suite: tree queries must match an
+ * independent full-scan oracle. Deterministic replacement for [Property(MaxTest = 40)].
  */
-class GeoEcefBoxKdTreeIndexPropertyTests {
+class GeoGeodesicKdTreeIndexPropertyTests {
 
+    /** Number of randomized cases per property — mirrors FsCheck MaxTest = 40. */
     private static final int PROPERTY_CASES = 40;
+
+    /** Base seed for per-case generators (fixed so failures are reproducible). */
     private static final long PROPERTY_BASE_SEED = 42L;
+
+    /** Upper bound of the generated raw value arrays (>= 2 * max point count of any property). */
     private static final int MAX_RAW_VALUES_LENGTH = 1_200;
 
     private static final int RADIUS_PROPERTY_MAX_POINTS = 300;
@@ -43,6 +47,7 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
     private static final double NORM_LNG_MIN = -179.9;
     private static final double NORM_LNG_MAX = 179.9;
 
+    /** (double) uint.MaxValue — span of the int random values used by the normalizer. */
     private static final double INT_VALUE_SPAN = 4294967295.0;
 
     private static final double MOSCOW_LATITUDE = 55.7558;
@@ -52,6 +57,7 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
     private static final double SAMPLE_RADIUS_METERS = 1_000;
     private static final int SAMPLE_K = 10;
 
+    /** Oracle ordering: by distance, ties by id — independent of the index comparators. */
     private static final Comparator<GeoSearchResult> EXPECTED_ORDER =
             Comparator.comparingDouble(GeoSearchResult::distanceMeters)
                     .thenComparing(result -> result.point().id());
@@ -77,7 +83,7 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
             return;
         }
 
-        GeoEcefBoxKdTreeIndex index = buildIndex(points);
+        GeoGeodesicKdTreeIndex index = buildIndex(points);
         GeoPoint query = points.get(points.size() / 2);
         double radiusMeters = BASE_RADIUS_METERS + ((points.size() * RADIUS_MULTIPLIER) % RADIUS_MODULUS);
 
@@ -94,7 +100,7 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
             return;
         }
 
-        GeoEcefBoxKdTreeIndex index = buildIndex(points);
+        GeoGeodesicKdTreeIndex index = buildIndex(points);
         GeoPoint query = points.get(points.size() / 3);
         int k = Math.clamp(points.size() / K_FRACTION + 1, 1, Math.min(K_LIMIT, points.size()));
 
@@ -105,7 +111,7 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
 
     @Test
     void insertDuplicateIdThrows() {
-        GeoEcefBoxKdTreeIndex index = new GeoEcefBoxKdTreeIndex();
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
         index.insert(new GeoPoint("dup", MOSCOW_LATITUDE, MOSCOW_LONGITUDE));
 
         assertThatThrownBy(() -> index.insert(
@@ -115,14 +121,14 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
 
     @Test
     void emptyIndexReturnsEmptyResults() {
-        GeoEcefBoxKdTreeIndex index = new GeoEcefBoxKdTreeIndex();
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
 
         assertThat(index.searchRadius(MOSCOW_LATITUDE, MOSCOW_LONGITUDE, SAMPLE_RADIUS_METERS)).isEmpty();
         assertThat(index.searchKNearest(MOSCOW_LATITUDE, MOSCOW_LONGITUDE, SAMPLE_K)).isEmpty();
     }
 
-    private static GeoEcefBoxKdTreeIndex buildIndex(List<GeoPoint> points) {
-        GeoEcefBoxKdTreeIndex index = new GeoEcefBoxKdTreeIndex();
+    private static GeoGeodesicKdTreeIndex buildIndex(List<GeoPoint> points) {
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
         for (GeoPoint point : points) {
             index.insert(point);
         }
@@ -184,6 +190,10 @@ class GeoEcefBoxKdTreeIndexPropertyTests {
         return min + (max - min) * unit;
     }
 
+    // Independent re-implementation of the haversine metric (mirrors the C# tests):
+    // keeps the full-scan oracle decoupled from the library's GeoDistance.
+
+    /** Mean Earth radius in meters used by the oracle metric. */
     private static final double ORACLE_EARTH_RADIUS_METERS = 6_371_000.0;
 
     private static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {
