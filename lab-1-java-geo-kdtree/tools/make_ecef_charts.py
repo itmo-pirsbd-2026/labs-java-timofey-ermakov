@@ -112,7 +112,7 @@ def chart_throughput(data):
         ax.set_yscale("log")
         ax.set_xlabel("число точек в индексе, N")
         ax.set_ylabel("throughput, ops/s")
-        ax.set_title(f"{title} — v6 против v7 (ECEF) против Smile, с ДИ")
+        ax.set_title(f"{title} — v6 / v7 (ECEF) / Smile / S2, с ДИ")
         ax.legend(fontsize=9)
         fig.savefig(out / f"throughput-{fam}-{param}.png")
         plt.close(fig)
