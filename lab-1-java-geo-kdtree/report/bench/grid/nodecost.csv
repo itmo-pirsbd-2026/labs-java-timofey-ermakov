@@ -1,9 +1,6 @@
-dataset,query,v6_nodes,v6_nsnode,v7_nodes,v7_nsnode,smile_nodes,smile_nsnode
-"uniform (generator, ~12x duplicates)",radius r=100,261.8,60.6,261.9,15.5,30.5,25.1
-"uniform (generator, ~12x duplicates)",radius r=5000,273.8,57.5,316.8,13.9,39.0,18.3
-"uniform (generator, ~12x duplicates)",kNN k=1,261.8,77.1,260.3,22.8,28.3,30.9
-"uniform (generator, ~12x duplicates)",kNN k=20,307.4,188.7,409.5,104.0,62.6,87.0
-clustered (200 gaussian clusters x 500),radius r=100,33.3,114.2,33.3,61.1,20.6,87.7
-clustered (200 gaussian clusters x 500),radius r=5000,46.0,121.3,49.1,71.5,45.7,83.2
-clustered (200 gaussian clusters x 500),kNN k=1,33.1,198.5,33.0,102.7,20.3,67.3
-clustered (200 gaussian clusters x 500),kNN k=20,115.4,237.8,136.4,169.7,192.3,49.8
+dataset,query,v6_nodes,v6_nsnode,v7_nodes,v7_nsnode,v8_nodes,v8_nsnode,smile_nodes,smile_nsnode
+uniform (generator, ~12x duplicates),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+clustered (200 gaussian clusters x 500),radius r=100,33.3,59.0,33.3,28.8,57.0,24.8,20.6,33.1
+clustered (200 gaussian clusters x 500),radius r=5000,46.0,60.8,49.1,30.6,67.0,29.5,45.7,28.8
+clustered (200 gaussian clusters x 500),kNN k=1,33.1,77.4,33.0,40.1,56.9,35.0,20.3,35.3
+clustered (200 gaussian clusters x 500),kNN k=20,115.4,212.9,136.4,86.4,114.0,70.2,192.3,26.5
