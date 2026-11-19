@@ -4,6 +4,7 @@ assertj = "3.27.3"
 jmh = "1.37"
 gson = "2.11.0"
 smile = "7.3.0"
+s2 = "2.0.0"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
@@ -14,3 +15,4 @@ jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
 jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 smile-core = { module = "com.github.haifengl:smile-core", version.ref = "smile" }
+s2-geometry = { module = "com.google.geometry:s2-geometry", version.ref = "s2" }
