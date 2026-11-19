@@ -60,11 +60,13 @@ SERIES = [
     ("v6 (геодезия)", "perf6-trigcache", {"color": "#d62728", "linestyle": "-"}),
     ("v7 (ECEF-ядро)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
     ("Smile KDTree", "public-smile", {"color": "#8c564b", "linestyle": "--"}),
+    ("Google S2", "public-s2", {"color": "#2ca02c", "linestyle": "--"}),
 ]
 METHOD_OF = {
     "perf6-trigcache": {"radius": "queryKdTreeRadius", "knn": "queryKdTreeKnn"},
     "ecef": {"radius": "queryEcefKdTreeRadius", "knn": "queryEcefKdTreeKnn"},
     "public-smile": {"radius": "querySmileRadius", "knn": "querySmileKnn"},
+    "public-s2": {"radius": "queryS2Radius", "knn": "queryS2Knn"},
 }
 FAMILIES = [
     ("radius", "100", "Radius-поиск, r = 100 м"),
