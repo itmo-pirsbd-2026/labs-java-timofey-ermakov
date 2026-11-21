@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.smile.core)
     implementation(libs.s2.geometry)
+    implementation(libs.lucene.core)
     annotationProcessor(libs.jmh.generator.annprocess)
 }
 
@@ -52,6 +53,18 @@ tasks.register<JavaExec>("benchPublic") {
     description = "Runs the public-library (Smile ECEF) JMH benchmarks with parameters from config/bench.settings.json (or -PbenchConfig=<path>)."
     mainClass = "org.timermakov.geo.benchmarks.PublicBenchMain"
     classpath = sourceSets["main"].runtimeClasspath
+    val benchConfig = providers.gradleProperty("benchConfig").orNull
+    if (benchConfig != null) {
+        environment("HW1_BENCH_CONFIG", rootProject.file(benchConfig).absolutePath)
+    }
+}
+
+tasks.register<JavaExec>("benchLucene") {
+    group = "verification"
+    description = "Runs the public-library (Apache Lucene LatLonPoint) JMH benchmarks with parameters from config/bench.settings.json (or -PbenchConfig=<path>)."
+    mainClass = "org.timermakov.geo.benchmarks.LuceneBenchMain"
+    classpath = sourceSets["main"].runtimeClasspath
+    environment("HW1_BENCH_NO_FULLSCAN", "1")
     val benchConfig = providers.gradleProperty("benchConfig").orNull
     if (benchConfig != null) {
         environment("HW1_BENCH_CONFIG", rootProject.file(benchConfig).absolutePath)

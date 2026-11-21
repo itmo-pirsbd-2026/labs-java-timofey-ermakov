@@ -75,6 +75,9 @@ public final class BenchMain {
         if (settings.gcProfiler()) {
             builder.addProfiler(GCProfiler.class);
         }
+        if (System.getenv("HW1_BENCH_NO_FULLSCAN") != null) {
+            builder.exclude(".*queryFullScan.*");
+        }
         params.accept(builder);
 
         new Runner(builder.build()).run();
