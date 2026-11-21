@@ -306,30 +306,11 @@ def chart_java_vs_cs(java: dict[str, dict], cs: dict | None, outdir: Path):
         plt.close(fig)
 
 
-def chart_public(java: dict[str, dict], smile: dict | None, outdir: Path):
-    if not smile:
-        return
-    out = outdir / "public"
-    out.mkdir(parents=True, exist_ok=True)
-    smile_method = {"radius": "querySmileRadius", "knn": "querySmileKnn"}
-    for family, param in FAMILIES:
-        p = str(param)
-        fig, ax = plt.subplots(figsize=(8, 5))
-        for state in ("baseline", "perf6-trigcache"):
-            kd, _fs = METHODS[(family, param)]
-            xs, ys, lo, hi = _series(java[state], kd, p)
-            _plot_series(ax, xs, ys, lo, hi, f"наш индекс: {STATE_LABELS[state]}", COLORS[state])
-        xs, ys, lo, hi = _series(smile, smile_method[family], p)
-        _plot_series(ax, xs, ys, lo, hi, "Smile KDTree (ECEF-3D)", COLORS["smile"], linestyle="--")
-        _finish(ax, f"{FAMILY_TITLES[(family, param)]} — свой индекс против Smile", log_y=True)
-        fig.savefig(out / f"{family}-{param}.png")
-        plt.close(fig)
-
 
 def chart_summary(java: dict[str, dict], cs: dict | None, smile: dict | None, outdir: Path):
     out = outdir / "summary"
     out.mkdir(parents=True, exist_ok=True)
-    smile_method = {"radius": "querySmileRadius", "knn": "querySmileKnn"}
+    smile_method = {"radius": "queryS2Radius", "knn": "queryS2Knn"}  # S2 as the dynamic competitor
 
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     for ax, (family, param) in zip(axes.flat, FAMILIES):
@@ -344,7 +325,7 @@ def chart_summary(java: dict[str, dict], cs: dict | None, smile: dict | None, ou
             _plot_series(ax, xs, ys, lo, hi, "C#", COLORS["csharp"], linestyle="--")
         if smile:
             xs, ys, lo, hi = _series(smile, smile_method[family], p)
-            _plot_series(ax, xs, ys, lo, hi, "Smile (ECEF)", COLORS["smile"], linestyle="--", linewidth=1.4)
+            _plot_series(ax, xs, ys, lo, hi, "Google S2", COLORS["smile"], linestyle="--", linewidth=1.4)
         _finish(ax, FAMILY_TITLES[(family, param)], log_y=True)
     fig.tight_layout()
     fig.savefig(out / "summary-2x2.png")
@@ -362,11 +343,11 @@ def chart_summary(java: dict[str, dict], cs: dict | None, smile: dict | None, ou
         entries.append(("C#", cs, {fam: CS_METHOD[kd_method(fam)] for fam in ("radius", "knn")}))
     entries.append(("Java baseline", java.get("baseline"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
     if smile:
-        entries.append(("Smile KDTree (ECEF)", smile, {"radius": "querySmileRadius", "knn": "querySmileKnn"}))
+        entries.append(("Google S2", smile, {"radius": "queryS2Radius", "knn": "queryS2Knn"}))
     entries.append(("Java финал", java.get("perf6-trigcache"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
 
     color_of = {"C#": COLORS["csharp"], "Java baseline": COLORS["baseline"],
-                "Smile KDTree (ECEF)": COLORS["smile"], "Java финал": COLORS["perf6-trigcache"]}
+                "Google S2": COLORS["smile"], "Java финал": COLORS["perf6-trigcache"]}
 
     fig, ax = plt.subplots(figsize=(11, 5.5))
     width = 0.8 / max(len(entries), 1)
@@ -467,7 +448,7 @@ def main() -> int:
         return 1
 
     smile: dict | None = None
-    smile_files = sorted(grid.glob("public-smile-*.txt"))
+    smile_files = sorted(grid.glob("public-s2-*.txt"))
     if smile_files:
         smile = {}
         for f in smile_files:
@@ -490,7 +471,6 @@ def main() -> int:
     chart_speedup(java, charts)
     chart_ratio(java, charts)
     chart_java_vs_cs(java, cs, charts)
-    chart_public(java, smile, charts)
     chart_summary(java, cs, smile, charts)
     write_tables(java, cs, smile, grid / "tables.md")
     print(f"charts written to {charts}")

@@ -81,6 +81,7 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 - [report/4-public-comparison.md](report/4-public-comparison.md) — Smile и Google S2, разложение узлы × цена, точность
 - [report/5-structure-experiments.md](report/5-structure-experiments.md) — ECEF-ядро, многопрогонность, коробки (опровергнуто), scapegoat
 - [report/6-related-work.md](report/6-related-work.md) — обзор библиотек (JTS, GEOS, S2, Lucene, JSI) и research gap
+- [report/7-static-vs-dynamic.md](report/7-static-vs-dynamic.md) — цена мутабельности: динамическое ядро против статического Smile
 - [report/research-plan.md](report/research-plan.md) — гипотезы H1–H6, статусы, отложенные пункты
 - `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/` — по каждому состоянию на расширенной сетке; `report/profiles/images/` — скриншоты
 - `report/bench/` — сырые JMH-результаты; `report/bench/grid/` — замеры по состояниям на расширенной сетке + сводные таблицы

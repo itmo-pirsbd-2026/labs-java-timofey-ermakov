@@ -57,10 +57,14 @@ GRID = ROOT / "report/bench/grid"
 CHARTS = ROOT / "report/charts"
 
 SERIES = [
-    ("v6 (геодезия)", "perf6-trigcache", {"color": "#d62728", "linestyle": "-"}),
-    ("v7 (ECEF-ядро)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
-    ("Smile KDTree", "public-smile", {"color": "#8c564b", "linestyle": "--"}),
+    ("геодезическое ядро", "perf6-trigcache", {"color": "#d62728", "linestyle": "-"}),
+    ("ECEF-ядро (канон)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
     ("Google S2", "public-s2", {"color": "#2ca02c", "linestyle": "--"}),
+]
+MAIN_SERIES = SERIES
+STATIC_SERIES = [
+    ("ECEF-ядро (канон)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
+    ("Smile KDTree (статика)", "public-smile", {"color": "#8c564b", "linestyle": "--"}),
 ]
 METHOD_OF = {
     "perf6-trigcache": {"radius": "queryKdTreeRadius", "knn": "queryKdTreeKnn"},
@@ -80,7 +84,11 @@ IMPL_COLORS = {"v6": "#d62728", "v7": "#9467bd", "v8": "#7f7f7f", "Smile": "#8c5
 
 def load_grid():
     data: dict[str, dict] = {}
-    for _, prefix, _ in SERIES:
+    merged_series = list(SERIES)
+    for _, prefix, _ in STATIC_SERIES:
+        if all(prefix != p for _, p, _ in merged_series):
+            merged_series.append((None, prefix, None))
+    for _, prefix, _ in merged_series:
         merged: dict = {}
         for fam in ("knn", "radius"):
             f = GRID / f"{prefix}-{fam}.txt"
@@ -112,7 +120,7 @@ def chart_throughput(data):
         ax.set_yscale("log")
         ax.set_xlabel("число точек в индексе, N")
         ax.set_ylabel("throughput, ops/s")
-        ax.set_title(f"{title} — v6 / v7 (ECEF) / Smile / S2, с ДИ")
+        ax.set_title(f"{title} — геодезическое ядро / ECEF-ядро / S2, с ДИ")
         ax.legend(fontsize=9)
         fig.savefig(out / f"throughput-{fam}-{param}.png")
         plt.close(fig)
@@ -152,8 +160,37 @@ def _write_summary(raw_file: Path, summary_file: Path):
             w.writerow(row)
 
 
+def chart_static_comparison():
+    """Illustrations for the static-vs-dynamic document (Smile included)."""
+    out = CHARTS / "static"
+    out.mkdir(parents=True, exist_ok=True)
+    data = load_grid()
+    for fam, param, title in FAMILIES:
+        fig, ax = plt.subplots(figsize=(8, 5))
+        for label, prefix, style in STATIC_SERIES:
+            merged = data[prefix]
+            method = METHOD_OF[prefix][fam]
+            xs = sorted(n for (m, n, p) in merged if m == method and p == param)
+            if not xs:
+                continue
+            ys = [merged[(method, n, param)].mean for n in xs]
+            lo = [merged[(method, n, param)].err_lo for n in xs]
+            hi = [merged[(method, n, param)].err_hi for n in xs]
+            ax.plot(xs, ys, marker="o", markersize=3.5, label=label, linewidth=1.8, **style)
+            ax.fill_between(xs, [y - l for y, l in zip(ys, lo)], [y + h for y, h in zip(ys, hi)],
+                            color=style["color"], alpha=0.15, linewidth=0)
+        ax.set_xscale("log")
+        ax.set_yscale("log")
+        ax.set_xlabel("число точек в индексе, N")
+        ax.set_ylabel("throughput, ops/s")
+        ax.set_title(f"{title} — динамическое ядро против статического Smile")
+        ax.legend(fontsize=9)
+        fig.savefig(out / f"throughput-{fam}-{param}.png")
+        plt.close(fig)
+
+
 def chart_nodecost():
-    out = CHARTS / "ecef"
+    out = CHARTS / "static"
     out.mkdir(parents=True, exist_ok=True)
     raw = GRID / "nodecost-raw.csv"
     if not raw.exists():
@@ -193,7 +230,8 @@ def chart_nodecost():
             ax.set_title(title)
             ax.legend(fontsize=9)
         fig.suptitle(f"Разложение стоимости запроса — {dataset}, n=100000, 15 прогонов (NodeCostRunner)", y=1.02)
-        fig.savefig(out / f"nodecost-{dataset}.png")
+        short = dataset.split(" ")[0]
+        fig.savefig(out / f"nodecost-{short}.png")
         plt.close(fig)
 
 
@@ -245,7 +283,7 @@ def chart_realdata():
         if full_ds is None:
             continue
         x = list(range(len(queries)))
-        present = [i for i in IMPLS if (full_ds, queries[0], i.lower()) in groups]
+        present = [i for i in IMPLS if i != "Smile" and (full_ds, queries[0], i.lower()) in groups]
         width = 0.8 / max(len(present), 1)
         fig, ax = plt.subplots(figsize=(9, 5.5))
         all_means = []
@@ -281,6 +319,7 @@ def chart_realdata():
 def main() -> int:
     data = load_grid()
     chart_throughput(data)
+    chart_static_comparison()
     chart_nodecost()
     chart_realdata()
     print(f"charts written to {CHARTS}")
