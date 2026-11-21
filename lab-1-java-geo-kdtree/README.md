@@ -70,15 +70,18 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 
 Поверх него выполнено исследование производительности и оптимизации: отсечение дальних веток по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарная вставка в best-лист, кэш косинусов широт.
 
-Итог на расширенной сетке (N до 100000, см. [report/perf.md](report/perf.md)): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20; финал быстрее полного перебора в 570–1075 раз на n=100000. Есть сравнение с C#-версией и с публичной библиотекой Smile (ECEF-3D).
+Итог на расширенной сетке (N до 100000, см. [отчёты](report/)): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20; финал быстрее полного перебора в 570–1075 раз на n=100000. Каноническое ядро — ECEF (см. [5 — эксперименты со структурой](report/5-structure-experiments.md)); есть сравнение с C#, Smile и Google S2.
 
 ## Отчёты
 
 - [baseline.md](baseline.md) — анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и план оптимизаций
-- [report/perf.md](report/perf.md) — журнал perf-цикла: методика, замеры по каждому состоянию, сравнение с C#, выводы
-- [report/smile-comparison.md](report/smile-comparison.md) — сравнение финала с публичной библиотекой Smile (ECEF): разбор разрыва, точность, план улучшения сравнения
-- [report/related-work.md](report/related-work.md) — обзор существующих пространственных индексов (JTS, GEOS, S2, Lucene, JSI и др.), research gap и рекомендуемые ориентиры
-- [report/research-plan.md](report/research-plan.md) — план исследования: гипотезы H1–H6, как закрываем research gap, этапы работ
+- [report/1-method.md](report/1-method.md) — методика: сетка, конфиги, ДИ, паритет с C#
+- [report/2-optimization-cycle.md](report/2-optimization-cycle.md) — baseline и шесть состояний, главные графики
+- [report/3-real-data.md](report/3-real-data.md) — taxi/POI/8 млн точек, сравнение с C#
+- [report/4-public-comparison.md](report/4-public-comparison.md) — Smile и Google S2, разложение узлы × цена, точность
+- [report/5-structure-experiments.md](report/5-structure-experiments.md) — ECEF-ядро, многопрогонность, коробки (опровергнуто), scapegoat
+- [report/6-related-work.md](report/6-related-work.md) — обзор библиотек (JTS, GEOS, S2, Lucene, JSI) и research gap
+- [report/research-plan.md](report/research-plan.md) — гипотезы H1–H6, статусы, отложенные пункты
 - `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/` — по каждому состоянию на расширенной сетке; `report/profiles/images/` — скриншоты
 - `report/bench/` — сырые JMH-результаты; `report/bench/grid/` — замеры по состояниям на расширенной сетке + сводные таблицы
 - `report/charts/` — графики (throughput, speedup, кратности, Java против C#, против Smile), генератор — `tools/make_charts.py`
