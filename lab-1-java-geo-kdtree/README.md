@@ -1,6 +1,6 @@
 # Лабораторная 1 — Geo KD-tree (профилирование и тестирование производительности)
 
-Структура: корневой модуль — библиотека `org.timermakov.geo` (KD-tree, с ноября 2026 каноническое ядро — ECEF: `GeoKdTreeIndex`; геодезический вариант сохранён как `GeoGeodesicKdTreeIndex` для экспериментов), `:benchmarks` — JMH, `:profile-runner` — tight-loop прогон для профилировщика.
+Структура: корневой модуль — библиотека `org.timermakov.geo` (KD-tree; действующая реализация — ECEF в `GeoKdTreeIndex`, геодезическая сохранена как `GeoGeodesicKdTreeIndex` для экспериментов), `:benchmarks` — JMH, `:profile-runner` — tight-loop прогон для профилировщика.
 
 1. Geo KD-tree для точек `Lat/Lng`
 2. Вставка объектов `Insert`
@@ -70,7 +70,7 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 
 Поверх него выполнено исследование производительности и оптимизации: отсечение дальних веток по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарная вставка в best-лист, кэш косинусов широт.
 
-Итог на расширенной сетке (N до 100000, см. [отчёты](report/)): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20; финал быстрее полного перебора в 570–1075 раз на n=100000. Каноническое ядро — ECEF (см. [5 — эксперименты со структурой](report/5-structure-experiments.md)); есть сравнение с C#, Smile и Google S2.
+Итог на расширенной сетке (N до 100000, см. [отчёты](report/)): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20; финал быстрее полного перебора в 570–1075 раз на n=100000. Каноническое реализация — ECEF (см. [5 — эксперименты со структурой](report/5-structure-experiments.md)); есть сравнение с C#, Smile и Google S2.
 
 ## Отчёты
 
@@ -79,9 +79,9 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 - [report/2-optimization-cycle.md](report/2-optimization-cycle.md) — baseline и шесть состояний, главные графики
 - [report/3-real-data.md](report/3-real-data.md) — taxi/POI/8 млн точек, сравнение с C#
 - [report/4-public-comparison.md](report/4-public-comparison.md) — Smile и Google S2, разложение узлы × цена, точность
-- [report/5-structure-experiments.md](report/5-structure-experiments.md) — ECEF-ядро, многопрогонность, коробки (опровергнуто), scapegoat
+- [report/5-structure-experiments.md](report/5-structure-experiments.md) — ECEF, многопрогонность, коробки (опровергнуто), scapegoat
 - [report/6-related-work.md](report/6-related-work.md) — обзор библиотек (JTS, GEOS, S2, Lucene, JSI) и research gap
-- [report/7-static-vs-dynamic.md](report/7-static-vs-dynamic.md) — цена мутабельности: динамическое ядро против статического Smile
+- [report/7-static-vs-dynamic.md](report/7-static-vs-dynamic.md) — цена мутабельности: динамическое реализация против статического Smile
 - [report/research-plan.md](report/research-plan.md) — гипотезы H1–H6, статусы, отложенные пункты
 - `report/profiles/` — JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/` — по каждому состоянию на расширенной сетке; `report/profiles/images/` — скриншоты
 - `report/bench/` — сырые JMH-результаты; `report/bench/grid/` — замеры по состояниям на расширенной сетке + сводные таблицы

@@ -57,13 +57,13 @@ GRID = ROOT / "report/bench/grid"
 CHARTS = ROOT / "report/charts"
 
 SERIES = [
-    ("геодезическое ядро", "perf6-trigcache", {"color": "#d62728", "linestyle": "-"}),
-    ("ECEF-ядро (канон)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
+    ("LatLong", "perf6-trigcache", {"color": "#d62728", "linestyle": "-"}),
+    ("ECEF", "ecef", {"color": "#9467bd", "linestyle": "-"}),
     ("Google S2", "public-s2", {"color": "#2ca02c", "linestyle": "--"}),
 ]
 MAIN_SERIES = SERIES
 STATIC_SERIES = [
-    ("ECEF-ядро (канон)", "ecef", {"color": "#9467bd", "linestyle": "-"}),
+    ("ECEF", "ecef", {"color": "#9467bd", "linestyle": "-"}),
     ("Smile KDTree (статика)", "public-smile", {"color": "#8c564b", "linestyle": "--"}),
 ]
 METHOD_OF = {
@@ -120,7 +120,7 @@ def chart_throughput(data):
         ax.set_yscale("log")
         ax.set_xlabel("число точек в индексе, N")
         ax.set_ylabel("throughput, ops/s")
-        ax.set_title(f"{title} — геодезическое ядро / ECEF-ядро / S2, с ДИ")
+        ax.set_title(f"{title} — LatLong / ECEF / S2 (± ДИ)")
         ax.legend(fontsize=9)
         fig.savefig(out / f"throughput-{fam}-{param}.png")
         plt.close(fig)

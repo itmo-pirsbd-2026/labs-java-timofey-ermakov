@@ -341,13 +341,13 @@ def chart_summary(java: dict[str, dict], cs: dict | None, smile: dict | None, ou
     entries = []
     if cs:
         entries.append(("C#", cs, {fam: CS_METHOD[kd_method(fam)] for fam in ("radius", "knn")}))
-    entries.append(("Java baseline", java.get("baseline"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
+    entries.append(("LatLong (baseline)", java.get("baseline"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
     if smile:
         entries.append(("Google S2", smile, {"radius": "queryS2Radius", "knn": "queryS2Knn"}))
-    entries.append(("Java финал", java.get("perf6-trigcache"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
+    entries.append(("ECEF (финал)", java.get("perf6-trigcache"), {fam: kd_method(fam) for fam in ("radius", "knn")}))
 
-    color_of = {"C#": COLORS["csharp"], "Java baseline": COLORS["baseline"],
-                "Google S2": COLORS["smile"], "Java финал": COLORS["perf6-trigcache"]}
+    color_of = {"C#": COLORS["csharp"], "LatLong (baseline)": COLORS["baseline"],
+                "Google S2": COLORS["smile"], "ECEF (финал)": COLORS["perf6-trigcache"]}
 
     fig, ax = plt.subplots(figsize=(11, 5.5))
     width = 0.8 / max(len(entries), 1)
