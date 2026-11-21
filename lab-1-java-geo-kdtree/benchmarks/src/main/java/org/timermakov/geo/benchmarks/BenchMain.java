@@ -28,7 +28,8 @@ public final class BenchMain {
     public static void main(String[] args) throws RunnerException {
         BenchSettings settings = BenchSettings.load();
 
-        runClass(GeoKdTreeKnnBenchmarks.class.getSimpleName(), settings, KNN_RESULT_FILE, builder -> {
+        runClass(GeoKdTreeKnnBenchmarks.class.getSimpleName() + "|" + GeoGeodesicKnnBenchmarks.class.getSimpleName(),
+                settings, KNN_RESULT_FILE, builder -> {
             for (int n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
@@ -37,7 +38,8 @@ public final class BenchMain {
             }
         });
 
-        runClass(GeoKdTreeRadiusBenchmarks.class.getSimpleName(), settings, RADIUS_RESULT_FILE, builder -> {
+        runClass(GeoKdTreeRadiusBenchmarks.class.getSimpleName() + "|" + GeoGeodesicRadiusBenchmarks.class.getSimpleName(),
+                settings, RADIUS_RESULT_FILE, builder -> {
             for (int n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
@@ -67,6 +69,7 @@ public final class BenchMain {
                 .warmupTime(iterationTime)
                 .measurementIterations(settings.iterationCount())
                 .measurementTime(iterationTime)
+                .jvmArgs("-Xmx6g")
                 .resultFormat(ResultFormatType.TEXT)
                 .result(resultDir.resolve(resultFile).toString());
         if (settings.gcProfiler()) {

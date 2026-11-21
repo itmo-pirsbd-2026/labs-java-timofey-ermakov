@@ -64,6 +64,7 @@ public final class S2BenchMain {
                 .warmupTime(iterationTime)
                 .measurementIterations(settings.iterationCount())
                 .measurementTime(iterationTime)
+                .jvmArgs("-Xmx6g")
                 .resultFormat(ResultFormatType.TEXT)
                 .result(resultDir.resolve(resultFile).toString());
         if (settings.gcProfiler()) {

@@ -17,10 +17,13 @@ final class BenchGeoMath {
     static final double LAT_SPAN = 178.0;
     static final double LNG_BASE = -179.0;
     static final double LNG_SPAN = 358.0;
-    static final int LAT_MODULUS = 4_096;
-    static final double LAT_DENOM = 4_095.0;
-    static final int LNG_MODULUS = 8_192;
-    static final double LNG_DENOM = 8_191.0;
+    // Large moduli keep every generated point unique for N up to 16M: latitude cycles
+    // with period 2^23, and one latitude period shifts the (i * 17) % 2^24 longitude
+    // phase by 17 * 2^23 mod 2^24 = 2^23 != 0, so no (lat, lng) pair repeats.
+    static final int LAT_MODULUS = 8_388_608;
+    static final double LAT_DENOM = 8_388_607.0;
+    static final int LNG_MODULUS = 16_777_216;
+    static final double LNG_DENOM = 16_777_215.0;
 
     private BenchGeoMath() {
     }

@@ -32,10 +32,10 @@ public final class ProfileRunner {
     private static final double LAT_SPAN = 178.0;
     private static final double LNG_BASE = -179.0;
     private static final double LNG_SPAN = 358.0;
-    private static final int LAT_MODULUS = 4_096;
-    private static final double LAT_DENOM = 4_095.0;
-    private static final int LNG_MODULUS = 8_192;
-    private static final double LNG_DENOM = 8_191.0;
+    private static final int LAT_MODULUS = 8_388_608;
+    private static final double LAT_DENOM = 8_388_607.0;
+    private static final int LNG_MODULUS = 16_777_216;
+    private static final double LNG_DENOM = 16_777_215.0;
 
     private static final long NANOS_PER_SECOND = 1_000_000_000L;
 
