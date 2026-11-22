@@ -339,10 +339,10 @@ def chart_tenm():
         ("Lucene LatLonPoint", lucene, "queryLucene", "#17becf", ":"),
     ]
     panels = [
-        ("knn", "1", "kNN, k = 1"),
-        ("knn", "20", "kNN, k = 20"),
-        ("radius", "100", "Radius-поиск, r = 100 м"),
-        ("radius", "5000", "Radius-поиск, r = 5000 м"),
+        ("knn", "10", "kNN, k = 10"),
+        ("knn", "100", "kNN, k = 100"),
+        ("radius", "1000", "Radius-поиск, r = 1000 м"),
+        ("radius", "50000", "Radius-поиск, r = 50 000 м"),
     ]
     out = CHARTS / "tenm"
     out.mkdir(parents=True, exist_ok=True)
