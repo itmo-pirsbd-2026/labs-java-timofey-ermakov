@@ -74,6 +74,8 @@ async-profiler: приаттачиться к PID процесса `ProfileRunne
 
 ## Отчёты
 
+- [REPORT.md](REPORT.md) — итоговый отчёт по лабораторной: результаты, профайлинг, выводы
+
 - [baseline.md](baseline.md) — анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и план оптимизаций
 - [report/1-method.md](report/1-method.md) — методика: сетка, конфиги, ДИ, паритет с C#
 - [report/2-optimization-cycle.md](report/2-optimization-cycle.md) — baseline и шесть состояний, главные графики
