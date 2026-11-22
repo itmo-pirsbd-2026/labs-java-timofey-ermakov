@@ -49,10 +49,10 @@ public class GeoS2RadiusBenchmarks {
             index.add(toS2(point.latitude(), point.longitude()), point);
         }
 
-        int queryCount = Math.min(points.size(), QUERY_LIMIT);
-        queries = new S2Point[queryCount];
-        for (int i = 0; i < queryCount; i++) {
-            GeoPoint point = points.get(i);
+        GeoPoint[] queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
+        queries = new S2Point[queryPoints.length];
+        for (int i = 0; i < queryPoints.length; i++) {
+            GeoPoint point = queryPoints[i];
             queries[i] = toS2(point.latitude(), point.longitude());
         }
 

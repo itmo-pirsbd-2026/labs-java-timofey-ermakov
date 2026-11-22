@@ -25,6 +25,23 @@ final class BenchGeoMath {
     static final int LNG_MODULUS = 16_777_216;
     static final double LNG_DENOM = 16_777_215.0;
 
+    /**
+     * Deterministically spread query points across the whole dataset. Taking the first
+     * {@code limit} points would concentrate all queries in one corner: consecutive
+     * generator indices are neighbors in space.
+     */
+    static GeoPoint[] spreadQueries(List<GeoPoint> points, int limit) {
+        int n = points.size();
+        int count = Math.min(limit, n);
+        GeoPoint[] queries = new GeoPoint[count];
+        long step = count > 1 ? (n - 1) / (count - 1) : 0;
+        for (int i = 0; i < count; i++) {
+            queries[i] = points.get((int) Math.min(i * step, n - 1));
+        }
+
+        return queries;
+    }
+
     private BenchGeoMath() {
     }
 

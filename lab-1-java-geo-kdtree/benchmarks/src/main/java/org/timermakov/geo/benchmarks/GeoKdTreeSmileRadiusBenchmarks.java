@@ -53,10 +53,10 @@ public class GeoKdTreeSmileRadiusBenchmarks {
 
         index = new KDTree<>(keys, data);
 
-        int queryCount = Math.min(points.size(), QUERY_LIMIT);
-        queries = new double[queryCount][];
-        for (int i = 0; i < queryCount; i++) {
-            GeoPoint point = points.get(i);
+        GeoPoint[] queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
+        queries = new double[queryPoints.length][];
+        for (int i = 0; i < queryPoints.length; i++) {
+            GeoPoint point = queryPoints[i];
             double[] q = new double[3];
             BenchEcefMath.toEcef(point.latitude(), point.longitude(), BenchGeoMath.EARTH_RADIUS_METERS, q);
             queries[i] = q;

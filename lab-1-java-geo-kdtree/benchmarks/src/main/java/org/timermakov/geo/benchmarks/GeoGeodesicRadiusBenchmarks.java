@@ -39,7 +39,7 @@ public class GeoGeodesicRadiusBenchmarks {
     @Setup(Level.Trial)
     public void globalSetup() {
         points = BenchGeoMath.buildPoints(n, GENERATOR_LNG_STRIDE);
-        queries = Arrays.copyOf(points.toArray(GeoPoint[]::new), Math.min(points.size(), QUERY_LIMIT));
+        queries = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         index = new GeoGeodesicKdTreeIndex();
         for (GeoPoint point : points) {
             index.insert(point);
