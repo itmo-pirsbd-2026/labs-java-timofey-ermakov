@@ -51,7 +51,7 @@ public class GeoLuceneRadiusBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() throws IOException {
-        points = BenchGeoMath.buildPoints(n, GENERATOR_LNG_STRIDE);
+        points = BenchGeoMath.buildClusteredPoints(n);
         queries = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
 
         directory = new ByteBuffersDirectory();

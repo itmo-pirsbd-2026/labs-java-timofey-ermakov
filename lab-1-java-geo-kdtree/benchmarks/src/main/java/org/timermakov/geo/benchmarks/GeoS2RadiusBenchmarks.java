@@ -43,7 +43,7 @@ public class GeoS2RadiusBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() {
-        List<GeoPoint> points = BenchGeoMath.buildPoints(n, GENERATOR_LNG_STRIDE);
+        List<GeoPoint> points = BenchGeoMath.buildClusteredPoints(n);
         index = new S2PointIndex<>();
         for (GeoPoint point : points) {
             index.add(toS2(point.latitude(), point.longitude()), point);

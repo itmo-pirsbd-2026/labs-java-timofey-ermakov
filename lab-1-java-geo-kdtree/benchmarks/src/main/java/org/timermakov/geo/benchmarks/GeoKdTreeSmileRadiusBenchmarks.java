@@ -40,7 +40,7 @@ public class GeoKdTreeSmileRadiusBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() {
-        List<GeoPoint> points = BenchGeoMath.buildPoints(n, GENERATOR_LNG_STRIDE);
+        List<GeoPoint> points = BenchGeoMath.buildClusteredPoints(n);
         double[][] keys = new double[points.size()][];
         Integer[] data = new Integer[points.size()];
         double[] ecef = new double[3];

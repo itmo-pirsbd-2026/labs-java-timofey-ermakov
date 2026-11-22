@@ -39,7 +39,7 @@ public class GeoKdTreeKnnBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() {
-        points = BenchGeoMath.buildPoints(n, GENERATOR_LNG_STRIDE);
+        points = BenchGeoMath.buildClusteredPoints(n);
         queries = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         index = new GeoKdTreeIndex();
         for (GeoPoint point : points) {
