@@ -49,3 +49,6 @@ bin/
 # Profiler tooling (local)
 .profiler-tools/
 
+
+# Report drafts (working notes, not for submission)
+report/*.md
