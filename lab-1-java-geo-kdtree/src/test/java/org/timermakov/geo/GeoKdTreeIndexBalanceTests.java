@@ -92,7 +92,9 @@ class GeoKdTreeIndexBalanceTests {
 
         assertThat(actual).hasSize(expected.size());
         for (var i = 0; i < expected.size(); i++) {
-            assertThat(actual.get(i).point().id()).isEqualTo(expected.get(i).point().id());
+            assertThat(actual.get(i).point().id())
+                    .hasSize(expected.get(i).point().id().length())
+                    .isEqualTo(expected.get(i).point().id());
             assertThat(actual.get(i).distanceMeters())
                     .isCloseTo(expected.get(i).distanceMeters(), within(DISTANCE_TOLERANCE_METERS));
         }
@@ -108,7 +110,9 @@ class GeoKdTreeIndexBalanceTests {
 
         assertThat(actual).hasSize(expected.size());
         for (var i = 0; i < expected.size(); i++) {
-            assertThat(actual.get(i).point().id()).isEqualTo(expected.get(i).point().id());
+            assertThat(actual.get(i).point().id())
+                    .hasSize(expected.get(i).point().id().length())
+                    .isEqualTo(expected.get(i).point().id());
             assertThat(actual.get(i).distanceMeters())
                     .isCloseTo(expected.get(i).distanceMeters(), within(DISTANCE_TOLERANCE_METERS));
         }
