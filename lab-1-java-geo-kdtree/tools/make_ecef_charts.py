@@ -316,12 +316,68 @@ def chart_realdata():
         plt.close(fig)
 
 
+def chart_tenm():
+    """Single shared 2x2 panel for the 10M-point grid: LatLong / ECEF / S2."""
+    if not (GRID / "tenm-knn.txt").exists():
+        return
+    own = {}
+    for f in ("tenm-knn", "tenm-radius"):
+        own.update(parse_jmh(GRID / f"{f}.txt"))
+    s2 = {}
+    for f in ("tenm-s2-knn", "tenm-s2-radius"):
+        s2.update(parse_jmh(GRID / f"{f}.txt"))
+    lucene = {}
+    for f in ("tenm-lucene-knn", "tenm-lucene-radius"):
+        fpath = GRID / f"{f}.txt"
+        if fpath.exists():
+            lucene.update(parse_jmh(fpath))
+
+    series = [
+        ("LatLong", own, "queryGeodesic", "#d62728", "-"),
+        ("ECEF", own, "queryKdTree", "#9467bd", "-"),
+        ("Google S2", s2, "queryS2", "#2ca02c", "--"),
+        ("Lucene LatLonPoint", lucene, "queryLucene", "#17becf", ":"),
+    ]
+    panels = [
+        ("knn", "1", "kNN, k = 1"),
+        ("knn", "20", "kNN, k = 20"),
+        ("radius", "100", "Radius-поиск, r = 100 м"),
+        ("radius", "5000", "Radius-поиск, r = 5000 м"),
+    ]
+    out = CHARTS / "tenm"
+    out.mkdir(parents=True, exist_ok=True)
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    for ax, (fam, param, title) in zip(axes.flat, panels):
+        for label, data, prefix, color, ls in series:
+            method = prefix + ("Knn" if fam == "knn" else "Radius")
+            xs = sorted(n for (m, n, p) in data if m == method and p == param)
+            if not xs:
+                continue
+            ys = [data[(method, n, param)].mean for n in xs]
+            lo = [data[(method, n, param)].err_lo for n in xs]
+            hi = [data[(method, n, param)].err_hi for n in xs]
+            ax.plot(xs, ys, marker="o", markersize=3, label=label, color=color, linestyle=ls, linewidth=1.6)
+            ax.fill_between(xs, [y - l for y, l in zip(ys, lo)], [y + h for y, h in zip(ys, hi)],
+                            color=color, alpha=0.13, linewidth=0)
+        ax.set_xscale("log")
+        ax.set_yscale("log")
+        ax.set_xlabel("число точек в индексе, N")
+        ax.set_ylabel("throughput, ops/s")
+        ax.set_title(f"{title} (± ДИ)")
+        ax.legend(fontsize=9)
+    fig.tight_layout()
+    fig.savefig(out / "tenm-2x2.png")
+    plt.close(fig)
+    print("tenm panel written")
+
+
 def main() -> int:
     data = load_grid()
     chart_throughput(data)
     chart_static_comparison()
     chart_nodecost()
     chart_realdata()
+    chart_tenm()
     print(f"charts written to {CHARTS}")
     return 0
 
