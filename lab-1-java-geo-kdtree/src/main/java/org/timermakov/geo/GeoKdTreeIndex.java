@@ -3,7 +3,7 @@ package org.timermakov.geo;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Arrays;
-import java.util.HashMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,7 +46,7 @@ public final class GeoKdTreeIndex {
     /** Accumulator for {@link #PROFILING_COUNT_NODES}, reset by the caller between runs. */
     public static long PROFILING_VISITED_NODES = 0;
 
-    private final Map<String, GeoPoint> pointsById = new HashMap<>();
+    private final Map<String, GeoPoint> pointsById = new Object2ObjectOpenHashMap<>();
     private Node root;
 
     public int count() {

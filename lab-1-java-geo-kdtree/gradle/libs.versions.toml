@@ -6,6 +6,7 @@ gson = "2.11.0"
 smile = "7.3.0"
 s2 = "2.0.0"
 lucene = "10.6.0"
+fastutil = "8.5.15"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
@@ -18,3 +19,4 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 smile-core = { module = "com.github.haifengl:smile-core", version.ref = "smile" }
 s2-geometry = { module = "com.google.geometry:s2-geometry", version.ref = "s2" }
 lucene-core = { module = "org.apache.lucene:lucene-core", version.ref = "lucene" }
+fastutil-core = { module = "it.unimi.dsi:fastutil", version.ref = "fastutil" }
