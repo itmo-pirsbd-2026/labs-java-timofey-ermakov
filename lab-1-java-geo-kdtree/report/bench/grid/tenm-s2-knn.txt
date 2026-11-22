@@ -1,0 +1,181 @@
+Benchmark                                         (k)       (n)   Mode  Cnt        Score        Error   Units
+GeoS2KnnBenchmarks.queryS2Knn                       1       100  thrpt   40   895169.765 ±  15030.119   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1       100  thrpt   40     2466.767 ±     41.289  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1       100  thrpt   40     2891.979 ±      0.002    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1       100  thrpt   40      180.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1       100  thrpt   40      178.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1       200  thrpt   40  2022822.975 ±  55114.668   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1       200  thrpt   40      733.670 ±     20.053  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1       200  thrpt   40      380.699 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1       200  thrpt   40      102.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1       200  thrpt   40       91.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1       500  thrpt   40  1540993.406 ±  28519.295   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1       500  thrpt   40      558.778 ±     10.347  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1       500  thrpt   40      380.678 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1       500  thrpt   40       62.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1       500  thrpt   40       64.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1      1000  thrpt   40  1582571.734 ±  26380.402   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1      1000  thrpt   40      570.005 ±     10.397  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1      1000  thrpt   40      378.179 ±      3.959    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1      1000  thrpt   40       79.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1      1000  thrpt   40       79.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1      2500  thrpt   40  1570712.670 ±  21145.016   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1      2500  thrpt   40      565.655 ±      9.400  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1      2500  thrpt   40      378.093 ±      4.242    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1      2500  thrpt   40       63.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1      2500  thrpt   40       68.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1      5000  thrpt   40  1502142.940 ±  27634.793   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1      5000  thrpt   40      547.889 ±     11.917  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1      5000  thrpt   40      382.955 ±      4.311    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1      5000  thrpt   40       61.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1      5000  thrpt   40       66.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1     10000  thrpt   40  1498431.641 ±  51941.265   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1     10000  thrpt   40      535.914 ±     22.745  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1     10000  thrpt   40      375.307 ±      7.274    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1     10000  thrpt   40       60.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1     10000  thrpt   40       61.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1     20000  thrpt   40  1658168.729 ±  30569.127   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1     20000  thrpt   40      600.578 ±     11.062  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1     20000  thrpt   40      380.114 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1     20000  thrpt   40       55.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1     20000  thrpt   40       48.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1     35000  thrpt   40  1665071.633 ±  24347.627   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1     35000  thrpt   40      603.015 ±      8.868  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1     35000  thrpt   40      380.114 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1     35000  thrpt   40       46.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1     35000  thrpt   40       50.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1     50000  thrpt   40  1538133.292 ±  29967.296   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1     50000  thrpt   40      553.719 ±      8.543  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1     50000  thrpt   40      378.028 ±      3.699    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1     50000  thrpt   40       42.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1     50000  thrpt   40       50.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1     75000  thrpt   40  1420913.139 ±  26578.915   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1     75000  thrpt   40      520.551 ±     11.037  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1     75000  thrpt   40      384.654 ±      4.875    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1     75000  thrpt   40       48.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1     75000  thrpt   40       54.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1    100000  thrpt   40  1488272.118 ±  42237.587   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1    100000  thrpt   40      540.208 ±     15.334  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1    100000  thrpt   40      380.913 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1    100000  thrpt   40       41.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1    100000  thrpt   40       39.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1    250000  thrpt   40  1668883.962 ±  26009.017   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1    250000  thrpt   40      611.683 ±     10.439  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1    250000  thrpt   40      384.819 ±      7.495    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1    250000  thrpt   40       68.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1    250000  thrpt   40       55.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1    500000  thrpt   40  1591859.304 ±  22662.826   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1    500000  thrpt   40      585.119 ±     17.991  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1    500000  thrpt   40      385.703 ±      8.206    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1    500000  thrpt   40       65.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1    500000  thrpt   40       66.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1   1000000  thrpt   40  1454660.614 ±  23739.470   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1   1000000  thrpt   40      533.010 ±     10.769  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1   1000000  thrpt   40      384.721 ±      4.688    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1   1000000  thrpt   40       26.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1   1000000  thrpt   40       38.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1   2500000  thrpt   40  1401877.893 ±  61005.530   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1   2500000  thrpt   40      509.799 ±     22.186  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1   2500000  thrpt   40      381.664 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1   2500000  thrpt   40       58.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1   2500000  thrpt   40       66.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1   5000000  thrpt   40  1415792.495 ±  36304.615   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1   5000000  thrpt   40      515.299 ±     13.232  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1   5000000  thrpt   40      382.039 ±      0.001    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1   5000000  thrpt   40        6.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1   5000000  thrpt   40       10.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                       1  10000000  thrpt   40  1238011.833 ± 122951.556   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate         1  10000000  thrpt   40      450.960 ±     44.820  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm    1  10000000  thrpt   40      382.416 ±      0.002    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count              1  10000000  thrpt   40       14.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time               1  10000000  thrpt   40       31.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20       100  thrpt   40   286602.142 ±   7562.923   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20       100  thrpt   40     1126.331 ±     29.778  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20       100  thrpt   40     4125.805 ±      0.036    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20       100  thrpt   40       86.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20       100  thrpt   40       99.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20       200  thrpt   40   257482.187 ±   3661.242   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20       200  thrpt   40     1065.258 ±     15.146  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20       200  thrpt   40     4341.405 ±      0.077    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20       200  thrpt   40       99.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20       200  thrpt   40       82.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20       500  thrpt   40   200732.469 ±  13667.317   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20       500  thrpt   40      971.480 ±     66.179  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20       500  thrpt   40     5077.563 ±      0.212    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20       500  thrpt   40       90.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20       500  thrpt   40       57.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20      1000  thrpt   40   180532.836 ±   4143.322   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20      1000  thrpt   40     1067.225 ±     24.496  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20      1000  thrpt   40     6202.493 ±      0.146    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20      1000  thrpt   40      119.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20      1000  thrpt   40       82.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20      2500  thrpt   40   193596.934 ±   2991.647   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20      2500  thrpt   40     1166.807 ±     18.032  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20      2500  thrpt   40     6323.321 ±      0.140    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20      2500  thrpt   40      108.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20      2500  thrpt   40       75.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20      5000  thrpt   40   182401.233 ±   5408.481   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20      5000  thrpt   40     1174.316 ±     34.830  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20      5000  thrpt   40     6754.753 ±      0.127    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20      5000  thrpt   40       89.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20      5000  thrpt   40       65.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20     10000  thrpt   40   186600.577 ±   1771.305   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20     10000  thrpt   40     1201.320 ±     11.412  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20     10000  thrpt   40     6754.685 ±      0.135    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20     10000  thrpt   40       91.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20     10000  thrpt   40       65.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20     20000  thrpt   40   175832.722 ±   1208.720   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20     20000  thrpt   40     1244.619 ±      8.543  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20     20000  thrpt   40     7426.762 ±      0.124    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20     20000  thrpt   40       95.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20     20000  thrpt   40       70.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20     35000  thrpt   40   170494.247 ±   1693.032   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20     35000  thrpt   40     1206.847 ±     12.002  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20     35000  thrpt   40     7426.771 ±      0.145    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20     35000  thrpt   40       76.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20     35000  thrpt   40       59.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20     50000  thrpt   40   172833.447 ±   2409.073   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20     50000  thrpt   40     1223.368 ±     17.077  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20     50000  thrpt   40     7426.812 ±      0.146    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20     50000  thrpt   40       76.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20     50000  thrpt   40       59.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20     75000  thrpt   40   160850.367 ±   2119.851   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20     75000  thrpt   40     1150.895 ±     15.169  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20     75000  thrpt   40     7507.543 ±      0.124    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20     75000  thrpt   40       72.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20     75000  thrpt   40       59.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20    100000  thrpt   40   163102.216 ±   2426.682   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20    100000  thrpt   40     1283.982 ±     19.115  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20    100000  thrpt   40     8259.574 ±      0.166    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20    100000  thrpt   40       79.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20    100000  thrpt   40       64.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20    250000  thrpt   40   143990.804 ±   2052.744   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20    250000  thrpt   40     1223.482 ±     17.436  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20    250000  thrpt   40     8915.109 ±      0.171    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20    250000  thrpt   40      136.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20    250000  thrpt   40       87.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20    500000  thrpt   40   141708.537 ±   1389.338   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20    500000  thrpt   40     1215.035 ±     11.908  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20    500000  thrpt   40     8995.518 ±      0.164    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20    500000  thrpt   40      135.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20    500000  thrpt   40       85.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20   1000000  thrpt   40   118591.447 ±   1197.181   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20   1000000  thrpt   40     1148.834 ±     11.585  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20   1000000  thrpt   40    10163.780 ±      0.209    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20   1000000  thrpt   40       68.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20   1000000  thrpt   40       56.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20   2500000  thrpt   40    88123.505 ±   2729.760   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20   2500000  thrpt   40      970.679 ±     30.047  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20   2500000  thrpt   40    11557.671 ±      0.330    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20   2500000  thrpt   40      121.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20   2500000  thrpt   40       87.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20   5000000  thrpt   40    98452.911 ±    918.867   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20   5000000  thrpt   40     1098.133 ±     10.232  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20   5000000  thrpt   40    11702.069 ±      0.215    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20   5000000  thrpt   40       12.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20   5000000  thrpt   40       15.000                   ms
+GeoS2KnnBenchmarks.queryS2Knn                      20  10000000  thrpt   40    83816.058 ±   6959.250   ops/s
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate        20  10000000  thrpt   40      975.731 ±     81.034  MB/sec
+GeoS2KnnBenchmarks.queryS2Knn:gc.alloc.rate.norm   20  10000000  thrpt   40    12214.494 ±      0.331    B/op
+GeoS2KnnBenchmarks.queryS2Knn:gc.count             20  10000000  thrpt   40       31.000               counts
+GeoS2KnnBenchmarks.queryS2Knn:gc.time              20  10000000  thrpt   40       51.000                   ms
