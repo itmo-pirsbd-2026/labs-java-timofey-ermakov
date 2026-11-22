@@ -1,181 +1,181 @@
-Benchmark                                                 (k)       (n)   Mode  Cnt        Score        Error   Units
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1       100  thrpt   40   127496.334 ±    924.286   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1       100  thrpt   40      877.666 ±      6.380  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1       100  thrpt   40     7224.346 ±      0.843    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1       100  thrpt   40       82.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1       100  thrpt   40       59.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1       200  thrpt   40    70746.853 ±   1421.208   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1       200  thrpt   40      487.474 ±     10.155  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1       200  thrpt   40     7232.688 ±      1.752    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1       200  thrpt   40       68.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1       200  thrpt   40       43.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1       500  thrpt   40    26510.335 ±    207.333   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1       500  thrpt   40     1613.267 ±     12.453  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1       500  thrpt   40    63865.651 ±      4.014    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1       500  thrpt   40      123.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1       500  thrpt   40       97.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1      1000  thrpt   40    25751.227 ±    217.910   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1      1000  thrpt   40     1667.956 ±     14.170  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1      1000  thrpt   40    67979.616 ±      5.141    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1      1000  thrpt   40      127.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1      1000  thrpt   40       98.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1      2500  thrpt   40    28042.041 ±    290.785   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1      2500  thrpt   40      542.124 ±      5.549  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1      2500  thrpt   40    20288.622 ±      7.861    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1      2500  thrpt   40       76.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1      2500  thrpt   40       51.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1      5000  thrpt   40    25936.014 ±    391.371   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1      5000  thrpt   40      860.348 ±     13.065  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1      5000  thrpt   40    34819.985 ±      9.723    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1      5000  thrpt   40       81.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1      5000  thrpt   40       59.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1     10000  thrpt   40    21374.316 ±    151.065   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1     10000  thrpt   40     1451.207 ±     10.217  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1     10000  thrpt   40    71256.970 ±     20.079    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1     10000  thrpt   40      111.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1     10000  thrpt   40       89.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1     20000  thrpt   40    16819.764 ±    201.980   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1     20000  thrpt   40     1388.115 ±     16.726  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1     20000  thrpt   40    86615.547 ±     36.817    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1     20000  thrpt   40      106.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1     20000  thrpt   40       83.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1     35000  thrpt   40    17025.515 ±    124.625   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1     35000  thrpt   40     2297.933 ±     16.582  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1     35000  thrpt   40   141648.724 ±     35.827    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1     35000  thrpt   40      139.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1     35000  thrpt   40      125.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1     50000  thrpt   40    13968.871 ±    145.021   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1     50000  thrpt   40     1608.061 ±     16.782  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1     50000  thrpt   40   120813.509 ±     25.971    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1     50000  thrpt   40      119.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1     50000  thrpt   40       98.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1     75000  thrpt   40    13945.076 ±    112.649   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1     75000  thrpt   40     2355.247 ±     18.888  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1     75000  thrpt   40   177252.198 ±     45.071    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1     75000  thrpt   40      125.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1     75000  thrpt   40      111.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1    100000  thrpt   40     7669.755 ±     60.175   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1    100000  thrpt   40     1219.677 ±      9.299  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1    100000  thrpt   40   166890.428 ±     96.575    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1    100000  thrpt   40       94.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1    100000  thrpt   40       75.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1    250000  thrpt   40    12041.104 ±    118.704   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1    250000  thrpt   40     2187.261 ±     21.083  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1    250000  thrpt   40   190634.292 ±    146.389    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1    250000  thrpt   40      167.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1    250000  thrpt   40      137.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1    500000  thrpt   40     5754.051 ±     79.191   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1    500000  thrpt   40     1423.883 ±     18.244  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1    500000  thrpt   40   259704.700 ±    660.264    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1    500000  thrpt   40      104.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1    500000  thrpt   40       89.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1   1000000  thrpt   40     3418.118 ±    104.249   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1   1000000  thrpt   40     1175.565 ±     21.520  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1   1000000  thrpt   40   361339.537 ±   4365.217    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1   1000000  thrpt   40       72.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1   1000000  thrpt   40       65.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1   2500000  thrpt   40     1227.977 ±      9.810   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1   2500000  thrpt   40      791.928 ±      6.341  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1   2500000  thrpt   40   676844.461 ±     84.918    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1   2500000  thrpt   40       40.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1   2500000  thrpt   40       38.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1   5000000  thrpt   40      333.060 ±     67.915   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1   5000000  thrpt   40      543.394 ±     16.122  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1   5000000  thrpt   40  1878988.732 ± 265596.835    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1   5000000  thrpt   40       19.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1   5000000  thrpt   40       57.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                       1  10000000  thrpt   40      107.834 ±      6.069   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate         1  10000000  thrpt   40      441.293 ±     24.805  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm    1  10000000  thrpt   40  4293109.070 ±    448.632    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count              1  10000000  thrpt   40       30.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time               1  10000000  thrpt   40      112.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20       100  thrpt   40   100842.235 ±   1891.921   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20       100  thrpt   40     2022.182 ±     38.242  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20       100  thrpt   40    21048.442 ±      1.081    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20       100  thrpt   40      149.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20       100  thrpt   40      122.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20       200  thrpt   40    46879.168 ±   1217.744   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20       200  thrpt   40     1437.654 ±     37.099  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20       200  thrpt   40    32200.921 ±      2.217    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20       200  thrpt   40      109.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20       200  thrpt   40       97.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20       500  thrpt   40    17768.187 ±    940.336   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20       500  thrpt   40     1119.257 ±     59.154  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20       500  thrpt   40    66146.410 ±      5.770    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20       500  thrpt   40       86.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20       500  thrpt   40       78.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20      1000  thrpt   40    20170.633 ±    953.142   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20      1000  thrpt   40      259.152 ±     12.219  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20      1000  thrpt   40    13490.118 ±      5.075    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20      1000  thrpt   40       36.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20      1000  thrpt   40       31.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20      2500  thrpt   40    19848.268 ±    868.579   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20      2500  thrpt   40      425.840 ±     18.869  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20      2500  thrpt   40    22530.003 ±     10.197    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20      2500  thrpt   40       60.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20      2500  thrpt   40       45.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20      5000  thrpt   40    17994.732 ±   1165.005   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20      5000  thrpt   40      640.859 ±     41.587  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20      5000  thrpt   40    37385.381 ±     16.867    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20      5000  thrpt   40       72.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20      5000  thrpt   40       57.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20     10000  thrpt   40    17699.724 ±    644.062   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20     10000  thrpt   40     1234.230 ±     45.215  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20     10000  thrpt   40    73194.579 ±     26.504    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20     10000  thrpt   40       95.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20     10000  thrpt   40       80.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20     20000  thrpt   40    16340.389 ±    521.420   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20     20000  thrpt   40     1314.734 ±     41.609  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20     20000  thrpt   40    84448.002 ±     31.704    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20     20000  thrpt   40      100.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20     20000  thrpt   40       85.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20     35000  thrpt   40     9199.506 ±    138.913   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20     35000  thrpt   40     1251.919 ±     19.373  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20     35000  thrpt   40   142859.804 ±     75.606    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20     35000  thrpt   40       87.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20     35000  thrpt   40       89.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20     50000  thrpt   40     7200.074 ±    285.507   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20     50000  thrpt   40      802.869 ±     31.706  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20     50000  thrpt   40   117099.172 ±     85.288    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20     50000  thrpt   40       59.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20     50000  thrpt   40       68.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20     75000  thrpt   40     6890.737 ±    244.252   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20     75000  thrpt   40     1155.010 ±     40.739  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20     75000  thrpt   40   175976.871 ±    147.787    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20     75000  thrpt   40       69.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20     75000  thrpt   40       96.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20    100000  thrpt   40     6709.271 ±    281.344   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20    100000  thrpt   40      855.133 ±     36.011  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20    100000  thrpt   40   133850.032 ±    101.997    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20    100000  thrpt   40       63.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20    100000  thrpt   40       76.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20    250000  thrpt   40     4136.988 ±    664.185   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20    250000  thrpt   40      894.327 ±    142.235  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20    250000  thrpt   40   227145.034 ±   1202.541    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20    250000  thrpt   40      105.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20    250000  thrpt   40       96.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20    500000  thrpt   40     4611.863 ±    195.261   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20    500000  thrpt   40     1164.609 ±     47.704  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20    500000  thrpt   40   265100.831 ±    774.341    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20    500000  thrpt   40       93.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20    500000  thrpt   40       80.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20   1000000  thrpt   40     4574.700 ±    103.548   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20   1000000  thrpt   40     1258.638 ±     27.668  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20   1000000  thrpt   40   288788.106 ±   1650.902    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20   1000000  thrpt   40       82.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20   1000000  thrpt   40       76.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20   2500000  thrpt   40     1012.058 ±    112.554   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20   2500000  thrpt   40      604.076 ±     50.120  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20   2500000  thrpt   40   634835.115 ±  26673.480    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20   2500000  thrpt   40       36.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20   2500000  thrpt   40       39.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20   5000000  thrpt   40      519.321 ±     75.332   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20   5000000  thrpt   40      353.041 ±     17.710  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20   5000000  thrpt   40   757403.285 ± 104202.569    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20   5000000  thrpt   40       49.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20   5000000  thrpt   40      106.000                   ms
-GeoLuceneKnnBenchmarks.queryLuceneKnn                      20  10000000  thrpt   40      162.468 ±     19.520   ops/s
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        20  10000000  thrpt   40      367.559 ±     44.111  MB/sec
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   20  10000000  thrpt   40  2374121.136 ±    448.610    B/op
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             20  10000000  thrpt   40       15.000               counts
-GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              20  10000000  thrpt   40      116.000                   ms
+Benchmark                                                 (k)       (n)   Mode  Cnt        Score      Error   Units
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10       100  thrpt   40   121602.112 ± 1160.016   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10       100  thrpt   40      963.087 ±    8.980  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10       100  thrpt   40     8312.355 ±    0.858    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10       100  thrpt   40       90.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10       100  thrpt   40       64.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10       200  thrpt   40    64408.290 ±  643.126   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10       200  thrpt   40     1912.961 ±   19.441  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10       200  thrpt   40    31168.692 ±    1.700    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10       200  thrpt   40      146.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10       200  thrpt   40      107.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10       500  thrpt   40    30369.460 ±  222.681   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10       500  thrpt   40     1891.617 ±   13.418  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10       500  thrpt   40    65369.416 ±    3.425    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10       500  thrpt   40      145.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10       500  thrpt   40      108.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10      1000  thrpt   40    31754.609 ±  367.064   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10      1000  thrpt   40      405.673 ±    4.643  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10      1000  thrpt   40    13408.352 ±    3.315    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10      1000  thrpt   40       57.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10      1000  thrpt   40       37.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10      2500  thrpt   40    23474.563 ± 1316.972   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10      2500  thrpt   40      591.034 ±   33.156  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10      2500  thrpt   40    26425.026 ±    4.707    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10      2500  thrpt   40       83.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10      2500  thrpt   40       54.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10      5000  thrpt   40    23811.682 ±  219.208   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10      5000  thrpt   40     1126.165 ±   10.201  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10      5000  thrpt   40    49632.516 ±    4.914    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10      5000  thrpt   40       86.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10      5000  thrpt   40       67.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10     10000  thrpt   40    18997.276 ±  202.405   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10     10000  thrpt   40     1899.312 ±   20.430  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10     10000  thrpt   40   104930.113 ±    7.186    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10     10000  thrpt   40      144.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10     10000  thrpt   40      112.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10     20000  thrpt   40    17566.116 ±  117.110   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10     20000  thrpt   40     2039.138 ±   13.590  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10     20000  thrpt   40   121827.168 ±    7.159    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10     20000  thrpt   40      143.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10     20000  thrpt   40      117.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10     35000  thrpt   40    18923.495 ±  183.063   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10     35000  thrpt   40     2139.554 ±   20.529  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10     35000  thrpt   40   118657.459 ±    7.324    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10     35000  thrpt   40      141.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10     35000  thrpt   40      117.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10     50000  thrpt   40    18096.190 ±  114.127   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10     50000  thrpt   40     1732.432 ±   11.016  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10     50000  thrpt   40   100478.615 ±    7.457    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10     50000  thrpt   40      118.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10     50000  thrpt   40      100.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10     75000  thrpt   40    16070.276 ±  216.326   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10     75000  thrpt   40     2279.792 ±   30.749  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10     75000  thrpt   40   148894.622 ±   11.473    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10     75000  thrpt   40      112.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10     75000  thrpt   40       97.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10    100000  thrpt   40    17295.086 ±  164.424   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10    100000  thrpt   40     1862.764 ±   17.583  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10    100000  thrpt   40   113031.846 ±    7.877    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10    100000  thrpt   40      107.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10    100000  thrpt   40       96.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10    250000  thrpt   40    16067.418 ±  328.147   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10    250000  thrpt   40     2295.534 ±   47.474  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10    250000  thrpt   40   149940.323 ±   14.082    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10    250000  thrpt   40      176.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10    250000  thrpt   40      136.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10    500000  thrpt   40    14448.654 ±  245.213   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10    500000  thrpt   40     2271.831 ±   39.613  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10    500000  thrpt   40   165017.962 ±   11.658    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10    500000  thrpt   40      127.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10    500000  thrpt   40      110.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10   1000000  thrpt   40    14301.594 ±  237.347   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10   1000000  thrpt   40     2534.394 ±   43.133  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10   1000000  thrpt   40   185973.246 ±   11.772    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10   1000000  thrpt   40      110.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10   1000000  thrpt   40       99.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10   2500000  thrpt   40     7661.363 ±  171.664   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10   2500000  thrpt   40     3268.946 ±   74.471  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10   2500000  thrpt   40   447794.855 ±   49.694    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10   2500000  thrpt   40      104.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10   2500000  thrpt   40      104.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10   5000000  thrpt   40     4061.217 ±  129.002   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10   5000000  thrpt   40     3328.936 ±  105.435  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10   5000000  thrpt   40   860385.725 ±  116.267    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10   5000000  thrpt   40       90.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10   5000000  thrpt   40      107.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                      10  10000000  thrpt   40     1876.101 ±  146.685   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate        10  10000000  thrpt   40     3169.338 ±  248.004  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm   10  10000000  thrpt   40  1773228.629 ±  361.412    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count             10  10000000  thrpt   40      118.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time              10  10000000  thrpt   40      150.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100       100  thrpt   40    64054.104 ± 1296.867   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100       100  thrpt   40     1839.925 ±   38.510  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100       100  thrpt   40    30160.709 ±    1.750    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100       100  thrpt   40      141.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100       100  thrpt   40      107.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100       200  thrpt   40    36223.594 ±  704.869   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100       200  thrpt   40      652.834 ±   12.921  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100       200  thrpt   40    18913.302 ±    3.271    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100       200  thrpt   40       92.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100       200  thrpt   40       59.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100       500  thrpt   40    16989.691 ±  319.992   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100       500  thrpt   40     1226.833 ±   23.589  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100       500  thrpt   40    75794.666 ±    6.589    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100       500  thrpt   40       95.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100       500  thrpt   40       72.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100      1000  thrpt   40    15741.814 ±  295.173   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100      1000  thrpt   40      356.305 ±    6.690  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100      1000  thrpt   40    23754.790 ±    6.798    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100      1000  thrpt   40       50.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100      1000  thrpt   40       31.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100      2500  thrpt   40    12601.555 ±  269.283   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100      2500  thrpt   40      461.082 ±    9.820  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100      2500  thrpt   40    38400.467 ±    8.579    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100      2500  thrpt   40       65.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100      2500  thrpt   40       43.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100      5000  thrpt   40    10647.146 ±  248.564   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100      5000  thrpt   40     1893.718 ±   44.112  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100      5000  thrpt   40   186665.412 ±   12.213    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100      5000  thrpt   40      144.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100      5000  thrpt   40      111.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100     10000  thrpt   40    10192.273 ±  217.449   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100     10000  thrpt   40     1287.829 ±   27.532  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100     10000  thrpt   40   132612.990 ±   10.906    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100     10000  thrpt   40       99.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100     10000  thrpt   40       77.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100     20000  thrpt   40     9224.913 ±  255.329   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100     20000  thrpt   40     1317.654 ±   36.931  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100     20000  thrpt   40   149916.826 ±   21.431    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100     20000  thrpt   40      102.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100     20000  thrpt   40       80.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100     35000  thrpt   40     9340.050 ±  132.454   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100     35000  thrpt   40     1418.181 ±   20.995  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100     35000  thrpt   40   159368.358 ±   29.890    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100     35000  thrpt   40      107.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100     35000  thrpt   40       83.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100     50000  thrpt   40     9341.894 ±  172.890   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100     50000  thrpt   40     1121.819 ±   20.587  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100     50000  thrpt   40   126028.212 ±   12.430    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100     50000  thrpt   40       87.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100     50000  thrpt   40       68.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100     75000  thrpt   40     9264.970 ±  140.109   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100     75000  thrpt   40     1606.006 ±   24.230  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100     75000  thrpt   40   181917.487 ±   15.562    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100     75000  thrpt   40      101.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100     75000  thrpt   40       87.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100    100000  thrpt   40     9342.565 ±  155.384   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100    100000  thrpt   40     1233.136 ±   20.171  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100    100000  thrpt   40   138517.719 ±   19.553    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100    100000  thrpt   40       94.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100    100000  thrpt   40       73.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100    250000  thrpt   40     8445.097 ±  164.193   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100    250000  thrpt   40     1434.367 ±   27.751  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100    250000  thrpt   40   178258.794 ±   40.146    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100    250000  thrpt   40      135.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100    250000  thrpt   40       99.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100    500000  thrpt   40     8552.407 ±  143.840   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100    500000  thrpt   40     1574.634 ±   26.282  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100    500000  thrpt   40   193226.153 ±   19.303    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100    500000  thrpt   40      122.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100    500000  thrpt   40       94.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100   1000000  thrpt   40     8624.586 ±  139.023   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100   1000000  thrpt   40     1697.382 ±   27.335  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100   1000000  thrpt   40   206546.888 ±   32.267    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100   1000000  thrpt   40      102.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100   1000000  thrpt   40       88.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100   2500000  thrpt   40     5063.925 ±   86.405   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100   2500000  thrpt   40     2387.810 ±   40.281  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100   2500000  thrpt   40   494897.200 ±   52.655    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100   2500000  thrpt   40       90.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100   2500000  thrpt   40       89.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100   5000000  thrpt   40     2832.328 ±   77.552   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100   5000000  thrpt   40     2507.082 ±   68.566  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100   5000000  thrpt   40   929128.344 ±  111.945    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100   5000000  thrpt   40      150.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100   5000000  thrpt   40      155.000                 ms
+GeoLuceneKnnBenchmarks.queryLuceneKnn                     100  10000000  thrpt   40     1588.916 ±   86.895   ops/s
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate       100  10000000  thrpt   40     2766.490 ±  150.811  MB/sec
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.alloc.rate.norm  100  10000000  thrpt   40  1827757.604 ±  234.480    B/op
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.count            100  10000000  thrpt   40      125.000             counts
+GeoLuceneKnnBenchmarks.queryLuceneKnn:gc.time             100  10000000  thrpt   40      171.000                 ms

@@ -1,181 +1,181 @@
-Benchmark                                                    (n)  (radiusMeters)   Mode  Cnt       Score       Error   Units
-GeoS2RadiusBenchmarks.queryS2Radius                          100             100  thrpt   40  250186.521 ±  3016.679   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            100             100  thrpt   40    1097.332 ±    13.224  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       100             100  thrpt   40    4601.759 ±     0.029    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 100             100  thrpt   40     102.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  100             100  thrpt   40      70.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                          100            5000  thrpt   40  208033.927 ±  1499.672   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            100            5000  thrpt   40    1131.294 ±     8.120  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       100            5000  thrpt   40    5705.754 ±     0.001    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 100            5000  thrpt   40     105.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  100            5000  thrpt   40      69.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                          200             100  thrpt   40  117017.578 ±   725.857   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            200             100  thrpt   40     961.503 ±     5.965  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       200             100  thrpt   40    8620.630 ±     0.481    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 200             100  thrpt   40     107.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  200             100  thrpt   40      69.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                          200            5000  thrpt   40   47670.674 ±   416.565   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            200            5000  thrpt   40     721.253 ±     6.319  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       200            5000  thrpt   40   15874.400 ±     0.670    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 200            5000  thrpt   40     101.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  200            5000  thrpt   40      63.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                          500             100  thrpt   40  103798.889 ±   815.166   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            500             100  thrpt   40     935.152 ±     7.348  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       500             100  thrpt   40    9452.414 ±     0.733    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 500             100  thrpt   40     104.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  500             100  thrpt   40      65.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                          500            5000  thrpt   40   16490.490 ±   121.291   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            500            5000  thrpt   40     707.154 ±     5.216  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       500            5000  thrpt   40   44991.370 ±     0.237    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 500            5000  thrpt   40      99.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  500            5000  thrpt   40      60.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         1000             100  thrpt   40   95124.698 ±  1148.685   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           1000             100  thrpt   40     886.365 ±    10.674  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      1000             100  thrpt   40    9776.321 ±     0.320    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                1000             100  thrpt   40     124.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 1000             100  thrpt   40      74.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         1000            5000  thrpt   40    6739.389 ±    76.735   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           1000            5000  thrpt   40     580.288 ±     6.604  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      1000            5000  thrpt   40   90333.986 ±     0.025    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                1000            5000  thrpt   40      82.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 1000            5000  thrpt   40      50.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         2500             100  thrpt   40   86356.543 ±   969.722   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           2500             100  thrpt   40     835.851 ±     9.415  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      2500             100  thrpt   40   10155.136 ±     0.245    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                2500             100  thrpt   40     116.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 2500             100  thrpt   40      69.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         2500            5000  thrpt   40    2654.127 ±    22.276   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           2500            5000  thrpt   40     557.246 ±     4.668  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      2500            5000  thrpt   40  220282.767 ±     0.037    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                2500            5000  thrpt   40      82.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 2500            5000  thrpt   40      50.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         5000             100  thrpt   40   80122.472 ±  1617.512   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           5000             100  thrpt   40     776.874 ±    15.675  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      5000             100  thrpt   40   10172.739 ±     0.426    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                5000             100  thrpt   40      87.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 5000             100  thrpt   40      54.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                         5000            5000  thrpt   40    1922.086 ±    12.696   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           5000            5000  thrpt   40     540.733 ±     3.582  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      5000            5000  thrpt   40  295146.345 ±     0.037    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count                5000            5000  thrpt   40      80.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 5000            5000  thrpt   40      50.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        10000             100  thrpt   40   78537.727 ±   516.557   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          10000             100  thrpt   40     762.942 ±     5.036  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     10000             100  thrpt   40   10191.743 ±     0.338    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               10000             100  thrpt   40      85.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                10000             100  thrpt   40      54.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        10000            5000  thrpt   40    1541.775 ±    11.412   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          10000            5000  thrpt   40     497.204 ±     4.769  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     10000            5000  thrpt   40  338319.176 ±   978.512    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               10000            5000  thrpt   40      79.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                10000            5000  thrpt   40      52.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        20000             100  thrpt   40   76148.280 ±   884.763   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          20000             100  thrpt   40     740.428 ±     8.611  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     20000             100  thrpt   40   10201.465 ±     0.340    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               20000             100  thrpt   40      69.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                20000             100  thrpt   40      45.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        20000            5000  thrpt   40    1439.982 ±    15.835   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          20000            5000  thrpt   40     478.668 ±     5.256  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     20000            5000  thrpt   40  348756.330 ±     0.013    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               20000            5000  thrpt   40      71.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                20000            5000  thrpt   40      45.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        35000             100  thrpt   40   74145.561 ±   864.868   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          35000             100  thrpt   40     570.409 ±     6.656  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     35000             100  thrpt   40    8071.342 ±     0.386    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               35000             100  thrpt   40      53.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                35000             100  thrpt   40      37.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        35000            5000  thrpt   40    1422.323 ±    19.780   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          35000            5000  thrpt   40     473.770 ±     6.580  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     35000            5000  thrpt   40  349483.912 ±     0.033    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               35000            5000  thrpt   40      57.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                35000            5000  thrpt   40      39.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        50000             100  thrpt   40   72797.580 ±   736.179   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          50000             100  thrpt   40     553.066 ±     5.594  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     50000             100  thrpt   40    7971.503 ±     0.434    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               50000             100  thrpt   40      62.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                50000             100  thrpt   40      41.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        50000            5000  thrpt   40    1393.480 ±    12.888   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          50000            5000  thrpt   40     394.383 ±     3.651  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     50000            5000  thrpt   40  296945.368 ±     0.014    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               50000            5000  thrpt   40      48.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                50000            5000  thrpt   40      34.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        75000             100  thrpt   40   71661.058 ±   556.147   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          75000             100  thrpt   40     530.321 ±     4.105  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     75000             100  thrpt   40    7764.239 ±     0.359    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               75000             100  thrpt   40      60.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                75000             100  thrpt   40      40.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                        75000            5000  thrpt   40    1408.953 ±    17.633   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          75000            5000  thrpt   40     390.553 ±     4.876  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     75000            5000  thrpt   40  290822.822 ±     0.015    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count               75000            5000  thrpt   40      47.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time                75000            5000  thrpt   40      35.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       100000             100  thrpt   40   74258.131 ±   520.731   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         100000             100  thrpt   40     531.222 ±     3.700  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    100000             100  thrpt   40    7505.457 ±     0.745    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              100000             100  thrpt   40      59.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               100000             100  thrpt   40      41.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       100000            5000  thrpt   40    1435.403 ±    20.286   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         100000            5000  thrpt   40     384.787 ±     5.439  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    100000            5000  thrpt   40  281248.725 ±     0.008    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              100000            5000  thrpt   40      46.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               100000            5000  thrpt   40      32.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       250000             100  thrpt   40   84658.469 ±   895.486   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         250000             100  thrpt   40     509.449 ±     5.383  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    250000             100  thrpt   40    6313.377 ±     1.039    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              250000             100  thrpt   40      71.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               250000             100  thrpt   40      43.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       250000            5000  thrpt   40    2037.253 ±     9.770   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         250000            5000  thrpt   40     449.383 ±     2.490  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    250000            5000  thrpt   40  231422.201 ±   587.624    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              250000            5000  thrpt   40      71.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               250000            5000  thrpt   40      44.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       500000             100  thrpt   40  103595.797 ±  1161.945   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         500000             100  thrpt   40     616.981 ±     6.898  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    500000             100  thrpt   40    6248.344 ±     1.150    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              500000             100  thrpt   40      69.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               500000             100  thrpt   40      44.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                       500000            5000  thrpt   40    2659.622 ±    36.236   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         500000            5000  thrpt   40     445.400 ±     3.346  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    500000            5000  thrpt   40  175750.202 ±  1242.781    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count              500000            5000  thrpt   40      66.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time               500000            5000  thrpt   40      42.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      1000000             100  thrpt   40  133124.934 ±  1102.850   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        1000000             100  thrpt   40     603.016 ±     4.998  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   1000000             100  thrpt   40    4752.329 ±     0.916    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             1000000             100  thrpt   40      30.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              1000000             100  thrpt   40      25.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      1000000            5000  thrpt   40    3730.768 ±    57.190   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        1000000            5000  thrpt   40     435.099 ±     4.586  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   1000000            5000  thrpt   40  122393.521 ±   765.925    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             1000000            5000  thrpt   40      27.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              1000000            5000  thrpt   40      24.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      2500000             100  thrpt   40  173057.603 ±  5003.458   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        2500000             100  thrpt   40     510.739 ±    14.750  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   2500000             100  thrpt   40    3096.454 ±     0.642    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             2500000             100  thrpt   40      61.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              2500000             100  thrpt   40      54.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      2500000            5000  thrpt   40    6093.518 ±   174.645   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        2500000            5000  thrpt   40     454.408 ±    13.401  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   2500000            5000  thrpt   40   78241.225 ±   354.015    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             2500000            5000  thrpt   40      56.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              2500000            5000  thrpt   40      49.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      5000000             100  thrpt   40  257763.347 ±  9115.688   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        5000000             100  thrpt   40     554.469 ±    19.591  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   5000000             100  thrpt   40    2256.824 ±     0.352    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             5000000             100  thrpt   40       7.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              5000000             100  thrpt   40       8.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                      5000000            5000  thrpt   40    9249.939 ±   182.320   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        5000000            5000  thrpt   40     416.153 ±     6.894  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   5000000            5000  thrpt   40   47213.951 ±   244.987    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count             5000000            5000  thrpt   40       5.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time              5000000            5000  thrpt   40       6.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                     10000000             100  thrpt   40  204903.183 ± 12830.219   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate       10000000             100  thrpt   40     515.482 ±    32.286  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm  10000000             100  thrpt   40    2639.483 ±     0.651    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count            10000000             100  thrpt   40      16.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time             10000000             100  thrpt   40      30.000                  ms
-GeoS2RadiusBenchmarks.queryS2Radius                     10000000            5000  thrpt   40    7383.583 ±   312.653   ops/s
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate       10000000            5000  thrpt   40     406.661 ±    16.901  MB/sec
-GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm  10000000            5000  thrpt   40   57799.404 ±   401.260    B/op
-GeoS2RadiusBenchmarks.queryS2Radius:gc.count            10000000            5000  thrpt   40      13.000              counts
-GeoS2RadiusBenchmarks.queryS2Radius:gc.time             10000000            5000  thrpt   40      87.000                  ms
+Benchmark                                                    (n)  (radiusMeters)   Mode  Cnt        Score       Error   Units
+GeoS2RadiusBenchmarks.queryS2Radius                          100            1000  thrpt   40  1248374.826 ± 12193.008   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            100            1000  thrpt   40     2996.175 ±    29.219  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       100            1000  thrpt   40     2518.224 ±     0.001    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 100            1000  thrpt   40      221.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  100            1000  thrpt   40      162.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                          100           50000  thrpt   40   259042.735 ±  3431.462   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            100           50000  thrpt   40     1065.358 ±    14.111  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       100           50000  thrpt   40     4314.859 ±     0.006    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 100           50000  thrpt   40      119.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  100           50000  thrpt   40       77.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                          200            1000  thrpt   40  2693103.467 ± 30422.982   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            200            1000  thrpt   40      932.441 ±    10.517  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       200            1000  thrpt   40      363.260 ±     0.001    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 200            1000  thrpt   40      130.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  200            1000  thrpt   40       83.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                          200           50000  thrpt   40    65834.342 ±   756.425   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            200           50000  thrpt   40      751.907 ±     8.644  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       200           50000  thrpt   40    11982.325 ±     0.419    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 200           50000  thrpt   40      105.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  200           50000  thrpt   40       64.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                          500            1000  thrpt   40  2066972.501 ± 11285.611   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            500            1000  thrpt   40      825.735 ±     4.487  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       500            1000  thrpt   40      419.158 ±     0.001    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 500            1000  thrpt   40      115.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  500            1000  thrpt   40       70.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                          500           50000  thrpt   40    24795.838 ±   265.891   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate            500           50000  thrpt   40      552.593 ±     5.920  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm       500           50000  thrpt   40    23381.510 ±     2.055    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                 500           50000  thrpt   40       77.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                  500           50000  thrpt   40       46.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         1000            1000  thrpt   40  1663136.151 ± 15647.307   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           1000            1000  thrpt   40      806.736 ±     7.588  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      1000            1000  thrpt   40      508.920 ±     0.001    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                1000            1000  thrpt   40      112.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 1000            1000  thrpt   40       67.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         1000           50000  thrpt   40    11820.834 ±    97.332   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           1000           50000  thrpt   40      485.042 ±     4.042  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      1000           50000  thrpt   40    43051.937 ±     8.002    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                1000           50000  thrpt   40       69.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 1000           50000  thrpt   40       43.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         2500            1000  thrpt   40  1189400.892 ± 19809.233   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           2500            1000  thrpt   40      911.330 ±    18.045  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      2500            1000  thrpt   40      803.908 ±     9.482    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                2500            1000  thrpt   40      101.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 2500            1000  thrpt   40       66.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         2500           50000  thrpt   40     4198.897 ±    72.374   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           2500           50000  thrpt   40      398.256 ±     6.818  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      2500           50000  thrpt   40    99509.996 ±    25.513    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                2500           50000  thrpt   40       57.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 2500           50000  thrpt   40       36.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         5000            1000  thrpt   40   772338.022 ± 11716.191   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           5000            1000  thrpt   40      918.454 ±    13.921  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      5000            1000  thrpt   40     1247.588 ±     0.005    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                5000            1000  thrpt   40      103.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 5000            1000  thrpt   40       64.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                         5000           50000  thrpt   40     2012.634 ±    32.707   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate           5000           50000  thrpt   40      366.464 ±     5.917  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm      5000           50000  thrpt   40   191040.798 ±    34.314    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count                5000           50000  thrpt   40       55.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                 5000           50000  thrpt   40       35.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        10000            1000  thrpt   40   371643.366 ±  8646.869   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          10000            1000  thrpt   40      716.487 ±    16.672  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     10000            1000  thrpt   40     2022.705 ±     0.017    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               10000            1000  thrpt   40      100.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                10000            1000  thrpt   40       62.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        10000           50000  thrpt   40     1708.221 ±    37.862   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          10000           50000  thrpt   40      359.107 ±     7.997  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     10000           50000  thrpt   40   220564.740 ±    57.879    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               10000           50000  thrpt   40       53.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                10000           50000  thrpt   40       36.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        20000            1000  thrpt   40   466192.800 ±  9638.658   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          20000            1000  thrpt   40      806.674 ±    16.672  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     20000            1000  thrpt   40     1815.369 ±     0.018    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               20000            1000  thrpt   40       61.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                20000            1000  thrpt   40       46.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        20000           50000  thrpt   40     1831.783 ±    35.421   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          20000           50000  thrpt   40      351.119 ±     6.786  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     20000           50000  thrpt   40   201118.070 ±     1.908    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               20000           50000  thrpt   40       53.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                20000           50000  thrpt   40       34.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        35000            1000  thrpt   40   402295.054 ± 11024.346   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          35000            1000  thrpt   40      744.020 ±    20.398  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     35000            1000  thrpt   40     1940.323 ±     0.019    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               35000            1000  thrpt   40       56.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                35000            1000  thrpt   40       43.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        35000           50000  thrpt   40     1720.191 ±    34.875   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          35000           50000  thrpt   40      366.692 ±     7.450  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     35000           50000  thrpt   40   223657.029 ±    29.846    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               35000           50000  thrpt   40       43.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                35000           50000  thrpt   40       30.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        50000            1000  thrpt   40   397959.772 ± 12086.832   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          50000            1000  thrpt   40      757.999 ±    23.009  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     50000            1000  thrpt   40     1998.397 ±     0.026    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               50000            1000  thrpt   40       58.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                50000            1000  thrpt   40       43.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        50000           50000  thrpt   40     1739.468 ±    38.501   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          50000           50000  thrpt   40      365.148 ±     8.295  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     50000           50000  thrpt   40   220229.759 ±   256.814    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               50000           50000  thrpt   40       44.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                50000           50000  thrpt   40       30.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        75000            1000  thrpt   40   346062.748 ± 20018.753   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          75000            1000  thrpt   40      645.678 ±    37.357  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     75000            1000  thrpt   40     1957.584 ±     0.040    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               75000            1000  thrpt   40       49.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                75000            1000  thrpt   40       36.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                        75000           50000  thrpt   40     1689.003 ±    37.613   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate          75000           50000  thrpt   40      358.967 ±     8.032  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm     75000           50000  thrpt   40   222987.379 ±    60.987    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count               75000           50000  thrpt   40       53.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time                75000           50000  thrpt   40       35.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       100000            1000  thrpt   40   385122.870 ± 13403.715   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         100000            1000  thrpt   40      687.805 ±    23.941  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    100000            1000  thrpt   40     1873.756 ±     0.020    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              100000            1000  thrpt   40       52.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               100000            1000  thrpt   40       39.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       100000           50000  thrpt   40     1703.966 ±    26.870   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         100000           50000  thrpt   40      337.452 ±     5.322  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    100000           50000  thrpt   40   207783.872 ±     0.137    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              100000           50000  thrpt   40       49.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               100000           50000  thrpt   40       31.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       250000            1000  thrpt   40   258250.633 ± 10223.752   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         250000            1000  thrpt   40      623.560 ±    24.688  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    250000            1000  thrpt   40     2533.268 ±     0.149    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              250000            1000  thrpt   40       87.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               250000            1000  thrpt   40       51.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       250000           50000  thrpt   40     1687.855 ±    28.772   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         250000           50000  thrpt   40      361.414 ±     6.156  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    250000           50000  thrpt   40   224666.732 ±     0.134    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              250000           50000  thrpt   40       54.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               250000           50000  thrpt   40       36.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       500000            1000  thrpt   40   295996.610 ± 10821.070   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         500000            1000  thrpt   40      637.888 ±    23.325  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    500000            1000  thrpt   40     2261.056 ±     0.024    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              500000            1000  thrpt   40       71.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               500000            1000  thrpt   40       47.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                       500000           50000  thrpt   40     1803.791 ±    26.655   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate         500000           50000  thrpt   40      376.644 ±     5.704  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm    500000           50000  thrpt   40   219069.528 ±   106.526    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count              500000           50000  thrpt   40       59.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time               500000           50000  thrpt   40       38.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      1000000            1000  thrpt   40   246489.925 ± 12298.453   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        1000000            1000  thrpt   40      516.932 ±    25.790  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   1000000            1000  thrpt   40     2200.383 ±     0.053    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             1000000            1000  thrpt   40       35.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              1000000            1000  thrpt   40       28.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      1000000           50000  thrpt   40     1714.159 ±    26.837   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        1000000           50000  thrpt   40      362.914 ±     5.677  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   1000000           50000  thrpt   40   222132.108 ±     0.172    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             1000000           50000  thrpt   40       25.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              1000000           50000  thrpt   40       22.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      2500000            1000  thrpt   40   206688.327 ± 11726.929   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        2500000            1000  thrpt   40      448.013 ±    25.432  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   2500000            1000  thrpt   40     2274.268 ±     0.074    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             2500000            1000  thrpt   40       56.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              2500000            1000  thrpt   40       49.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      2500000           50000  thrpt   40     1615.996 ±    38.231   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        2500000           50000  thrpt   40      347.426 ±     8.285  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   2500000           50000  thrpt   40   225568.584 ±    55.320    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             2500000           50000  thrpt   40       15.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              2500000           50000  thrpt   40       18.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      5000000            1000  thrpt   40   179733.131 ± 11522.420   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        5000000            1000  thrpt   40      443.127 ±    28.414  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   5000000            1000  thrpt   40     2586.801 ±     0.334    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             5000000            1000  thrpt   40       19.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              5000000            1000  thrpt   40       30.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                      5000000           50000  thrpt   40     1547.715 ±    29.472   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate        5000000           50000  thrpt   40      345.057 ±     6.639  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm   5000000           50000  thrpt   40   233898.255 ±    54.979    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count             5000000           50000  thrpt   40        5.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time              5000000           50000  thrpt   40        7.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                     10000000            1000  thrpt   40   181498.266 ± 15201.360   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate       10000000            1000  thrpt   40      386.548 ±    32.383  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm  10000000            1000  thrpt   40     2234.530 ±     0.364    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count            10000000            1000  thrpt   40       13.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time             10000000            1000  thrpt   40       20.000                  ms
+GeoS2RadiusBenchmarks.queryS2Radius                     10000000           50000  thrpt   40     1421.626 ±    72.847   ops/s
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate       10000000           50000  thrpt   40      327.095 ±    16.743  MB/sec
+GeoS2RadiusBenchmarks.queryS2Radius:gc.alloc.rate.norm  10000000           50000  thrpt   40   241410.283 ±    22.475    B/op
+GeoS2RadiusBenchmarks.queryS2Radius:gc.count            10000000           50000  thrpt   40       11.000              counts
+GeoS2RadiusBenchmarks.queryS2Radius:gc.time             10000000           50000  thrpt   40       25.000                  ms
