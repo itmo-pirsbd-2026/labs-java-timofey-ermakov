@@ -26,17 +26,19 @@ final class BenchGeoMath {
     static final double LNG_DENOM = 16_777_215.0;
 
     /**
-     * Deterministically spread query points across the whole dataset. Taking the first
-     * {@code limit} points would concentrate all queries in one corner: consecutive
-     * generator indices are neighbors in space.
+     * Uniformly random off-grid query points with a fixed seed. Dataset points are NOT
+     * used: a self-query would make kNN return the query point itself and radius always
+     * collect at least one hit, measuring a degenerate workload instead of a search.
+     * Queries are reproducible across implementations and runs.
      */
     static GeoPoint[] spreadQueries(List<GeoPoint> points, int limit) {
-        int n = points.size();
-        int count = Math.min(limit, n);
+        int count = Math.min(limit, points.size());
         GeoPoint[] queries = new GeoPoint[count];
-        long step = count > 1 ? (n - 1) / (count - 1) : 0;
+        java.util.Random random = new java.util.Random(42L);
         for (int i = 0; i < count; i++) {
-            queries[i] = points.get((int) Math.min(i * step, n - 1));
+            double lat = LAT_BASE + LAT_SPAN * random.nextDouble();
+            double lng = LNG_BASE + LNG_SPAN * random.nextDouble();
+            queries[i] = new GeoPoint("q-" + i, lat, lng);
         }
 
         return queries;
