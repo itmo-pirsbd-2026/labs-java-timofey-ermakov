@@ -118,7 +118,7 @@ public final class BenchSettings {
     }
 
     private static Path resolveConfigPath() {
-        String envPath = System.getenv(CONFIG_ENV_VAR);
+        var envPath = System.getenv(CONFIG_ENV_VAR);
         if (envPath != null && !envPath.isBlank()) {
             return Path.of(envPath);
         }

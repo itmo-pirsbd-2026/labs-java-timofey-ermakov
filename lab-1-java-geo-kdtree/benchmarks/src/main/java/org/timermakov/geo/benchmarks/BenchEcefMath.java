@@ -15,9 +15,9 @@ final class BenchEcefMath {
     }
 
     static void toEcef(double latDeg, double lngDeg, double earthRadiusMeters, double[] out) {
-        double lat = Math.toRadians(latDeg);
-        double lng = Math.toRadians(lngDeg);
-        double cosLat = Math.cos(lat);
+        var lat = Math.toRadians(latDeg);
+        var lng = Math.toRadians(lngDeg);
+        var cosLat = Math.cos(lat);
         out[0] = earthRadiusMeters * cosLat * Math.cos(lng);
         out[1] = earthRadiusMeters * cosLat * Math.sin(lng);
         out[2] = earthRadiusMeters * Math.sin(lat);

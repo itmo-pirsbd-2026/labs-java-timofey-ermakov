@@ -43,16 +43,16 @@ public class GeoS2RadiusBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() {
-        List<GeoPoint> points = BenchGeoMath.buildClusteredPoints(n);
+        var points = BenchGeoMath.buildClusteredPoints(n);
         index = new S2PointIndex<>();
-        for (GeoPoint point : points) {
+        for (var point : points) {
             index.add(toS2(point.latitude(), point.longitude()), point);
         }
 
-        GeoPoint[] queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
+        var queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         queries = new S2Point[queryPoints.length];
-        for (int i = 0; i < queryPoints.length; i++) {
-            GeoPoint point = queryPoints[i];
+        for (var i = 0; i < queryPoints.length; i++) {
+            var point = queryPoints[i];
             queries[i] = toS2(point.latitude(), point.longitude());
         }
 
@@ -69,9 +69,9 @@ public class GeoS2RadiusBenchmarks {
     public int queryS2Radius() {
         S2ClosestPointQuery<GeoPoint> query = new S2ClosestPointQuery<>(index);
         query.setMaxDistance(maxDistance);
-        int total = 0;
-        for (int i = 0; i < OPERATIONS_PER_INVOKE; i++) {
-            S2Point target = queries[cursor++ % queries.length];
+        var total = 0;
+        for (var i = 0; i < OPERATIONS_PER_INVOKE; i++) {
+            var target = queries[cursor++ % queries.length];
             total += query.findClosestPoints(target).size();
         }
 

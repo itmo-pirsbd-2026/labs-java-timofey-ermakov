@@ -38,13 +38,13 @@ final class BenchGeoMath {
      * user location, but never exactly on an indexed point (no self-hit).
      */
     static GeoPoint[] spreadQueries(List<GeoPoint> points, int limit) {
-        int count = Math.min(limit, points.size());
-        GeoPoint[] queries = new GeoPoint[count];
+        var count = Math.min(limit, points.size());
+        var queries = new GeoPoint[count];
         java.util.Random random = new java.util.Random(42L);
-        for (int i = 0; i < count; i++) {
-            GeoPoint base = points.get(random.nextInt(points.size()));
-            double lat = clamp(base.latitude() + QUERY_JITTER_DEGREES * random.nextGaussian(), LAT_BASE, -LAT_BASE);
-            double lng = wrap(base.longitude() + QUERY_JITTER_DEGREES * random.nextGaussian());
+        for (var i = 0; i < count; i++) {
+            var base = points.get(random.nextInt(points.size()));
+            var lat = clamp(base.latitude() + QUERY_JITTER_DEGREES * random.nextGaussian(), LAT_BASE, -LAT_BASE);
+            var lng = wrap(base.longitude() + QUERY_JITTER_DEGREES * random.nextGaussian());
             queries[i] = new GeoPoint("q-" + i, lat, lng);
         }
 
@@ -55,15 +55,15 @@ final class BenchGeoMath {
     }
 
     static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {
-        double dLat = degreesToRadians(lat2 - lat1);
-        double dLng = degreesToRadians(lng2 - lng1);
-        double rLat1 = degreesToRadians(lat1);
-        double rLat2 = degreesToRadians(lat2);
+        var dLat = degreesToRadians(lat2 - lat1);
+        var dLng = degreesToRadians(lng2 - lng1);
+        var rLat1 = degreesToRadians(lat1);
+        var rLat2 = degreesToRadians(lat2);
 
-        double sinLat = Math.sin(dLat / 2);
-        double sinLng = Math.sin(dLng / 2);
-        double a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
-        double c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
+        var sinLat = Math.sin(dLat / 2);
+        var sinLng = Math.sin(dLng / 2);
+        var a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
+        var c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
         return EARTH_RADIUS_METERS * c;
     }
 
@@ -77,10 +77,10 @@ final class BenchGeoMath {
     static final int CLUSTER_SIZE = 5_000;
 
     static List<GeoPoint> buildPoints(int count, int lngStride) {
-        List<GeoPoint> points = new ArrayList<>(count);
-        for (int i = 0; i < count; i++) {
-            double lat = LAT_BASE + (LAT_SPAN * (i % LAT_MODULUS) / LAT_DENOM);
-            double lng = LNG_BASE + (LNG_SPAN * ((i * lngStride) % LNG_MODULUS) / LNG_DENOM);
+        var points = new ArrayList<GeoPoint>(count);
+        for (var i = 0; i < count; i++) {
+            var lat = LAT_BASE + (LAT_SPAN * (i % LAT_MODULUS) / LAT_DENOM);
+            var lng = LNG_BASE + (LNG_SPAN * ((i * lngStride) % LNG_MODULUS) / LNG_DENOM);
             points.add(new GeoPoint("p-" + i, lat, lng));
         }
 
@@ -95,14 +95,14 @@ final class BenchGeoMath {
      */
     static List<GeoPoint> buildClusteredPoints(int count) {
         java.util.Random random = new java.util.Random(13L);
-        int clusters = Math.max(1, count / CLUSTER_SIZE);
-        List<GeoPoint> points = new ArrayList<>(count);
-        for (int c = 0; c < clusters; c++) {
-            double centerLat = LAT_BASE + LAT_SPAN * random.nextDouble();
-            double centerLng = LNG_BASE + LNG_SPAN * random.nextDouble();
-            for (int i = 0; i < CLUSTER_SIZE && points.size() < count; i++) {
-                double lat = clamp(centerLat + CLUSTER_SIGMA_DEGREES * random.nextGaussian(), LAT_BASE, -LAT_BASE);
-                double lng = wrap(centerLng + CLUSTER_SIGMA_DEGREES * random.nextGaussian());
+        var clusters = Math.max(1, count / CLUSTER_SIZE);
+        var points = new ArrayList<GeoPoint>(count);
+        for (var c = 0; c < clusters; c++) {
+            var centerLat = LAT_BASE + LAT_SPAN * random.nextDouble();
+            var centerLng = LNG_BASE + LNG_SPAN * random.nextDouble();
+            for (var i = 0; i < CLUSTER_SIZE && points.size() < count; i++) {
+                var lat = clamp(centerLat + CLUSTER_SIGMA_DEGREES * random.nextGaussian(), LAT_BASE, -LAT_BASE);
+                var lng = wrap(centerLng + CLUSTER_SIGMA_DEGREES * random.nextGaussian());
                 points.add(new GeoPoint("c" + c + "-" + i, lat, lng));
             }
         }
@@ -115,7 +115,7 @@ final class BenchGeoMath {
     }
 
     private static double wrap(double lng) {
-        double w = ((lng - LNG_BASE) % LNG_SPAN + LNG_SPAN) % LNG_SPAN + LNG_BASE;
+        var w = ((lng - LNG_BASE) % LNG_SPAN + LNG_SPAN) % LNG_SPAN + LNG_BASE;
         return w;
     }
 

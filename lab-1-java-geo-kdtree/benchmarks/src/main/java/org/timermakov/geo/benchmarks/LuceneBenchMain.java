@@ -26,19 +26,19 @@ public final class LuceneBenchMain {
         BenchSettings settings = BenchSettings.load();
 
         runClass(GeoLuceneKnnBenchmarks.class.getSimpleName(), settings, LUCENE_KNN_RESULT_FILE, builder -> {
-            for (int n : settings.nValues()) {
+            for (var n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
-            for (int k : settings.kValues()) {
+            for (var k : settings.kValues()) {
                 builder.param("k", Integer.toString(k));
             }
         });
 
         runClass(GeoLuceneRadiusBenchmarks.class.getSimpleName(), settings, LUCENE_RADIUS_RESULT_FILE, builder -> {
-            for (int n : settings.nValues()) {
+            for (var n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
-            for (int radius : settings.radiusValues()) {
+            for (var radius : settings.radiusValues()) {
                 builder.param("radiusMeters", Integer.toString(radius));
             }
         });

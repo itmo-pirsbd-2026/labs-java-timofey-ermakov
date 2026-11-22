@@ -43,12 +43,12 @@ public final class ProfileRunner {
     }
 
     public static void main(String[] args) {
-        Map<String, String> parsedArgs = parseArgs(args);
-        String mode = getString(parsedArgs, "mode", DEFAULT_MODE);
-        int seconds = getInt(parsedArgs, "seconds", DEFAULT_SECONDS);
-        int n = getInt(parsedArgs, "n", DEFAULT_N);
-        int radiusMeters = getInt(parsedArgs, "radius", DEFAULT_RADIUS_METERS);
-        int k = getInt(parsedArgs, "k", DEFAULT_K);
+        var parsedArgs = parseArgs(args);
+        var mode = getString(parsedArgs, "mode", DEFAULT_MODE);
+        var seconds = getInt(parsedArgs, "seconds", DEFAULT_SECONDS);
+        var n = getInt(parsedArgs, "n", DEFAULT_N);
+        var radiusMeters = getInt(parsedArgs, "radius", DEFAULT_RADIUS_METERS);
+        var k = getInt(parsedArgs, "k", DEFAULT_K);
 
         if (seconds <= 0) {
             throw new IllegalArgumentException("seconds must be positive.");
@@ -64,28 +64,28 @@ public final class ProfileRunner {
         }
 
         System.out.printf("Mode=%s Seconds=%d N=%d Radius=%d K=%d%n", mode, seconds, n, radiusMeters, k);
-        List<GeoPoint> points = buildPoints(n);
+        var points = buildPoints(n);
         GeoKdTreeIndex index = new GeoKdTreeIndex();
-        for (GeoPoint point : points) {
+        for (var point : points) {
             index.insert(point);
         }
 
-        List<GeoPoint> queries = points.subList(0, Math.min(QUERY_LIMIT, points.size()));
+        var queries = points.subList(0, Math.min(QUERY_LIMIT, points.size()));
         if (queries.isEmpty()) {
             throw new IllegalStateException("No queries generated.");
         }
 
-        long startNanos = System.nanoTime();
-        long deadlineNanos = startNanos + seconds * NANOS_PER_SECOND;
-        long opCount = 0;
-        long checksum = 0;
-        int q = 0;
+        var startNanos = System.nanoTime();
+        var deadlineNanos = startNanos + seconds * NANOS_PER_SECOND;
+        var opCount = 0;
+        var checksum = 0;
+        var q = 0;
         while (System.nanoTime() < deadlineNanos) {
-            GeoPoint point = queries.get(q++ % queries.size());
+            var point = queries.get(q++ % queries.size());
             if (MODE_RADIUS.equalsIgnoreCase(mode)) {
                 checksum += index.searchRadius(point.latitude(), point.longitude(), radiusMeters).size();
             } else if (MODE_KNN.equalsIgnoreCase(mode)) {
-                List<GeoSearchResult> nearest = index.searchKNearest(point.latitude(), point.longitude(), k);
+                var nearest = index.searchKNearest(point.latitude(), point.longitude(), k);
                 checksum += nearest.isEmpty() ? 0 : Math.round(nearest.getFirst().distanceMeters());
             } else {
                 throw new IllegalArgumentException("mode must be 'radius' or 'knn'.");
@@ -94,18 +94,18 @@ public final class ProfileRunner {
             opCount++;
         }
 
-        long elapsedNanos = System.nanoTime() - startNanos;
-        double elapsedSeconds = elapsedNanos / (double) NANOS_PER_SECOND;
+        var elapsedNanos = System.nanoTime() - startNanos;
+        var elapsedSeconds = elapsedNanos / (double) NANOS_PER_SECOND;
         System.out.printf("Ops=%d ElapsedMs=%.2f ThroughputOpsPerSec=%.2f%n",
                 opCount, elapsedNanos / 1_000_000.0, opCount / elapsedSeconds);
         System.out.printf("Checksum=%d%n", checksum);
     }
 
     private static List<GeoPoint> buildPoints(int count) {
-        List<GeoPoint> points = new ArrayList<>(count);
-        for (int i = 0; i < count; i++) {
-            double lat = LAT_BASE + (LAT_SPAN * (i % LAT_MODULUS) / LAT_DENOM);
-            double lng = LNG_BASE + (LNG_SPAN * ((i * GENERATOR_LNG_STRIDE) % LNG_MODULUS) / LNG_DENOM);
+        var points = new ArrayList<GeoPoint>(count);
+        for (var i = 0; i < count; i++) {
+            var lat = LAT_BASE + (LAT_SPAN * (i % LAT_MODULUS) / LAT_DENOM);
+            var lng = LNG_BASE + (LNG_SPAN * ((i * GENERATOR_LNG_STRIDE) % LNG_MODULUS) / LNG_DENOM);
             points.add(new GeoPoint("p-" + i, lat, lng));
         }
 
@@ -113,14 +113,14 @@ public final class ProfileRunner {
     }
 
     private static Map<String, String> parseArgs(String[] args) {
-        Map<String, String> result = new HashMap<>();
-        for (int i = 0; i < args.length; i++) {
-            String token = args[i];
+        var result = new HashMap<String, String>();
+        for (var i = 0; i < args.length; i++) {
+            var token = args[i];
             if (!token.startsWith("--")) {
                 continue;
             }
 
-            String key = token.substring(2);
+            var key = token.substring(2);
             String value;
             if (i + 1 < args.length && args[i + 1].startsWith("--")) {
                 value = "true";
@@ -138,12 +138,12 @@ public final class ProfileRunner {
     }
 
     private static String getString(Map<String, String> parsedArgs, String key, String fallback) {
-        String value = parsedArgs.get(key);
+        var value = parsedArgs.get(key);
         return value == null || value.isBlank() ? fallback : value;
     }
 
     private static int getInt(Map<String, String> parsedArgs, String key, int fallback) {
-        String value = parsedArgs.get(key);
+        var value = parsedArgs.get(key);
         if (value == null) {
             return fallback;
         }

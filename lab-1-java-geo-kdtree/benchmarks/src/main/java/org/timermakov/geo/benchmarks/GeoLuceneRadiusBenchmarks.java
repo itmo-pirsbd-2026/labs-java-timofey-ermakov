@@ -56,8 +56,8 @@ public class GeoLuceneRadiusBenchmarks {
 
         directory = new ByteBuffersDirectory();
         writer = new IndexWriter(directory, new IndexWriterConfig());
-        for (GeoPoint point : points) {
-            Document document = new Document();
+        for (var point : points) {
+            var document = new Document();
             document.add(new LatLonPoint(FIELD, point.latitude(), point.longitude()));
             writer.addDocument(document);
         }
@@ -81,12 +81,12 @@ public class GeoLuceneRadiusBenchmarks {
     @Benchmark
     @OperationsPerInvocation(OPERATIONS_PER_INVOKE)
     public int queryLuceneRadius() throws IOException {
-        int total = 0;
-        for (int i = 0; i < OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
-            Query distanceQuery = LatLonPoint.newDistanceQuery(
+        var total = 0;
+        for (var i = 0; i < OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
+            var distanceQuery = LatLonPoint.newDistanceQuery(
                     FIELD, query.latitude(), query.longitude(), radiusMeters);
-            TotalHitCountCollector collector = new TotalHitCountCollector();
+            var collector = new TotalHitCountCollector();
             searcher.search(distanceQuery, collector);
             total += collector.getTotalHits();
         }

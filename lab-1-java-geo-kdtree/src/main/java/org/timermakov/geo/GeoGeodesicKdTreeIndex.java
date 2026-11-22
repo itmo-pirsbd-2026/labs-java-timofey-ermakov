@@ -84,9 +84,9 @@ public final class GeoGeodesicKdTreeIndex {
             return List.of();
         }
 
-        double radiusThreshold = GeoDistance.aFromMeters(radiusMeters);
-        double queryCosLat = Math.cos(Math.toRadians(latitude));
-        List<GeoSearchResult> results = new ArrayList<>();
+        var radiusThreshold = GeoDistance.aFromMeters(radiusMeters);
+        var queryCosLat = Math.cos(Math.toRadians(latitude));
+        var results = new ArrayList<GeoSearchResult>();
         searchRadiusCore(root, latitude, longitude, radiusThreshold, queryCosLat, results);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
@@ -106,10 +106,10 @@ public final class GeoGeodesicKdTreeIndex {
             return List.of();
         }
 
-        double queryCosLat = Math.cos(Math.toRadians(latitude));
-        List<GeoSearchResult> best = new ArrayList<>(k);
+        var queryCosLat = Math.cos(Math.toRadians(latitude));
+        var best = new ArrayList<GeoSearchResult>(k);
         searchKNearestCore(root, latitude, longitude, k, queryCosLat, best);
-        List<GeoSearchResult> results = new ArrayList<>(best);
+        var results = new ArrayList<GeoSearchResult>(best);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
     }
@@ -119,8 +119,8 @@ public final class GeoGeodesicKdTreeIndex {
             return new Node(point, depth);
         }
 
-        boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
-        boolean goLeft = splitByLatitude
+        var splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+        var goLeft = splitByLatitude
                 ? point.latitude() < node.point.latitude()
                 : point.longitude() < node.point.longitude();
 
@@ -144,17 +144,17 @@ public final class GeoGeodesicKdTreeIndex {
             PROFILING_VISITED_NODES++;
         }
 
-        double a = GeoDistance.haversineA(
+        var a = GeoDistance.haversineA(
                 queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         if (a <= radiusThreshold) {
             results.add(new GeoSearchResult(node.point, GeoDistance.metersFromA(a)));
         }
 
-        boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
-        double queryAxis = splitByLatitude ? queryLat : queryLng;
-        double splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
-        Node nearBranch = queryAxis < splitAxis ? node.left : node.right;
-        Node farBranch = queryAxis < splitAxis ? node.right : node.left;
+        var splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
+        var queryAxis = splitByLatitude ? queryLat : queryLng;
+        var splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
+        var nearBranch = queryAxis < splitAxis ? node.left : node.right;
+        var farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
             searchRadiusCore(nearBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
@@ -164,7 +164,7 @@ public final class GeoGeodesicKdTreeIndex {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
+        var axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
         if (axisLowerBound <= radiusThreshold) {
             searchRadiusCore(farBranch, queryLat, queryLng, radiusThreshold, queryCosLat, results);
         }
@@ -181,15 +181,15 @@ public final class GeoGeodesicKdTreeIndex {
             PROFILING_VISITED_NODES++;
         }
 
-        double a = GeoDistance.haversineA(
+        var a = GeoDistance.haversineA(
                 queryLat, queryLng, node.point.latitude(), node.point.longitude(), queryCosLat, node.cosLatitude);
         tryAddBest(best, node.point, a, k);
 
-        boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
-        double queryAxis = splitByLatitude ? queryLat : queryLng;
-        double splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
-        Node nearBranch = queryAxis < splitAxis ? node.left : node.right;
-        Node farBranch = queryAxis < splitAxis ? node.right : node.left;
+        var splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
+        var queryAxis = splitByLatitude ? queryLat : queryLng;
+        var splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
+        var nearBranch = queryAxis < splitAxis ? node.left : node.right;
+        var farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
             searchKNearestCore(nearBranch, queryLat, queryLng, k, queryCosLat, best);
@@ -199,7 +199,7 @@ public final class GeoGeodesicKdTreeIndex {
             return;
         }
 
-        double axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
+        var axisLowerBound = GeoDistance.axisLowerBoundA(queryLat, queryLng, splitAxis, splitByLatitude, queryCosLat);
         if (best.size() < k || axisLowerBound <= worstA(best)) {
             searchKNearestCore(farBranch, queryLat, queryLng, k, queryCosLat, best);
         }
@@ -217,8 +217,8 @@ public final class GeoGeodesicKdTreeIndex {
         }
 
         GeoSearchResult worst = best.getFirst();
-        double worstA = GeoDistance.aFromMeters(worst.distanceMeters());
-        double margin = Math.ulp(worstA) * A_COMPARISON_MARGIN_ULPS;
+        var worstA = GeoDistance.aFromMeters(worst.distanceMeters());
+        var margin = Math.ulp(worstA) * A_COMPARISON_MARGIN_ULPS;
         if (a > worstA + margin) {
             return;
         }
@@ -243,7 +243,7 @@ public final class GeoGeodesicKdTreeIndex {
      * instead of re-sorting the whole list for every candidate.
      */
     private static void insertSorted(List<GeoSearchResult> best, GeoSearchResult candidate) {
-        int index = Collections.binarySearch(best, candidate, GeoSearchResultComparators.WORST_FIRST);
+        var index = Collections.binarySearch(best, candidate, GeoSearchResultComparators.WORST_FIRST);
         if (index < 0) {
             index = -index - 1;
         }
@@ -251,7 +251,7 @@ public final class GeoGeodesicKdTreeIndex {
     }
 
     private static boolean isStrictlyBetter(GeoSearchResult candidate, GeoSearchResult currentWorst) {
-        int byDistance = Double.compare(candidate.distanceMeters(), currentWorst.distanceMeters());
+        var byDistance = Double.compare(candidate.distanceMeters(), currentWorst.distanceMeters());
         if (byDistance != 0) {
             return byDistance < 0;
         }

@@ -42,7 +42,7 @@ public class GeoGeodesicKnnBenchmarks {
         points = BenchGeoMath.buildClusteredPoints(n);
         queries = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         index = new GeoGeodesicKdTreeIndex();
-        for (GeoPoint point : points) {
+        for (var point : points) {
             index.insert(point);
         }
     }
@@ -55,10 +55,10 @@ public class GeoGeodesicKnnBenchmarks {
     @Benchmark
     @OperationsPerInvocation(KD_TREE_OPERATIONS_PER_INVOKE)
     public double queryGeodesicKnn() {
-        double total = 0.0;
-        for (int i = 0; i < KD_TREE_OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
-            List<GeoSearchResult> result = index.searchKNearest(query.latitude(), query.longitude(), k);
+        var total = 0.0;
+        for (var i = 0; i < KD_TREE_OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
+            var result = index.searchKNearest(query.latitude(), query.longitude(), k);
             total += result.getFirst().distanceMeters();
         }
 
@@ -68,9 +68,9 @@ public class GeoGeodesicKnnBenchmarks {
     @Benchmark
     @OperationsPerInvocation(FULL_SCAN_OPERATIONS_PER_INVOKE)
     public double queryFullScanKnn() {
-        double total = 0.0;
-        for (int i = 0; i < FULL_SCAN_OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
+        var total = 0.0;
+        for (var i = 0; i < FULL_SCAN_OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
             total += fullScanKnn(query.latitude(), query.longitude(), k);
         }
 
@@ -78,15 +78,15 @@ public class GeoGeodesicKnnBenchmarks {
     }
 
     private double fullScanKnn(double lat, double lng, int kk) {
-        double[] distances = new double[points.size()];
-        for (int i = 0; i < distances.length; i++) {
-            GeoPoint point = points.get(i);
+        var distances = new double[points.size()];
+        for (var i = 0; i < distances.length; i++) {
+            var point = points.get(i);
             distances[i] = BenchGeoMath.haversineMeters(lat, lng, point.latitude(), point.longitude());
         }
 
         Arrays.sort(distances);
-        double sum = 0.0;
-        for (int i = 0; i < kk; i++) {
+        var sum = 0.0;
+        for (var i = 0; i < kk; i++) {
             sum += distances[i];
         }
 

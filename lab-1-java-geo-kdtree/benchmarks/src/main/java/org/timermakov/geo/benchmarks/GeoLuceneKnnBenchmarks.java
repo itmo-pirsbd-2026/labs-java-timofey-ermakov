@@ -58,8 +58,8 @@ public class GeoLuceneKnnBenchmarks {
 
         directory = new ByteBuffersDirectory();
         writer = new IndexWriter(directory, new IndexWriterConfig());
-        for (GeoPoint point : points) {
-            Document document = new Document();
+        for (var point : points) {
+            var document = new Document();
             document.add(new LatLonPoint(FIELD, point.latitude(), point.longitude()));
             writer.addDocument(document);
         }
@@ -84,10 +84,10 @@ public class GeoLuceneKnnBenchmarks {
     @Benchmark
     @OperationsPerInvocation(OPERATIONS_PER_INVOKE)
     public int queryLuceneKnn() throws IOException {
-        int total = 0;
-        for (int i = 0; i < OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
-            TopFieldDocs docs = LatLonPoint.nearest(searcher, FIELD, query.latitude(), query.longitude(), k);
+        var total = 0;
+        for (var i = 0; i < OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
+            var docs = LatLonPoint.nearest(searcher, FIELD, query.latitude(), query.longitude(), k);
             total += docs.scoreDocs.length;
         }
 

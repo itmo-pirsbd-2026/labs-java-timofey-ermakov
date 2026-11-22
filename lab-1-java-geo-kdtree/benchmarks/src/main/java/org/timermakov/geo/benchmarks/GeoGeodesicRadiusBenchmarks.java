@@ -41,7 +41,7 @@ public class GeoGeodesicRadiusBenchmarks {
         points = BenchGeoMath.buildClusteredPoints(n);
         queries = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         index = new GeoGeodesicKdTreeIndex();
-        for (GeoPoint point : points) {
+        for (var point : points) {
             index.insert(point);
         }
     }
@@ -54,9 +54,9 @@ public class GeoGeodesicRadiusBenchmarks {
     @Benchmark
     @OperationsPerInvocation(KD_TREE_OPERATIONS_PER_INVOKE)
     public int queryGeodesicRadius() {
-        int total = 0;
-        for (int i = 0; i < KD_TREE_OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
+        var total = 0;
+        for (var i = 0; i < KD_TREE_OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
             total += index.searchRadius(query.latitude(), query.longitude(), radiusMeters).size();
         }
 
@@ -66,9 +66,9 @@ public class GeoGeodesicRadiusBenchmarks {
     @Benchmark
     @OperationsPerInvocation(FULL_SCAN_OPERATIONS_PER_INVOKE)
     public int queryFullScanRadius() {
-        int total = 0;
-        for (int i = 0; i < FULL_SCAN_OPERATIONS_PER_INVOKE; i++) {
-            GeoPoint query = queries[cursor++ % queries.length];
+        var total = 0;
+        for (var i = 0; i < FULL_SCAN_OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
             total += fullScanRadius(query.latitude(), query.longitude(), radiusMeters);
         }
 
@@ -76,9 +76,9 @@ public class GeoGeodesicRadiusBenchmarks {
     }
 
     private int fullScanRadius(double lat, double lng, double radius) {
-        int hits = 0;
-        for (int i = 0; i < points.size(); i++) {
-            GeoPoint point = points.get(i);
+        var hits = 0;
+        for (var i = 0; i < points.size(); i++) {
+            var point = points.get(i);
             if (BenchGeoMath.haversineMeters(lat, lng, point.latitude(), point.longitude()) <= radius) {
                 hits++;
             }

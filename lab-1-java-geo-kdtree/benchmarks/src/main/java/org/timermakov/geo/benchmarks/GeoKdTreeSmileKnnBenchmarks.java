@@ -38,12 +38,12 @@ public class GeoKdTreeSmileKnnBenchmarks {
 
     @Setup(Level.Trial)
     public void globalSetup() {
-        List<GeoPoint> points = BenchGeoMath.buildClusteredPoints(n);
-        double[][] keys = new double[points.size()][];
-        Integer[] data = new Integer[points.size()];
-        double[] ecef = new double[3];
-        for (int i = 0; i < points.size(); i++) {
-            GeoPoint point = points.get(i);
+        var points = BenchGeoMath.buildClusteredPoints(n);
+        var keys = new double[points.size()][];
+        var data = new Integer[points.size()];
+        var ecef = new double[3];
+        for (var i = 0; i < points.size(); i++) {
+            var point = points.get(i);
             BenchEcefMath.toEcef(point.latitude(), point.longitude(), BenchGeoMath.EARTH_RADIUS_METERS, ecef);
             keys[i] = new double[] {ecef[0], ecef[1], ecef[2]};
             data[i] = i;
@@ -51,11 +51,11 @@ public class GeoKdTreeSmileKnnBenchmarks {
 
         index = new KDTree<>(keys, data);
 
-        GeoPoint[] queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
+        var queryPoints = BenchGeoMath.spreadQueries(points, QUERY_LIMIT);
         queries = new double[queryPoints.length][];
-        for (int i = 0; i < queryPoints.length; i++) {
-            GeoPoint point = queryPoints[i];
-            double[] q = new double[3];
+        for (var i = 0; i < queryPoints.length; i++) {
+            var point = queryPoints[i];
+            var q = new double[3];
             BenchEcefMath.toEcef(point.latitude(), point.longitude(), BenchGeoMath.EARTH_RADIUS_METERS, q);
             queries[i] = q;
         }
@@ -69,9 +69,9 @@ public class GeoKdTreeSmileKnnBenchmarks {
     @Benchmark
     @OperationsPerInvocation(OPERATIONS_PER_INVOKE)
     public int querySmileKnn() {
-        int total = 0;
-        for (int i = 0; i < OPERATIONS_PER_INVOKE; i++) {
-            double[] query = queries[cursor++ % queries.length];
+        var total = 0;
+        for (var i = 0; i < OPERATIONS_PER_INVOKE; i++) {
+            var query = queries[cursor++ % queries.length];
             Neighbor<double[], Integer>[] neighbors = index.search(query, k);
             total += neighbors.length;
         }

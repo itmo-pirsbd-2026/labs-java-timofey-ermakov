@@ -26,19 +26,19 @@ public final class S2BenchMain {
         BenchSettings settings = BenchSettings.load();
 
         runClass(GeoS2KnnBenchmarks.class.getSimpleName(), settings, S2_KNN_RESULT_FILE, builder -> {
-            for (int n : settings.nValues()) {
+            for (var n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
-            for (int k : settings.kValues()) {
+            for (var k : settings.kValues()) {
                 builder.param("k", Integer.toString(k));
             }
         });
 
         runClass(GeoS2RadiusBenchmarks.class.getSimpleName(), settings, S2_RADIUS_RESULT_FILE, builder -> {
-            for (int n : settings.nValues()) {
+            for (var n : settings.nValues()) {
                 builder.param("n", Integer.toString(n));
             }
-            for (int radius : settings.radiusValues()) {
+            for (var radius : settings.radiusValues()) {
                 builder.param("radiusMeters", Integer.toString(radius));
             }
         });

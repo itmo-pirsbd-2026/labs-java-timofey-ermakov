@@ -65,10 +65,10 @@ class GeoGeodesicKdTreeIndexPropertyTests {
     static Stream<int[]> randomRawValues() {
         return IntStream.rangeClosed(1, PROPERTY_CASES)
                 .mapToObj(caseIndex -> {
-                    Random random = new Random(PROPERTY_BASE_SEED + caseIndex);
-                    int length = random.nextInt(MAX_RAW_VALUES_LENGTH + 1);
-                    int[] values = new int[length];
-                    for (int i = 0; i < length; i++) {
+                    var random = new Random(PROPERTY_BASE_SEED + caseIndex);
+                    var length = random.nextInt(MAX_RAW_VALUES_LENGTH + 1);
+                    var values = new int[length];
+                    for (var i = 0; i < length; i++) {
                         values[i] = random.nextInt();
                     }
                     return values;
@@ -78,34 +78,34 @@ class GeoGeodesicKdTreeIndexPropertyTests {
     @ParameterizedTest
     @MethodSource("randomRawValues")
     void radiusQueryMatchesFullScan(int[] rawValues) {
-        List<GeoPoint> points = buildPoints(rawValues, RADIUS_PROPERTY_MAX_POINTS);
+        var points = buildPoints(rawValues, RADIUS_PROPERTY_MAX_POINTS);
         if (points.isEmpty()) {
             return;
         }
 
         GeoGeodesicKdTreeIndex index = buildIndex(points);
-        GeoPoint query = points.get(points.size() / 2);
-        double radiusMeters = BASE_RADIUS_METERS + ((points.size() * RADIUS_MULTIPLIER) % RADIUS_MODULUS);
+        var query = points.get(points.size() / 2);
+        var radiusMeters = BASE_RADIUS_METERS + ((points.size() * RADIUS_MULTIPLIER) % RADIUS_MODULUS);
 
-        List<GeoSearchResult> actual = index.searchRadius(query.latitude(), query.longitude(), radiusMeters);
-        List<GeoSearchResult> expected = fullScanRadius(points, query.latitude(), query.longitude(), radiusMeters);
+        var actual = index.searchRadius(query.latitude(), query.longitude(), radiusMeters);
+        var expected = fullScanRadius(points, query.latitude(), query.longitude(), radiusMeters);
         assertEquivalent(expected, actual);
     }
 
     @ParameterizedTest
     @MethodSource("randomRawValues")
     void knnQueryMatchesFullScan(int[] rawValues) {
-        List<GeoPoint> points = buildPoints(rawValues, KNN_PROPERTY_MAX_POINTS);
+        var points = buildPoints(rawValues, KNN_PROPERTY_MAX_POINTS);
         if (points.isEmpty()) {
             return;
         }
 
         GeoGeodesicKdTreeIndex index = buildIndex(points);
-        GeoPoint query = points.get(points.size() / 3);
-        int k = Math.clamp(points.size() / K_FRACTION + 1, 1, Math.min(K_LIMIT, points.size()));
+        var query = points.get(points.size() / 3);
+        var k = Math.clamp(points.size() / K_FRACTION + 1, 1, Math.min(K_LIMIT, points.size()));
 
-        List<GeoSearchResult> actual = index.searchKNearest(query.latitude(), query.longitude(), k);
-        List<GeoSearchResult> expected = fullScanKnn(points, query.latitude(), query.longitude(), k);
+        var actual = index.searchKNearest(query.latitude(), query.longitude(), k);
+        var expected = fullScanKnn(points, query.latitude(), query.longitude(), k);
         assertEquivalent(expected, actual);
     }
 
@@ -129,7 +129,7 @@ class GeoGeodesicKdTreeIndexPropertyTests {
 
     private static GeoGeodesicKdTreeIndex buildIndex(List<GeoPoint> points) {
         GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
-        for (GeoPoint point : points) {
+        for (var point : points) {
             index.insert(point);
         }
 
@@ -137,13 +137,13 @@ class GeoGeodesicKdTreeIndexPropertyTests {
     }
 
     private static List<GeoPoint> buildPoints(int[] rawValues, int maxCount) {
-        int limit = Math.min(maxCount, rawValues.length / 2);
-        List<GeoPoint> points = new ArrayList<>(limit);
-        for (int i = 0; i < limit; i++) {
-            int latRaw = rawValues[i * 2];
-            int lngRaw = rawValues[i * 2 + 1];
-            double lat = normalize(latRaw, NORM_LAT_MIN, NORM_LAT_MAX);
-            double lng = normalize(lngRaw, NORM_LNG_MIN, NORM_LNG_MAX);
+        var limit = Math.min(maxCount, rawValues.length / 2);
+        var points = new ArrayList<GeoPoint>(limit);
+        for (var i = 0; i < limit; i++) {
+            var latRaw = rawValues[i * 2];
+            var lngRaw = rawValues[i * 2 + 1];
+            var lat = normalize(latRaw, NORM_LAT_MIN, NORM_LAT_MAX);
+            var lng = normalize(lngRaw, NORM_LNG_MIN, NORM_LNG_MAX);
             points.add(new GeoPoint("p-" + i, lat, lng));
         }
 
@@ -178,7 +178,7 @@ class GeoGeodesicKdTreeIndexPropertyTests {
 
     private static void assertEquivalent(List<GeoSearchResult> expected, List<GeoSearchResult> actual) {
         assertThat(actual).hasSize(expected.size());
-        for (int i = 0; i < expected.size(); i++) {
+        for (var i = 0; i < expected.size(); i++) {
             assertThat(actual.get(i).point().id()).isEqualTo(expected.get(i).point().id());
             assertThat(actual.get(i).distanceMeters())
                     .isCloseTo(expected.get(i).distanceMeters(), within(DISTANCE_TOLERANCE_METERS));
@@ -186,7 +186,7 @@ class GeoGeodesicKdTreeIndexPropertyTests {
     }
 
     private static double normalize(int value, double min, double max) {
-        double unit = (value - (double) Integer.MIN_VALUE) / INT_VALUE_SPAN;
+        var unit = (value - (double) Integer.MIN_VALUE) / INT_VALUE_SPAN;
         return min + (max - min) * unit;
     }
 
@@ -197,15 +197,15 @@ class GeoGeodesicKdTreeIndexPropertyTests {
     private static final double ORACLE_EARTH_RADIUS_METERS = 6_371_000.0;
 
     private static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {
-        double dLat = degreesToRadians(lat2 - lat1);
-        double dLng = degreesToRadians(lng2 - lng1);
-        double rLat1 = degreesToRadians(lat1);
-        double rLat2 = degreesToRadians(lat2);
+        var dLat = degreesToRadians(lat2 - lat1);
+        var dLng = degreesToRadians(lng2 - lng1);
+        var rLat1 = degreesToRadians(lat1);
+        var rLat2 = degreesToRadians(lat2);
 
-        double sinLat = Math.sin(dLat / 2);
-        double sinLng = Math.sin(dLng / 2);
-        double a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
-        double c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
+        var sinLat = Math.sin(dLat / 2);
+        var sinLng = Math.sin(dLng / 2);
+        var a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
+        var c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
         return ORACLE_EARTH_RADIUS_METERS * c;
     }
 

@@ -59,8 +59,8 @@ public final class GeoKdTreeIndex {
     }
 
     private static int maxDepth(Node node, int depth) {
-        int left = node.left == null ? depth : maxDepth(node.left, depth + 1);
-        int right = node.right == null ? depth : maxDepth(node.right, depth + 1);
+        var left = node.left == null ? depth : maxDepth(node.left, depth + 1);
+        var right = node.right == null ? depth : maxDepth(node.right, depth + 1);
         return Math.max(left, right);
     }
 
@@ -89,10 +89,10 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
-        double[] q = new double[3];
+        var q = new double[3];
         toEcef(latitude, longitude, q);
-        double chordSqThreshold = chordSqFromMeters(radiusMeters);
-        List<GeoSearchResult> results = new ArrayList<>();
+        var chordSqThreshold = chordSqFromMeters(radiusMeters);
+        var results = new ArrayList<GeoSearchResult>();
         searchRadiusCore(root, q, latitude, longitude, chordSqThreshold, results);
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
         return results;
@@ -109,13 +109,13 @@ public final class GeoKdTreeIndex {
             return List.of();
         }
 
-        double[] q = new double[3];
+        var q = new double[3];
         toEcef(latitude, longitude, q);
         BestBuffer best = new BestBuffer(k);
         searchKNearestCore(root, q, latitude, longitude, k, best);
 
-        List<GeoSearchResult> results = new ArrayList<>(best.size);
-        for (int i = 0; i < best.size; i++) {
+        var results = new ArrayList<GeoSearchResult>(best.size);
+        for (var i = 0; i < best.size; i++) {
             results.add(new GeoSearchResult(best.points[i], metersFromChordSq(best.chordSq[i])));
         }
         results.sort(GeoSearchResultComparators.NEAREST_FIRST);
@@ -127,8 +127,8 @@ public final class GeoKdTreeIndex {
             return new Node(point, depth);
         }
 
-        boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
-        boolean goLeft = splitByLatitude
+        var splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+        var goLeft = splitByLatitude
                 ? point.latitude() < node.point.latitude()
                 : point.longitude() < node.point.longitude();
 
@@ -151,7 +151,7 @@ public final class GeoKdTreeIndex {
     }
 
     private static boolean isUnbalanced(Node node) {
-        int n = node.size;
+        var n = node.size;
         return (node.left != null && node.left.size * BALANCE_DEN > BALANCE_NUM * n)
                 || (node.right != null && node.right.size * BALANCE_DEN > BALANCE_NUM * n);
     }
@@ -163,7 +163,7 @@ public final class GeoKdTreeIndex {
      * every pruning bound valid. Rebuilds are rare (amortized O(log n) per insert).
      */
     private static Node rebuild(Node node, int depth) {
-        List<GeoPoint> points = new ArrayList<>(node.size);
+        var points = new ArrayList<GeoPoint>(node.size);
         collect(node, points);
         return buildBalanced(points, 0, points.size(), depth);
     }
@@ -182,16 +182,16 @@ public final class GeoKdTreeIndex {
             return null;
         }
 
-        boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+        var splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
         points.subList(lo, hi).sort(splitByLatitude ? LATITUDE_ORDER : LONGITUDE_ORDER);
 
-        int mid = (lo + hi) >>> 1;
-        GeoPoint median = points.get(mid);
+        var mid = (lo + hi) >>> 1;
+        var median = points.get(mid);
         while (mid + 1 < hi && sameKey(points.get(mid + 1), median, splitByLatitude)) {
             mid++;
         }
 
-        Node node = new Node(points.get(mid), depth);
+        var node = new Node(points.get(mid), depth);
         node.left = buildBalanced(points, lo, mid, depth + 1);
         node.right = buildBalanced(points, mid + 1, hi, depth + 1);
         node.size = 1 + size(node.left) + size(node.right);
@@ -215,16 +215,16 @@ public final class GeoKdTreeIndex {
             PROFILING_VISITED_NODES++;
         }
 
-        double chordSq = chordSq(q, node);
+        var chordSq = chordSq(q, node);
         if (chordSq <= chordSqThreshold) {
             results.add(new GeoSearchResult(node.point, metersFromChordSq(chordSq)));
         }
 
-        boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
-        double queryAxis = splitByLatitude ? queryLat : queryLng;
-        double splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
-        Node nearBranch = queryAxis < splitAxis ? node.left : node.right;
-        Node farBranch = queryAxis < splitAxis ? node.right : node.left;
+        var splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
+        var queryAxis = splitByLatitude ? queryLat : queryLng;
+        var splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
+        var nearBranch = queryAxis < splitAxis ? node.left : node.right;
+        var farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
             searchRadiusCore(nearBranch, q, queryLat, queryLng, chordSqThreshold, results);
@@ -234,7 +234,7 @@ public final class GeoKdTreeIndex {
             return;
         }
 
-        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
+        var bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
         if (bound <= chordSqThreshold) {
             searchRadiusCore(farBranch, q, queryLat, queryLng, chordSqThreshold, results);
         }
@@ -251,14 +251,14 @@ public final class GeoKdTreeIndex {
             PROFILING_VISITED_NODES++;
         }
 
-        double chordSq = chordSq(q, node);
+        var chordSq = chordSq(q, node);
         tryAddBest(best, node.point, chordSq, k);
 
-        boolean splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
-        double queryAxis = splitByLatitude ? queryLat : queryLng;
-        double splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
-        Node nearBranch = queryAxis < splitAxis ? node.left : node.right;
-        Node farBranch = queryAxis < splitAxis ? node.right : node.left;
+        var splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
+        var queryAxis = splitByLatitude ? queryLat : queryLng;
+        var splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
+        var nearBranch = queryAxis < splitAxis ? node.left : node.right;
+        var farBranch = queryAxis < splitAxis ? node.right : node.left;
 
         if (nearBranch != null) {
             searchKNearestCore(nearBranch, q, queryLat, queryLng, k, best);
@@ -268,7 +268,7 @@ public final class GeoKdTreeIndex {
             return;
         }
 
-        double bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
+        var bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
         if (best.size < k || bound <= best.worstChordSq()) {
             searchKNearestCore(farBranch, q, queryLat, queryLng, k, best);
         }
@@ -287,16 +287,16 @@ public final class GeoKdTreeIndex {
     private static double axisLowerBoundChordSq(Node node, boolean splitByLatitude, double[] q,
                                                 double queryLat, double queryLng) {
         if (splitByLatitude) {
-            double gap = queryLat < node.point.latitude()
+            var gap = queryLat < node.point.latitude()
                     ? node.latPlaneZ - q[2]
                     : q[2] - node.latPlaneZ;
             return gap > 0.0 ? gap * gap : 0.0;
         }
 
-        double v1 = node.lngPlaneNx * q[0] + node.lngPlaneNy * q[1];
-        double splitLng = node.point.longitude();
-        boolean farRight = queryLng < splitLng;
-        boolean union = farRight ? splitLng < 0.0 : splitLng > 0.0;
+        var v1 = node.lngPlaneNx * q[0] + node.lngPlaneNy * q[1];
+        var splitLng = node.point.longitude();
+        var farRight = queryLng < splitLng;
+        var union = farRight ? splitLng < 0.0 : splitLng > 0.0;
 
         double viol1;
         double viol2;
@@ -308,7 +308,7 @@ public final class GeoKdTreeIndex {
             viol2 = q[1] > 0.0 ? q[1] : 0.0;
         }
 
-        double chosen = union ? Math.min(viol1, viol2) : Math.max(viol1, viol2);
+        var chosen = union ? Math.min(viol1, viol2) : Math.max(viol1, viol2);
         return chosen * chosen;
     }
 
@@ -356,8 +356,8 @@ public final class GeoKdTreeIndex {
         }
 
         private void rescanMax() {
-            int max = 0;
-            for (int i = 1; i < size; i++) {
+            var max = 0;
+            for (var i = 1; i < size; i++) {
                 if (chordSq[i] > chordSq[max]) {
                     max = i;
                 }
@@ -373,16 +373,16 @@ public final class GeoKdTreeIndex {
             return;
         }
 
-        double worstChordSq = best.worstChordSq();
-        double margin = Math.ulp(worstChordSq) * CHORD_COMPARISON_MARGIN_ULPS;
+        var worstChordSq = best.worstChordSq();
+        var margin = Math.ulp(worstChordSq) * CHORD_COMPARISON_MARGIN_ULPS;
         if (chordSq > worstChordSq + margin) {
             return;
         }
 
         // Borderline: decide exactly, in meters, with the id tie-break.
-        double candidateMeters = metersFromChordSq(chordSq);
-        double worstMeters = metersFromChordSq(worstChordSq);
-        int byDistance = Double.compare(candidateMeters, worstMeters);
+        var candidateMeters = metersFromChordSq(chordSq);
+        var worstMeters = metersFromChordSq(worstChordSq);
+        var byDistance = Double.compare(candidateMeters, worstMeters);
         if (byDistance == 0 && point.id().compareTo(best.worstPoint().id()) >= 0) {
             return;
         }
@@ -394,30 +394,30 @@ public final class GeoKdTreeIndex {
     }
 
     private static double chordSq(double[] q, Node node) {
-        double dx = q[0] - node.x;
-        double dy = q[1] - node.y;
-        double dz = q[2] - node.z;
+        var dx = q[0] - node.x;
+        var dy = q[1] - node.y;
+        var dz = q[2] - node.z;
         return dx * dx + dy * dy + dz * dz;
     }
 
     /** Squared chord radius for a spherical distance in meters: (2R·sin(m/2R))². */
     static double chordSqFromMeters(double meters) {
-        double chord = TWO_EARTH_RADIUS_METERS * Math.sin(meters / TWO_EARTH_RADIUS_METERS);
+        var chord = TWO_EARTH_RADIUS_METERS * Math.sin(meters / TWO_EARTH_RADIUS_METERS);
         return chord * chord;
     }
 
     /** Exact spherical distance in meters for a squared chord. */
     static double metersFromChordSq(double chordSq) {
-        double chord = Math.sqrt(chordSq);
-        double ratio = Math.min(1.0, chord / TWO_EARTH_RADIUS_METERS);
+        var chord = Math.sqrt(chordSq);
+        var ratio = Math.min(1.0, chord / TWO_EARTH_RADIUS_METERS);
         return TWO_EARTH_RADIUS_METERS * Math.asin(ratio);
     }
 
     /** Converts lat/lng degrees to ECEF coordinates on the library's sphere. */
     public static void toEcef(double latitude, double longitude, double[] out) {
-        double lat = latitude * DEGREES_TO_RADIANS;
-        double lng = longitude * DEGREES_TO_RADIANS;
-        double cosLat = Math.cos(lat);
+        var lat = latitude * DEGREES_TO_RADIANS;
+        var lng = longitude * DEGREES_TO_RADIANS;
+        var cosLat = Math.cos(lat);
         out[0] = EARTH_RADIUS_METERS * cosLat * Math.cos(lng);
         out[1] = EARTH_RADIUS_METERS * cosLat * Math.sin(lng);
         out[2] = EARTH_RADIUS_METERS * Math.sin(lat);
@@ -463,18 +463,18 @@ public final class GeoKdTreeIndex {
             this.point = point;
             this.depth = depth;
 
-            double[] ecef = new double[3];
+            var ecef = new double[3];
             toEcef(point.latitude(), point.longitude(), ecef);
             this.x = ecef[0];
             this.y = ecef[1];
             this.z = ecef[2];
 
-            boolean splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
+            var splitByLatitude = depth % SPLIT_AXIS_MODULUS == 0;
             this.latPlaneZ = splitByLatitude
                     ? EARTH_RADIUS_METERS * Math.sin(point.latitude() * DEGREES_TO_RADIANS)
                     : 0.0;
 
-            double splitLngRadians = point.longitude() * DEGREES_TO_RADIANS;            this.lngPlaneNx = splitByLatitude ? 0.0 : -Math.sin(splitLngRadians);
+            var splitLngRadians = point.longitude() * DEGREES_TO_RADIANS;            this.lngPlaneNx = splitByLatitude ? 0.0 : -Math.sin(splitLngRadians);
             this.lngPlaneNy = splitByLatitude ? 0.0 : Math.cos(splitLngRadians);
         }
     }
