@@ -51,7 +51,7 @@ STATE_LABELS = {
     "perf3-seamaware": "шаг 3: seam-aware",
     "perf4-bestinsert": "шаг 4: best-лист",
     "perf5-aspace": "шаг 5: a-space",
-    "perf6-trigcache": "шаг 6",
+    "perf6-trigcache": "шаг 6: предподсчёт косинусов",
 }
 FAMILIES = [("radius", 100), ("radius", 5000), ("knn", 1), ("knn", 20)]
 FAMILY_TITLES = {
