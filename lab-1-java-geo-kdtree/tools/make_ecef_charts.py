@@ -316,6 +316,115 @@ def chart_realdata():
         plt.close(fig)
 
 
+REALDATA_FILES = ("realdata-raw.csv", "realdata-raw-taxi-8m.csv")
+REALDATA_QUERIES = ("radius r=100", "radius r=1000", "radius r=5000", "kNN k=1", "kNN k=20")
+REALDATA_DATASETS = [
+    ("poi", "POI\n0.87 млн"),
+    ("taxi", "Taxi\n1.5 млн"),
+    ("taxi8m", "Taxi\n8 млн"),
+]
+REALDATA_IMPLS = [
+    ("v6", "LatLong", "#d62728"),
+    ("v7", "ECEF", "#9467bd"),
+    ("s2", "Google S2 (1 прогон)", "#2ca02c"),
+]
+
+
+def _realdata_reps():
+    """-> {(dataset_key, query, impl): [мкс/запрос по прогонам]}
+
+    Dataset names contain commas and the 8m file is not quoted, so row fields
+    are taken from the end; the query is matched against the known names.
+    realdata-raw-taxi.csv duplicates the taxi part of realdata-raw.csv and is
+    skipped on purpose.
+    """
+    reps: dict = {}
+    for name in REALDATA_FILES:
+        path = GRID / name
+        if not path.exists():
+            continue
+        with path.open(encoding="utf-8") as fh:
+            rd = csv.reader(fh)
+            next(rd, None)
+            for parts in rd:
+                if len(parts) < 6:
+                    continue
+                head = ",".join(parts[:-4])
+                query = next((q for q in REALDATA_QUERIES if head.endswith(q)), None)
+                if query is None:
+                    continue
+                impl = parts[-4].strip('"')
+                us = int(parts[-2]) / 500 / 1000.0
+                if "OSM POIs" in head:
+                    ds = "poi"
+                elif name.endswith("taxi-8m.csv"):
+                    ds = "taxi8m"
+                else:
+                    ds = "taxi"
+                reps.setdefault((ds, query, impl), []).append(us)
+    return reps
+
+
+def chart_realdata_2x2():
+    """Real-data analog of the tenm 2x2 panel: scenarios x datasets, our two
+    implementations plus the single-run S2 reference (Smile excluded, see the
+    static-vs-dynamic charts)."""
+    reps = _realdata_reps()
+    if not reps:
+        return
+    out = CHARTS / "realdata"
+    out.mkdir(parents=True, exist_ok=True)
+
+    fig, axes = plt.subplots(2, 3, figsize=(15, 9))
+    for ax, query in zip(axes.flat, REALDATA_QUERIES):
+        x = list(range(len(REALDATA_DATASETS)))
+        present = [(col, label, color) for col, label, color in REALDATA_IMPLS
+                   if any((ds, query, col) in reps for ds, _ in REALDATA_DATASETS)]
+        width = 0.8 / max(len(present), 1)
+        all_means = []
+        bars = []
+        for col, label, color in present:
+            vals, errs = [], []
+            for ds, _ in REALDATA_DATASETS:
+                values = reps.get((ds, query, col))
+                if values:
+                    mean, half = ci95(values)
+                else:
+                    mean, half = 0.0, 0.0
+                vals.append(mean)
+                errs.append(half)
+            bars.append((label, color, vals, errs))
+            all_means.extend(v for v in vals if v > 0)
+        bottom = max(min(all_means) * 0.3, 1e-3)
+        for i, (label, color, vals, errs) in enumerate(bars):
+            ax.bar([p + (i - (len(bars) - 1) / 2.0) * width for p in x],
+                   [v - bottom if v > 0 else 0 for v in vals],
+                   bottom=bottom, width=width * 0.9,
+                   yerr=[[min(e, v - bottom) if v > 0 else 0 for v, e in zip(vals, errs)],
+                         [e if v > 0 else 0 for v, e in zip(vals, errs)]],
+                   capsize=3, label=label, color=color)
+        ax.set_yscale("log")
+        ax.set_xticks(x)
+        ax.set_xticklabels([label for _, label in REALDATA_DATASETS], fontsize=9)
+        ax.set_title(query)
+        ax.set_ylabel("мкс на запрос (лог)")
+    legend_ax = axes.flat[len(REALDATA_QUERIES)]
+    legend_ax.axis("off")
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    legend_ax.legend(handles, labels, loc="upper left", fontsize=11)
+    legend_ax.text(0, 0.35,
+                   "RealDataRunner, 500 запросов на прогон,\n"
+                   "среднее ± 95% ДИ; прогонов: 15 (Taxi 8 млн: 5).\n"
+                   "S2 — один прогон, только POI.\n"
+                   "Smile исключён: сравнение со статикой —\n"
+                   "в charts/static/.",
+                   fontsize=10, va="top")
+    fig.suptitle("Реальные данные: NYC OSM POI (0.87 млн) и NYC Taxi (1.5 и 8 млн посадок)")
+    fig.savefig(out / "realdata-2x2.png")
+    plt.close(fig)
+    print("realdata 2x2 panel written")
+
+
 def chart_tenm():
     """Single shared 2x2 panel for the 10M-point grid: LatLong / ECEF / S2."""
     if not (GRID / "tenm-knn.txt").exists():
@@ -377,6 +486,7 @@ def main() -> int:
     chart_static_comparison()
     chart_nodecost()
     chart_realdata()
+    chart_realdata_2x2()
     chart_tenm()
     print(f"charts written to {CHARTS}")
     return 0
