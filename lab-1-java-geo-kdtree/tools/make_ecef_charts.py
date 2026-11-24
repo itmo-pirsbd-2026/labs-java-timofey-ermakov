@@ -316,7 +316,7 @@ def chart_realdata():
         plt.close(fig)
 
 
-REALDATA_FILES = ("realdata-raw.csv", "realdata-raw-taxi-8m.csv")
+REALDATA_FILES = ("realdata-raw.csv", "realdata-raw-taxi-8m.csv", "realdata-raw-taxi-s2.csv")
 REALDATA_QUERIES = ("radius r=100", "radius r=1000", "radius r=5000", "kNN k=1", "kNN k=20")
 REALDATA_DATASETS = [
     ("poi", "POI\n0.87 млн"),
@@ -326,7 +326,7 @@ REALDATA_DATASETS = [
 REALDATA_IMPLS = [
     ("v6", "LatLong", "#d62728"),
     ("v7", "ECEF", "#9467bd"),
-    ("s2", "Google S2 (1 прогон)", "#2ca02c"),
+    ("s2", "Google S2", "#2ca02c"),
 ]
 
 
@@ -415,7 +415,9 @@ def chart_realdata_2x2():
     legend_ax.text(0, 0.35,
                    "RealDataRunner, 500 запросов на прогон,\n"
                    "среднее ± 95% ДИ; прогонов: 15 (Taxi 8 млн: 5).\n"
-                   "S2 — один прогон, только POI.\n"
+                   "S2 на POI — одна запись (лучший из 15).\n"
+                   "S2 на Taxi — без r=5000: прогон остановлен\n"
+                   "как несопоставимый (клеточный скан кластера).\n"
                    "Smile исключён: сравнение со статикой —\n"
                    "в charts/static/.",
                    fontsize=10, va="top")
