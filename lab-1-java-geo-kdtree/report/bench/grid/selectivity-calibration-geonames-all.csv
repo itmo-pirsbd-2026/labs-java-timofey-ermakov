@@ -1,0 +1,21 @@
+dataset,n,panel,m,mean_hits,median_radius_m
+geonames-all,100000,sel 0.0001%,1,1.0,1635.4
+geonames-all,100000,sel 0.01%,10,10.1,41371.8
+geonames-all,100000,sel 0.1%,100,108.1,130829.1
+geonames-all,100000,sel 1%,1000,1048.1,413717.9
+geonames-all,500000,sel 0.0001%,1,1.2,1462.7
+geonames-all,500000,sel 0.01%,50,52.6,41371.8
+geonames-all,500000,sel 0.1%,500,547.3,130829.1
+geonames-all,500000,sel 1%,5000,5164.1,413717.9
+geonames-all,1000000,sel 0.0001%,1,1.2,2068.6
+geonames-all,1000000,sel 0.01%,100,106.2,41371.8
+geonames-all,1000000,sel 0.1%,1000,1095.4,130829.1
+geonames-all,1000000,sel 1%,10000,10341.9,413717.9
+geonames-all,5000000,sel 0.0001%,5,5.4,2068.6
+geonames-all,5000000,sel 0.01%,500,544.5,41371.8
+geonames-all,5000000,sel 0.1%,5000,5378.2,130829.1
+geonames-all,5000000,sel 1%,50000,53718.7,413717.9
+geonames-all,13000000,sel 0.0001%,13,14.2,2068.6
+geonames-all,13000000,sel 0.01%,1300,1380.4,41371.8
+geonames-all,13000000,sel 0.1%,13000,13993.6,130829.1
+geonames-all,13000000,sel 1%,130000,131671.0,413717.9

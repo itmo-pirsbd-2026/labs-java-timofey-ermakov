@@ -447,6 +447,7 @@ SEL_DATASETS = [
     ("taxi", "NYC Taxi (кластерный)"),
     ("poi", "NYC OSM POI (распределённый)"),
     ("geonames", "GeoNames cities500 (мировые города)"),
+    ("geonames-all", "GeoNames allCountries (мировые города)"),
 ]
 
 
