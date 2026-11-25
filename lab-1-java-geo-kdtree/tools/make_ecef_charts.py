@@ -427,6 +427,88 @@ def chart_realdata_2x2():
     print("realdata 2x2 panel written")
 
 
+SEL_PANELS = [
+    ("knn k=10", "kNN, k = 10"),
+    ("knn k=100", "kNN, k = 100"),
+    ("sel 0.0001%", "Radius, селективность 0.0001%"),
+    ("sel 0.01%", "Radius, селективность 0.01%"),
+    ("sel 0.1%", "Radius, селективность 0.1%"),
+    ("sel 1%", "Radius, селективность 1%"),
+]
+SEL_IMPLS = [
+    ("v6", "LatLong", {"color": "#d62728", "linestyle": "-"}),
+    ("v7", "ECEF", {"color": "#9467bd", "linestyle": "-"}),
+    ("s2", "Google S2", {"color": "#2ca02c", "linestyle": "--"}),
+    ("lucene", "Lucene LatLonPoint", {"color": "#17becf", "linestyle": ":"}),
+]
+SEL_DATASETS = [
+    ("uniform-bbox", "Равномерный bbox NYC (без кластеров)"),
+    ("taxi", "NYC Taxi (кластерный)"),
+    ("poi", "NYC OSM POI (распределённый)"),
+    ("geonames", "GeoNames cities500 (мировые города)"),
+]
+
+
+def chart_selectivity():
+    """TUM-methodology panels: throughput vs N for kNN k=10/100 and radius queries
+    whose per-query radius is adapted to a fixed output selectivity."""
+    raw_files = sorted(GRID.glob("selectivity-raw-*.csv"))
+    if not raw_files:
+        return
+    out = CHARTS / "selectivity"
+    out.mkdir(parents=True, exist_ok=True)
+
+    # {(dataset, panel, impl): {n: [ops/s per rep]}}
+    cells: dict = {}
+    for raw in raw_files:
+        with raw.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                key = (r["dataset"], r["panel"], r["impl"])
+                ops = int(r["nq"]) / (int(r["total_ns"]) / 1e9)
+                cells.setdefault(key, {}).setdefault(int(r["n"]), []).append(ops)
+
+    for ds, ds_title in SEL_DATASETS:
+        if not any(key[0] == ds for key in cells):
+            continue
+        fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+        for ax, (panel, title) in zip(axes.flat, SEL_PANELS):
+            for impl, label, style in SEL_IMPLS:
+                series = cells.get((ds, panel, impl))
+                if not series:
+                    continue
+                xs = sorted(series)
+                means, los, his = [], [], []
+                for n in xs:
+                    mean, half = ci95(series[n])
+                    means.append(mean)
+                    los.append(half)
+                    his.append(half)
+                ax.plot(xs, means, marker="o", markersize=3.5, label=label,
+                        linewidth=1.8, **style)
+                ax.fill_between(xs, [m - l for m, l in zip(means, los)],
+                                [m + h for m, h in zip(means, his)],
+                                color=style["color"], alpha=0.15, linewidth=0)
+            ax.set_xscale("log")
+            ax.set_yscale("log")
+            ax.set_title(title, fontsize=11)
+            ax.set_xlabel("число точек в индексе, N")
+            ax.set_ylabel("throughput, ops/s")
+        handles, labels = axes.flat[0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=10,
+                   bbox_to_anchor=(0.5, 0.0))
+        fig.suptitle(f"{ds_title}\nметодология Pandey et al. (2021), "
+                     f"doi:10.1007/s41019-020-00147-9: радиус подобран под селективность, "
+                     f"запросы равномерные (geonames: по данным), {REPS_TXT} прогонов, ±95% ДИ",
+                     fontsize=12)
+        fig.tight_layout(rect=(0, 0.05, 1, 0.96))
+        fig.savefig(out / f"{ds}-2x3.png")
+        plt.close(fig)
+    print("selectivity panels written")
+
+
+REPS_TXT = "5"
+
+
 def chart_tenm():
     """Single shared 2x2 panel for the 10M-point grid: LatLong / ECEF / S2."""
     if not (GRID / "tenm-knn.txt").exists():
@@ -489,6 +571,7 @@ def main() -> int:
     chart_nodecost()
     chart_realdata()
     chart_realdata_2x2()
+    chart_selectivity()
     chart_tenm()
     print(f"charts written to {CHARTS}")
     return 0
