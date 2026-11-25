@@ -98,6 +98,30 @@ public final class GeoKdTreeIndex {
         return results;
     }
 
+    /**
+     * Number of indexed points within {@code radiusMeters}, computed without
+     * materializing results; counting stops once it exceeds {@code cap} (the return
+     * value is then {@code cap + 1}). Intended for selectivity estimation, where only
+     * "at most cap hits" matters.
+     */
+    public int countRadius(double latitude, double longitude, double radiusMeters, int cap) {
+        validateCoordinate(latitude, longitude);
+        if (radiusMeters < 0) {
+            throw new IllegalArgumentException("Radius must be non-negative.");
+        }
+
+        if (root == null) {
+            return 0;
+        }
+
+        var q = new double[3];
+        toEcef(latitude, longitude, q);
+        var chordSqThreshold = chordSqFromMeters(radiusMeters);
+        var count = new int[1];
+        countRadiusCore(root, q, latitude, longitude, chordSqThreshold, cap, count);
+        return count[0];
+    }
+
     /** The {@code k} nearest indexed points, ordered by distance then id. */
     public List<GeoSearchResult> searchKNearest(double latitude, double longitude, int k) {
         validateCoordinate(latitude, longitude);
@@ -237,6 +261,46 @@ public final class GeoKdTreeIndex {
         var bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
         if (bound <= chordSqThreshold) {
             searchRadiusCore(farBranch, q, queryLat, queryLng, chordSqThreshold, results);
+        }
+    }
+
+    private static void countRadiusCore(
+            Node node,
+            double[] q,
+            double queryLat,
+            double queryLng,
+            double chordSqThreshold,
+            int cap,
+            int[] count) {
+        if (count[0] > cap) {
+            return;
+        }
+        if (PROFILING_COUNT_NODES) {
+            PROFILING_VISITED_NODES++;
+        }
+
+        var chordSq = chordSq(q, node);
+        if (chordSq <= chordSqThreshold) {
+            count[0]++;
+        }
+
+        var splitByLatitude = node.depth % SPLIT_AXIS_MODULUS == 0;
+        var queryAxis = splitByLatitude ? queryLat : queryLng;
+        var splitAxis = splitByLatitude ? node.point.latitude() : node.point.longitude();
+        var nearBranch = queryAxis < splitAxis ? node.left : node.right;
+        var farBranch = queryAxis < splitAxis ? node.right : node.left;
+
+        if (nearBranch != null && count[0] <= cap) {
+            countRadiusCore(nearBranch, q, queryLat, queryLng, chordSqThreshold, cap, count);
+        }
+
+        if (farBranch == null || count[0] > cap) {
+            return;
+        }
+
+        var bound = axisLowerBoundChordSq(node, splitByLatitude, q, queryLat, queryLng);
+        if (bound <= chordSqThreshold) {
+            countRadiusCore(farBranch, q, queryLat, queryLng, chordSqThreshold, cap, count);
         }
     }
 
