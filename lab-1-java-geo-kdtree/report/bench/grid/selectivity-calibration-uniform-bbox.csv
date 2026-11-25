@@ -1,0 +1,21 @@
+dataset,n,panel,m,mean_hits,median_radius_m
+uniform-bbox,100000,sel 0.0001%,1,1.2,100.2
+uniform-bbox,100000,sel 0.01%,10,9.7,316.9
+uniform-bbox,100000,sel 0.1%,100,99.6,1016.1
+uniform-bbox,100000,sel 1%,1000,968.1,3216.1
+uniform-bbox,500000,sel 0.0001%,1,1.2,46.4
+uniform-bbox,500000,sel 0.01%,50,50.1,324.8
+uniform-bbox,500000,sel 0.1%,500,499.6,1027.3
+uniform-bbox,500000,sel 1%,5000,4878.1,3253.2
+uniform-bbox,1000000,sel 0.0001%,1,1.2,32.2
+uniform-bbox,1000000,sel 0.01%,100,100.4,324.3
+uniform-bbox,1000000,sel 0.1%,1000,995.9,1026.1
+uniform-bbox,1000000,sel 1%,10000,9753.9,3250.7
+uniform-bbox,5000000,sel 0.0001%,5,4.7,31.2
+uniform-bbox,5000000,sel 0.01%,500,500.4,320.6
+uniform-bbox,5000000,sel 0.1%,5000,4941.7,1014.0
+uniform-bbox,5000000,sel 1%,50000,48434.7,3213.4
+uniform-bbox,10000000,sel 0.0001%,10,9.7,31.8
+uniform-bbox,10000000,sel 0.01%,1000,992.8,320.6
+uniform-bbox,10000000,sel 0.1%,10000,9829.1,1014.0
+uniform-bbox,10000000,sel 1%,100000,96049.3,3216.1

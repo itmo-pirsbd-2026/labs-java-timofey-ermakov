@@ -1,0 +1,9 @@
+dataset,n,panel,m,mean_hits,median_radius_m
+geonames,50000,sel 0.0001%,1,1.1,2312.8
+geonames,50000,sel 0.01%,5,5.4,20685.9
+geonames,50000,sel 0.1%,50,52.5,65414.5
+geonames,50000,sel 1%,500,557.5,413717.9
+geonames,200000,sel 0.0001%,1,1.1,1156.4
+geonames,200000,sel 0.01%,20,20.9,20685.9
+geonames,200000,sel 0.1%,200,217.5,65414.5
+geonames,200000,sel 1%,2000,2227.7,413717.9
