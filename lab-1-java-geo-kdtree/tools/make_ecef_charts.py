@@ -20,6 +20,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from make_charts import Measurement, parse_jmh  # noqa: E402
@@ -430,10 +431,10 @@ def chart_realdata_2x2():
 SEL_PANELS = [
     ("knn k=10", "kNN, k = 10"),
     ("knn k=100", "kNN, k = 100"),
-    ("sel 0.0001%", "Radius, селективность 0.0001%"),
-    ("sel 0.01%", "Radius, селективность 0.01%"),
-    ("sel 0.1%", "Radius, селективность 0.1%"),
-    ("sel 1%", "Radius, селективность 1%"),
+    ("sel 0.0001%", "Radius, доля выдачи 0.0001%"),
+    ("sel 0.01%", "Radius, доля выдачи 0.01%"),
+    ("sel 0.1%", "Radius, доля выдачи 0.1%"),
+    ("sel 1%", "Radius, доля выдачи 1%"),
 ]
 SEL_IMPLS = [
     ("v6", "LatLong", {"color": "#d62728", "linestyle": "-"}),
@@ -497,7 +498,7 @@ def chart_selectivity():
         fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=10,
                    bbox_to_anchor=(0.5, 0.0))
         fig.suptitle(f"{ds_title}\nметодология Pandey et al. (2021), "
-                     f"doi:10.1007/s41019-020-00147-9: радиус подобран под селективность, "
+                     f"doi:10.1007/s41019-020-00147-9: радиус подобран под долю выдачи, "
                      f"запросы равномерные (geonames: по данным), {REPS_TXT} прогонов, ±95% ДИ",
                      fontsize=12)
         fig.tight_layout(rect=(0, 0.05, 1, 0.96))
@@ -507,6 +508,58 @@ def chart_selectivity():
 
 
 REPS_TXT = "5"
+
+
+def chart_dataset_distribution():
+    """2x2 scatter of the four selectivity-benchmark datasets (sampled ~30k points)."""
+    data_dir = ROOT / ".bench-collection/data"
+    if not data_dir.exists():
+        return
+    out = CHARTS / "selectivity"
+    out.mkdir(parents=True, exist_ok=True)
+    rng = np.random.default_rng(42)
+    n_show = 30_000
+
+    panels = []
+    lat = 40.45 + 0.5 * rng.random(n_show)
+    lng = -74.30 + 0.7 * rng.random(n_show)
+    panels.append(("uniform-bbox: генератор, N до 10 млн", lat, lng))
+
+    taxi = np.loadtxt(data_dir / "taxi-nyc.csv", delimiter=",", max_rows=2_000_000)
+    idx = rng.choice(len(taxi), min(n_show, len(taxi)), replace=False)
+    panels.append(("New York Taxi: выборка из 1.5 млн, сетка до 7.9 млн",
+                   taxi[idx, 0], taxi[idx, 1]))
+
+    poi = np.loadtxt(data_dir / "nyc-poi.csv", delimiter=",", max_rows=1_000_000)
+    idx = rng.choice(len(poi), min(n_show, len(poi)), replace=False)
+    panels.append(("OSM POI NYC: 870 тыс. точек", poi[idx, 0], poi[idx, 1]))
+
+    geo_lat, geo_lng = [], []
+    with (data_dir / "cities500.txt").open(encoding="utf-8") as fh:
+        for line in fh:
+            parts = line.split("\t")
+            if len(parts) < 6:
+                continue
+            try:
+                geo_lat.append(float(parts[4]))
+                geo_lng.append(float(parts[5]))
+            except ValueError:
+                continue
+    idx = rng.choice(len(geo_lat), min(n_show, len(geo_lat)), replace=False)
+    panels.append(("GeoNames cities500: 230 тыс. городов мира",
+                   np.array(geo_lat)[idx], np.array(geo_lng)[idx]))
+
+    fig, axes = plt.subplots(2, 2, figsize=(13, 10))
+    for ax, (title, la, ln) in zip(axes.flat, panels):
+        ax.scatter(ln, la, s=0.3, alpha=0.4, linewidths=0)
+        ax.set_title(title, fontsize=11)
+        ax.set_xlabel("долгота")
+        ax.set_ylabel("широта")
+    fig.suptitle("Распределение точек по наборам данных (выборка ~30 тыс. точек на панель)")
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
+    fig.savefig(out / "datasets-distribution.png")
+    plt.close(fig)
+    print("distribution chart written")
 
 
 def chart_tenm():
