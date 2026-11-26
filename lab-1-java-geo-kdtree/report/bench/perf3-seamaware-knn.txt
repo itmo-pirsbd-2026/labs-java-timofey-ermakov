@@ -1,0 +1,21 @@
+Benchmark                                                   (k)    (n)   Mode  Cnt       Score      Error   Units
+GeoKdTreeKnnBenchmarks.queryFullScanKnn                       1  21544  thrpt   20     474.357 ±   22.274   ops/s
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.alloc.rate         1  21544  thrpt   20      94.256 ±    4.445  MB/sec
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.alloc.rate.norm    1  21544  thrpt   20  208495.018 ± 1709.833    B/op
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.count              1  21544  thrpt   20       7.000             counts
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.time               1  21544  thrpt   20      22.000                 ms
+GeoKdTreeKnnBenchmarks.queryFullScanKnn                      20  21544  thrpt   20     518.221 ±   11.216   ops/s
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.alloc.rate        20  21544  thrpt   20     105.269 ±    4.101  MB/sec
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.alloc.rate.norm   20  21544  thrpt   20  213053.955 ± 3931.512    B/op
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.count             20  21544  thrpt   20       8.000             counts
+GeoKdTreeKnnBenchmarks.queryFullScanKnn:gc.time              20  21544  thrpt   20      33.000                 ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         1  21544  thrpt   20   71549.882 ± 1572.421   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           1  21544  thrpt   20     263.365 ±    5.721  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      1  21544  thrpt   20    3862.069 ±    4.380    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                1  21544  thrpt   20      18.000             counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 1  21544  thrpt   20      34.000                 ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                        20  21544  thrpt   20   16690.305 ±  454.024   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate          20  21544  thrpt   20      97.078 ±    2.629  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm     20  21544  thrpt   20    6103.291 ±   14.150    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count               20  21544  thrpt   20       7.000             counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                20  21544  thrpt   20      26.000                 ms

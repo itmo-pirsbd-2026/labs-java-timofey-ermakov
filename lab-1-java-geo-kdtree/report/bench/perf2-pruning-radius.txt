@@ -1,0 +1,19 @@
+Benchmark                                                           (n)  (radiusMeters)   Mode  Cnt      Score     Error   Units
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                     21544             100  thrpt   20    890.602 ±   9.566   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate       21544             100  thrpt   20      0.013 ±   0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm  21544             100  thrpt   20     15.031 ±   0.454    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count            21544             100  thrpt   20        ≈ 0            counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                     21544            5000  thrpt   20    888.489 ±  15.335   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate       21544            5000  thrpt   20      0.013 ±   0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm  21544            5000  thrpt   20     15.082 ±   0.428    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count            21544            5000  thrpt   20        ≈ 0            counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                       21544             100  thrpt   20  17920.073 ± 461.383   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate         21544             100  thrpt   20      2.609 ±   0.067  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm    21544             100  thrpt   20    152.765 ±   0.023    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count              21544             100  thrpt   20      1.000            counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time               21544             100  thrpt   20      5.000                ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                       21544            5000  thrpt   20  17523.214 ± 406.706   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate         21544            5000  thrpt   20      2.552 ±   0.059  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm    21544            5000  thrpt   20    152.782 ±   0.023    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count              21544            5000  thrpt   20      1.000            counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time               21544            5000  thrpt   20      5.000                ms

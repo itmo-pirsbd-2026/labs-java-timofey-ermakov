@@ -1,0 +1,361 @@
+Benchmark                                                     (k)       (n)   Mode  Cnt       Score       Error   Units
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10       100  thrpt   40  236895.872 ±  7899.735   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10       100  thrpt   40     133.026 ±     4.439  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10       100  thrpt   40     589.177 ±     0.002    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10       100  thrpt   40      19.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10       100  thrpt   40      20.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10       200  thrpt   40  167419.687 ±  5377.199   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10       200  thrpt   40     105.625 ±     3.390  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10       200  thrpt   40     662.037 ±     0.004    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10       200  thrpt   40      15.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10       200  thrpt   40      24.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10       500  thrpt   40  129668.014 ±  4884.632   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10       500  thrpt   40      89.638 ±     3.381  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10       500  thrpt   40     725.396 ±     0.007    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10       500  thrpt   40      13.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10       500  thrpt   40      27.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10      1000  thrpt   40  109974.237 ±  9229.642   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10      1000  thrpt   40      80.738 ±     6.780  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10      1000  thrpt   40     770.436 ±     0.015    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10      1000  thrpt   40      12.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10      1000  thrpt   40      33.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10      2500  thrpt   40  107526.017 ±  1895.000   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10      2500  thrpt   40      85.363 ±     1.505  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10      2500  thrpt   40     833.075 ±     0.007    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10      2500  thrpt   40      12.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10      2500  thrpt   40      34.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10      5000  thrpt   40   73282.574 ± 13702.038   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10      5000  thrpt   40      60.358 ±    11.295  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10      5000  thrpt   40     864.656 ±     0.047    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10      5000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10      5000  thrpt   40      22.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10     10000  thrpt   40   85213.995 ±  3137.549   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10     10000  thrpt   40      80.499 ±     2.959  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10     10000  thrpt   40     991.652 ±     0.012    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10     10000  thrpt   40      12.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10     10000  thrpt   40      46.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10     20000  thrpt   40   69241.562 ±  5012.647   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10     20000  thrpt   40      69.744 ±     5.049  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10     20000  thrpt   40    1056.895 ±     0.017    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10     20000  thrpt   40      10.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10     20000  thrpt   40      63.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10     35000  thrpt   40   68894.243 ±  3126.402   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10     35000  thrpt   40      77.934 ±     3.537  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10     35000  thrpt   40    1186.873 ±     0.020    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10     35000  thrpt   40      11.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10     35000  thrpt   40      43.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10     50000  thrpt   40   59491.413 ±  2207.594   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10     50000  thrpt   40      71.379 ±     2.649  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10     50000  thrpt   40    1258.929 ±     0.046    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10     50000  thrpt   40      11.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10     50000  thrpt   40      42.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10     75000  thrpt   40   51060.721 ±  2304.887   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10     75000  thrpt   40      63.182 ±     2.850  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10     75000  thrpt   40    1298.336 ±     0.032    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10     75000  thrpt   40      10.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10     75000  thrpt   40      46.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10    100000  thrpt   40   53836.928 ±  2223.250   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10    100000  thrpt   40      68.974 ±     2.849  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10    100000  thrpt   40    1344.244 ±     0.047    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10    100000  thrpt   40      10.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10    100000  thrpt   40      68.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10    250000  thrpt   40   39527.868 ±  2618.676   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10    250000  thrpt   40      56.084 ±     3.719  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10    250000  thrpt   40    1488.792 ±     0.057    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10    250000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10    250000  thrpt   40      31.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10    500000  thrpt   40   37216.736 ±  1639.995   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10    500000  thrpt   40      56.849 ±     2.504  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10    500000  thrpt   40    1602.716 ±     0.071    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10    500000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10    500000  thrpt   40       6.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10   1000000  thrpt   40   34741.094 ±  1401.352   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10   1000000  thrpt   40      57.062 ±     2.301  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10   1000000  thrpt   40    1723.372 ±     0.136    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10   1000000  thrpt   40      15.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10   1000000  thrpt   40      12.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10   2500000  thrpt   40   30224.849 ±  1210.799   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10   2500000  thrpt   40      52.486 ±     2.102  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10   2500000  thrpt   40    1821.988 ±     0.103    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10   2500000  thrpt   40       9.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10   2500000  thrpt   40       9.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10   5000000  thrpt   40   25721.246 ±  1203.516   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10   5000000  thrpt   40      47.600 ±     2.227  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10   5000000  thrpt   40    1941.813 ±     0.092    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10   5000000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10   5000000  thrpt   40       8.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                      10  10000000  thrpt   40   23167.929 ±   898.210   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate        10  10000000  thrpt   40      44.803 ±     1.737  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm   10  10000000  thrpt   40    2029.039 ±     0.077    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count             10  10000000  thrpt   40       1.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time              10  10000000  thrpt   40       2.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100       100  thrpt   40   39033.022 ±   936.929   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100       100  thrpt   40     130.070 ±     3.123  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100       100  thrpt   40    3496.355 ±     0.009    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100       100  thrpt   40      18.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100       100  thrpt   40      20.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100       200  thrpt   40   24106.867 ±   522.534   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100       200  thrpt   40      98.843 ±     2.147  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100       200  thrpt   40    4302.095 ±     0.053    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100       200  thrpt   40      14.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100       200  thrpt   40      19.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100       500  thrpt   40   17705.852 ±   476.997   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100       500  thrpt   40      83.262 ±     2.245  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100       500  thrpt   40    4934.060 ±     0.119    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100       500  thrpt   40      12.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100       500  thrpt   40      19.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100      1000  thrpt   40   15393.184 ±   354.013   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100      1000  thrpt   40      77.806 ±     1.791  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100      1000  thrpt   40    5303.690 ±     0.173    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100      1000  thrpt   40      11.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100      1000  thrpt   40      19.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100      2500  thrpt   40   13998.889 ±   407.341   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100      2500  thrpt   40      74.392 ±     2.166  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100      2500  thrpt   40    5575.755 ±     0.583    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100      2500  thrpt   40      11.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100      2500  thrpt   40      20.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100      5000  thrpt   40   13214.422 ±   216.041   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100      5000  thrpt   40      71.845 ±     1.173  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100      5000  thrpt   40    5704.557 ±     0.251    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100      5000  thrpt   40      10.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100      5000  thrpt   40      19.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100     10000  thrpt   40   12159.747 ±   303.378   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100     10000  thrpt   40      70.157 ±     1.751  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100     10000  thrpt   40    6053.826 ±     0.567    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100     10000  thrpt   40      10.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100     10000  thrpt   40      21.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100     20000  thrpt   40   11388.550 ±   425.787   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100     20000  thrpt   40      66.183 ±     2.477  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100     20000  thrpt   40    6098.072 ±     0.268    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100     20000  thrpt   40       9.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100     20000  thrpt   40      26.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100     35000  thrpt   40   10296.907 ±   129.859   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100     35000  thrpt   40      62.381 ±     0.789  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100     35000  thrpt   40    6356.281 ±     0.611    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100     35000  thrpt   40       9.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100     35000  thrpt   40      41.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100     50000  thrpt   40   10142.081 ±   166.592   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100     50000  thrpt   40      62.037 ±     1.017  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100     50000  thrpt   40    6418.038 ±     0.796    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100     50000  thrpt   40       9.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100     50000  thrpt   40      35.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100     75000  thrpt   40    9528.846 ±   231.828   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100     75000  thrpt   40      59.346 ±     1.438  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100     75000  thrpt   40    6534.907 ±     1.225    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100     75000  thrpt   40       9.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100     75000  thrpt   40      44.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100    100000  thrpt   40    9176.171 ±   166.367   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100    100000  thrpt   40      57.342 ±     1.045  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100    100000  thrpt   40    6556.341 ±     1.718    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100    100000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100    100000  thrpt   40      40.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100    250000  thrpt   40    7613.177 ±   478.974   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100    250000  thrpt   40      50.424 ±     3.174  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100    250000  thrpt   40    6949.131 ±     1.201    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100    250000  thrpt   40       7.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100    250000  thrpt   40      23.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100    500000  thrpt   40    7518.360 ±   178.947   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100    500000  thrpt   40      50.095 ±     1.194  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100    500000  thrpt   40    6991.494 ±     1.260    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100    500000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100    500000  thrpt   40       5.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100   1000000  thrpt   40    7088.527 ±   174.411   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100   1000000  thrpt   40      48.360 ±     1.193  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100   1000000  thrpt   40    7158.166 ±     1.089    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100   1000000  thrpt   40      15.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100   1000000  thrpt   40      12.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100   2500000  thrpt   40    5967.695 ±   525.185   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100   2500000  thrpt   40      42.781 ±     3.766  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100   2500000  thrpt   40    7522.387 ±     1.533    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100   2500000  thrpt   40       8.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100   2500000  thrpt   40       8.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100   5000000  thrpt   40    5499.801 ±   360.588   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100   5000000  thrpt   40      41.075 ±     2.696  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100   5000000  thrpt   40    7837.399 ±     0.767    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100   5000000  thrpt   40       5.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100   5000000  thrpt   40       7.000                  ms
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn                     100  10000000  thrpt   40    5864.275 ±   112.829   ops/s
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate       100  10000000  thrpt   40      45.938 ±     0.896  MB/sec
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.alloc.rate.norm  100  10000000  thrpt   40    8218.927 ±     2.105    B/op
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.count            100  10000000  thrpt   40       2.000              counts
+GeoGeodesicKnnBenchmarks.queryGeodesicKnn:gc.time             100  10000000  thrpt   40       9.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10       100  thrpt   40  101611.630 ± 38299.830   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10       100  thrpt   40      52.503 ±    19.836  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10       100  thrpt   40     544.465 ±     0.538    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10       100  thrpt   40       8.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10       100  thrpt   40      11.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10       200  thrpt   40  273698.573 ± 86561.906   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10       200  thrpt   40     141.861 ±    44.887  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10       200  thrpt   40     544.314 ±     0.699    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10       200  thrpt   40      20.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10       200  thrpt   40      38.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10       500  thrpt   40  413050.256 ±  7468.437   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10       500  thrpt   40     214.135 ±     3.881  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10       500  thrpt   40     544.033 ±     0.001    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10       500  thrpt   40      31.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10       500  thrpt   40      32.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10      1000  thrpt   40  483301.127 ± 41061.637   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10      1000  thrpt   40     250.606 ±    21.295  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10      1000  thrpt   40     544.029 ±     0.003    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10      1000  thrpt   40      35.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10      1000  thrpt   40      34.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10      2500  thrpt   40  340304.336 ± 24053.804   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10      2500  thrpt   40     176.415 ±    12.491  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10      2500  thrpt   40     544.041 ±     0.002    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10      2500  thrpt   40      25.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10      2500  thrpt   40      25.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10      5000  thrpt   40  317956.289 ±  9162.015   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10      5000  thrpt   40     164.837 ±     4.751  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10      5000  thrpt   40     544.044 ±     0.002    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10      5000  thrpt   40      24.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10      5000  thrpt   40      44.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10     10000  thrpt   40  181752.813 ±  9728.097   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10     10000  thrpt   40      94.239 ±     5.044  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10     10000  thrpt   40     544.076 ±     0.005    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10     10000  thrpt   40      13.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10     10000  thrpt   40      57.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10     20000  thrpt   40  217374.016 ±  9678.573   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10     20000  thrpt   40     112.689 ±     5.020  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10     20000  thrpt   40     544.063 ±     0.003    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10     20000  thrpt   40      16.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10     20000  thrpt   40      50.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10     35000  thrpt   40  248254.170 ± 26930.388   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10     35000  thrpt   40     128.729 ±    13.966  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10     35000  thrpt   40     544.058 ±     0.008    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10     35000  thrpt   40      18.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10     35000  thrpt   40      49.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10     50000  thrpt   40  260772.255 ± 12701.937   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10     50000  thrpt   40     135.227 ±     6.587  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10     50000  thrpt   40     544.054 ±     0.003    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10     50000  thrpt   40      19.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10     50000  thrpt   40      24.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10     75000  thrpt   40  213708.117 ± 17814.143   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10     75000  thrpt   40     110.817 ±     9.239  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10     75000  thrpt   40     544.066 ±     0.006    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10     75000  thrpt   40      16.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10     75000  thrpt   40      31.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10    100000  thrpt   40  185270.480 ± 27477.426   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10    100000  thrpt   40      96.072 ±    14.250  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10    100000  thrpt   40     544.080 ±     0.011    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10    100000  thrpt   40      13.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10    100000  thrpt   40      10.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10    250000  thrpt   40   91965.272 ±  4763.872   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10    250000  thrpt   40      47.694 ±     2.472  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10    250000  thrpt   40     544.150 ±     0.008    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10    250000  thrpt   40       7.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10    250000  thrpt   40       5.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10    500000  thrpt   40   78355.596 ±  5409.136   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10    500000  thrpt   40      40.632 ±     2.806  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10    500000  thrpt   40     544.177 ±     0.012    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10    500000  thrpt   40       4.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10    500000  thrpt   40       4.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10   1000000  thrpt   40  132271.823 ±  8780.463   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10   1000000  thrpt   40      68.595 ±     4.554  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10   1000000  thrpt   40     544.106 ±     0.010    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10   1000000  thrpt   40       6.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10   1000000  thrpt   40      12.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10   2500000  thrpt   40  115642.788 ±  9227.058   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10   2500000  thrpt   40      59.966 ±     4.785  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10   2500000  thrpt   40     544.122 ±     0.012    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10   2500000  thrpt   40       4.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10   2500000  thrpt   40      18.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10   5000000  thrpt   40   72563.061 ±  3053.532   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10   5000000  thrpt   40      37.632 ±     1.583  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10   5000000  thrpt   40     544.189 ±     0.008    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10   5000000  thrpt   40       2.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10   5000000  thrpt   40      43.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                          10  10000000  thrpt   40   94514.281 ± 18164.479   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate            10  10000000  thrpt   40      49.015 ±     9.419  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm       10  10000000  thrpt   40     544.163 ±     0.031    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                 10  10000000  thrpt   40       3.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                  10  10000000  thrpt   40      34.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100       100  thrpt   40   79473.179 ±  3209.753   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100       100  thrpt   40     339.907 ±    13.731  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100       100  thrpt   40    4488.174 ±     0.008    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100       100  thrpt   40      48.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100       100  thrpt   40      35.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100       200  thrpt   40   47357.026 ±  1185.334   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100       200  thrpt   40     202.576 ±     5.074  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100       200  thrpt   40    4488.292 ±     0.007    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100       200  thrpt   40      28.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100       200  thrpt   40      23.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100       500  thrpt   40   38798.635 ±   780.315   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100       500  thrpt   40     165.973 ±     3.339  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100       500  thrpt   40    4488.358 ±     0.007    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100       500  thrpt   40      23.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100       500  thrpt   40      21.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100      1000  thrpt   40   36860.234 ±   764.869   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100      1000  thrpt   40     157.687 ±     3.272  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100      1000  thrpt   40    4488.376 ±     0.009    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100      1000  thrpt   40      22.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100      1000  thrpt   40      22.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100      2500  thrpt   40   35016.413 ±   601.921   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100      2500  thrpt   40     149.802 ±     2.573  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100      2500  thrpt   40    4488.395 ±     0.007    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100      2500  thrpt   40      21.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100      2500  thrpt   40      21.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100      5000  thrpt   40   33348.395 ±   681.864   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100      5000  thrpt   40     142.658 ±     2.916  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100      5000  thrpt   40    4488.416 ±     0.009    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100      5000  thrpt   40      20.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100      5000  thrpt   40      22.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100     10000  thrpt   40   19992.736 ±  1381.074   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100     10000  thrpt   40      85.529 ±     5.909  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100     10000  thrpt   40    4488.692 ±     0.045    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100     10000  thrpt   40      12.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100     10000  thrpt   40      32.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100     20000  thrpt   40   25019.169 ±   970.829   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100     20000  thrpt   40     107.037 ±     4.154  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100     20000  thrpt   40    4488.553 ±     0.021    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100     20000  thrpt   40      15.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100     20000  thrpt   40      44.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100     35000  thrpt   40   24123.822 ±   597.800   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100     35000  thrpt   40     103.206 ±     2.557  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100     35000  thrpt   40    4488.572 ±     0.015    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100     35000  thrpt   40      15.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100     35000  thrpt   40      42.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100     50000  thrpt   40   22733.390 ±   460.471   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100     50000  thrpt   40      97.257 ±     1.972  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100     50000  thrpt   40    4488.607 ±     0.013    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100     50000  thrpt   40      14.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100     50000  thrpt   40      24.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100     75000  thrpt   40   19269.055 ±   770.462   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100     75000  thrpt   40      82.434 ±     3.297  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100     75000  thrpt   40    4488.718 ±     0.033    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100     75000  thrpt   40      12.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100     75000  thrpt   40      33.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100    100000  thrpt   40   20225.271 ±   709.843   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100    100000  thrpt   40      86.524 ±     3.038  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100    100000  thrpt   40    4488.683 ±     0.026    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100    100000  thrpt   40      13.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100    100000  thrpt   40      38.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100    250000  thrpt   40   17781.673 ±   404.906   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100    250000  thrpt   40      76.076 ±     1.733  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100    250000  thrpt   40    4488.774 ±     0.019    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100    250000  thrpt   40      11.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100    250000  thrpt   40       8.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100    500000  thrpt   40   16922.097 ±   344.787   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100    500000  thrpt   40      72.396 ±     1.474  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100    500000  thrpt   40    4488.813 ±     0.018    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100    500000  thrpt   40       9.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100    500000  thrpt   40       6.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100   1000000  thrpt   40   17218.018 ±   450.951   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100   1000000  thrpt   40      73.663 ±     1.931  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100   1000000  thrpt   40    4488.799 ±     0.023    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100   1000000  thrpt   40       6.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100   1000000  thrpt   40      14.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100   2500000  thrpt   40   15888.113 ±   593.322   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100   2500000  thrpt   40      67.975 ±     2.538  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100   2500000  thrpt   40    4488.867 ±     0.036    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100   2500000  thrpt   40       3.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100   2500000  thrpt   40      31.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100   5000000  thrpt   40   15504.674 ±   397.969   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100   5000000  thrpt   40      66.334 ±     1.702  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100   5000000  thrpt   40    4488.885 ±     0.024    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100   5000000  thrpt   40       2.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100   5000000  thrpt   40      21.000                  ms
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn                         100  10000000  thrpt   40   15246.278 ±  1168.204   ops/s
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate           100  10000000  thrpt   40      65.225 ±     5.000  MB/sec
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.alloc.rate.norm      100  10000000  thrpt   40    4488.920 ±     0.088    B/op
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.count                100  10000000  thrpt   40       1.000              counts
+GeoKdTreeKnnBenchmarks.queryKdTreeKnn:gc.time                 100  10000000  thrpt   40      26.000                  ms

@@ -1,0 +1,80 @@
+# Лабораторная 1: Geo KD-tree (профилирование и тестирование производительности)
+
+Корневой модуль: библиотека `org.timermakov.geo` (KD-tree). Действующая реализация: ECEF в `GeoKdTreeIndex`. Геодезическая реализация сохранена как `GeoGeodesicKdTreeIndex` для экспериментов. Модуль `:benchmarks` содержит JMH-бенчмарки. Модуль `:profile-runner` запускает tight-loop прогон для профилировщика.
+
+1. Geo KD-tree для точек `Lat/Lng`
+2. Вставка объектов `Insert`
+3. Пространственный поиск:
+   - `searchRadius` (поиск в радиусе)
+   - `searchKNearest` (k ближайших)
+
+## Команды
+
+Из каталога `lab-1-java-geo-kdtree`:
+
+```
+./gradlew build                # сборка + все тесты (включая perf smoke)
+./gradlew test                 # тесты (property: 80 детерминированных кейсов vs full-scan oracle + unit + perf)
+./gradlew :benchmarks:bench    # полный JMH-прогон (warmup 15 x 0.5s, 40 итераций - долго)
+./gradlew :benchmarks:benchPublic   # бенчмарки публичной библиотеки (Smile KDTree на ECEF-3D)
+./gradlew :benchmarks:benchS2       # бенчмарки Google S2 (публичный ориентир)
+./gradlew :benchmarks:benchSmoke    # один быстрый прогон для проверки запуска (HW1_BENCH_SMOKE=1)
+./gradlew :profile-runner:run --args="--mode radius --seconds 120 --n 100000 --radius 1000 --k 20"
+```
+
+## Конфигурация бенчмарков
+
+Все параметры прогонов заданы в [`config/bench.settings.json`](config/bench.settings.json), а не в коде:
+
+| Поле | Значение по умолчанию | Смысл |
+|---|---|---|
+| `nValues` | `[100, 200, 500, 1000, 2500, 5000, 10000, 20000, 35000, 50000, 75000, 100000]` | сетка размеров датасета (аналог `[Params]` в C#) |
+| `kValues` | `[1, 20]` | параметры K для kNN |
+| `radiusValues` | `[100, 5000]` | радиусы для radius-поиска |
+| `launchCount` | `1` | число fork'ов JMH на бенчмарк |
+| `warmupCount` | `15` | итераций warmup |
+| `iterationCount` | `40` | измерительных итераций |
+| `iterationTimeMs` | `500` | длительность одной итерации (паритет с BDN IterationTime) |
+| `gcProfiler` | `true` | JMH gc-профайлер (аналог MemoryDiagnoser) |
+| `resultDir` | `build/jmh-results` | каталог текстовых результатов |
+
+Замеры цикла оптимизаций снимались в двух конфигурациях. Baseline и финальное состояние: warmup 15 + 40 итераций (`config/bench.settings.json`). Промежуточные состояния: warmup 10 + 20 итераций (переопределение `HW1_BENCH_CONFIG`). Переопределения:
+
+- `HW1_BENCH_CONFIG=<путь>`: нестандартный путь к конфигу
+- `HW1_BENCH_SMOKE=1`: smoke-режим (один кейс, без warmup; эквивалент `benchSmoke`)
+
+Методы бенчмарков используют батчи операций (`@OperationsPerInvocation`, аналог `OperationsPerInvoke` в C#). Размер батча: 128 для KD-tree, 16/32 для full-scan baseline. Результаты: `build/jmh-results/geo-kd-tree-knn.txt` и `geo-kd-tree-radius.txt`.
+
+## Профайлинг
+
+Чистый hotpath (`GeoKdTreeIndex`/`GeoDistance`) даёт `:profile-runner:run`:
+
+```
+# radius hotpath
+./gradlew :profile-runner:run --args="--mode radius --seconds 120 --n 100000 --radius 1000"
+
+# kNN hotpath
+./gradlew :profile-runner:run --args="--mode knn --seconds 120 --n 100000 --k 20"
+```
+
+JFR-сборку и рендер флеймграфов делает скрипт [tools/capture-jfr.sh](tools/capture-jfr.sh). Он использует тулинг async-profiler (`jfrconv`). Пути внутри скрипта рассчитаны на эту машину. JFR пишет JVM, конвертацию делает `jfrconv`.
+
+```
+bash tools/capture-jfr.sh radius 30 my-radius-profile   # -> report/profiles/my-radius-profile.{jfr,html,collapsed}
+```
+
+Для attach-профилирования найдите PID процесса `ProfileRunner` через `jps`. Соберите flamegraph флагами `-e cpu -f flamegraph.html`. Артефакты складываются в `report/profiles/`. Каталог создаётся при первом прогоне.
+
+## Baseline и оптимизации
+
+Изначально я перенёс C#-код на Java без оптимизаций. Затем я выполнил цикл оптимизаций: отсечение дальних ветвей по долготе (seam-aware граница), сравнения в a-space без `sqrt`/`asin`, бинарную вставку в best-лист, предвычисление косинусов широт.
+
+Итог на расширенной сетке (N до 100000): ускорение к baseline ×16.4–17.0 для radius и kNN k=1, ×6.6 для kNN k=20. Финал быстрее полного перебора в 570–1075 раз на n=100000. Действующая реализация: ECEF. Подробности и сравнение с C#, Smile и Google S2: [REPORT.md](REPORT.md).
+
+## Отчёты
+
+- [REPORT.md](REPORT.md): итоговый отчёт по лабораторной (результаты, профайлинг, выводы)
+- [baseline.md](baseline.md): анализ baseline-профилей (async-profiler-тулинг по JFR-сборкам) и идеи для оптимизаций
+- `report/profiles/`: JFR-записи, HTML-флеймграфы, collapsed-стеки; `report/profiles/grid/`: по каждому состоянию на расширенной сетке; `report/profiles/images/`: скриншоты
+- `report/bench/`: сырые JMH-результаты; `report/bench/grid/`: замеры по состояниям на расширенной сетке + сводные таблицы
+- `report/charts/`: графики (throughput, speedup, кратности, Java против C#, против Smile), генератор: `tools/make_charts.py`

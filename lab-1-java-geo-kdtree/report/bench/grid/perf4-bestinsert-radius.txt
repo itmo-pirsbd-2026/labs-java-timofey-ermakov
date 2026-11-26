@@ -1,0 +1,213 @@
+Benchmark                                                            (n)  (radiusMeters)   Mode  Cnt       Score       Error   Units
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        100             100  thrpt   20  216848.511 ±  2744.380   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          100             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     100             100  thrpt   20       0.064 ±     0.001    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               100             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        100            5000  thrpt   20  214147.382 ±  3361.609   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          100            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     100            5000  thrpt   20       0.064 ±     0.001    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               100            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        200             100  thrpt   20  107595.887 ±  1838.500   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          200             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     200             100  thrpt   20       0.128 ±     0.002    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               200             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        200            5000  thrpt   20  104762.448 ±  4789.180   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          200            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     200            5000  thrpt   20       0.133 ±     0.007    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               200            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        500             100  thrpt   20   43340.768 ±   475.218   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          500             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     500             100  thrpt   20       0.318 ±     0.003    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               500             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                        500            5000  thrpt   20   42574.901 ±   821.188   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate          500            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm     500            5000  thrpt   20       0.324 ±     0.007    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count               500            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       1000             100  thrpt   20   21342.333 ±   242.544   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         1000             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    1000             100  thrpt   20       0.647 ±     0.008    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              1000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       1000            5000  thrpt   20   20737.589 ±   635.692   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         1000            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    1000            5000  thrpt   20       0.666 ±     0.022    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              1000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       2500             100  thrpt   20    8133.844 ±   195.145   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         2500             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    2500             100  thrpt   20       1.697 ±     0.050    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              2500             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       2500            5000  thrpt   20    8080.358 ±   174.551   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         2500            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    2500            5000  thrpt   20       1.700 ±     0.036    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              2500            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       5000             100  thrpt   20    3982.245 ±   168.800   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         5000             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    5000             100  thrpt   20       3.453 ±     0.158    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              5000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                       5000            5000  thrpt   20    3946.757 ±   128.600   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate         5000            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm    5000            5000  thrpt   20       3.485 ±     0.121    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count              5000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      10000             100  thrpt   20    1969.153 ±    90.350   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        10000             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   10000             100  thrpt   20       6.943 ±     0.346    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             10000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      10000            5000  thrpt   20    2023.667 ±    43.653   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        10000            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   10000            5000  thrpt   20       6.729 ±     0.158    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             10000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      20000             100  thrpt   20     973.552 ±    38.056   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        20000             100  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   20000             100  thrpt   20      13.816 ±     0.640    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             20000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      20000            5000  thrpt   20     997.389 ±    32.753   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        20000            5000  thrpt   20       0.013 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   20000            5000  thrpt   20      13.568 ±     0.476    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             20000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      35000             100  thrpt   20     566.700 ±    24.759   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        35000             100  thrpt   20       0.012 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   35000             100  thrpt   20      22.821 ±     1.071    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             35000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      35000            5000  thrpt   20     577.869 ±     4.049   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        35000            5000  thrpt   20       0.012 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   35000            5000  thrpt   20      22.221 ±     0.927    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             35000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      50000             100  thrpt   20     387.850 ±    14.624   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        50000             100  thrpt   20       0.012 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   50000             100  thrpt   20      32.673 ±     2.191    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             50000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      50000            5000  thrpt   20     408.438 ±     4.211   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        50000            5000  thrpt   20       0.012 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   50000            5000  thrpt   20      30.871 ±     0.038    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             50000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      75000             100  thrpt   20     263.384 ±    10.773   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        75000             100  thrpt   20       0.011 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   75000             100  thrpt   20      45.405 ±     3.885    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             75000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                      75000            5000  thrpt   20     262.063 ±    12.789   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate        75000            5000  thrpt   20       0.011 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm   75000            5000  thrpt   20      45.953 ±     4.166    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count             75000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                     100000             100  thrpt   20     193.578 ±     5.533   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate       100000             100  thrpt   20       0.011 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm  100000             100  thrpt   20      57.600 ±     6.415    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count            100000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius                     100000            5000  thrpt   20     190.729 ±     7.545   ops/s
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate       100000            5000  thrpt   20       0.011 ±     0.001  MB/sec
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.alloc.rate.norm  100000            5000  thrpt   20      61.254 ±     7.848    B/op
+GeoKdTreeRadiusBenchmarks.queryFullScanRadius:gc.count            100000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          100             100  thrpt   20  408706.014 ±  6536.954   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            100             100  thrpt   20      40.530 ±     0.646  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       100             100  thrpt   20     104.034 ±     0.001    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 100             100  thrpt   20       3.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                  100             100  thrpt   20       5.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          100            5000  thrpt   20  382972.609 ± 17887.615   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            100            5000  thrpt   20      37.977 ±     1.774  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       100            5000  thrpt   20     104.036 ±     0.002    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 100            5000  thrpt   20       2.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                  100            5000  thrpt   20       3.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          200             100  thrpt   20  206873.133 ±  3628.065   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            200             100  thrpt   20      20.522 ±     0.360  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       200             100  thrpt   20     104.067 ±     0.001    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 200             100  thrpt   20       2.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                  200             100  thrpt   20       4.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          200            5000  thrpt   20  197853.029 ±  7339.341   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            200            5000  thrpt   20      19.627 ±     0.728  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       200            5000  thrpt   20     104.070 ±     0.003    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 200            5000  thrpt   20       2.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                  200            5000  thrpt   20       4.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          500             100  thrpt   20   85548.880 ±  1783.713   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            500             100  thrpt   20       8.494 ±     0.177  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       500             100  thrpt   20     104.162 ±     0.004    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 500             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                          500            5000  thrpt   20   83929.531 ±  3392.213   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate            500            5000  thrpt   20       8.333 ±     0.336  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm       500            5000  thrpt   20     104.165 ±     0.008    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                 500            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         1000             100  thrpt   20   67590.388 ±   741.476   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           1000             100  thrpt   20       6.713 ±     0.073  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      1000             100  thrpt   20     104.205 ±     0.004    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                1000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 1000             100  thrpt   20       2.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         1000            5000  thrpt   20   65475.774 ±  2437.242   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           1000            5000  thrpt   20       6.504 ±     0.242  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      1000            5000  thrpt   20     104.211 ±     0.009    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                1000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 1000            5000  thrpt   20       2.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         2500             100  thrpt   20   67322.778 ±   799.701   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           2500             100  thrpt   20       6.687 ±     0.079  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      2500             100  thrpt   20     104.206 ±     0.005    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                2500             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 2500             100  thrpt   20       2.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         2500            5000  thrpt   20   66054.394 ±  2359.496   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           2500            5000  thrpt   20       6.561 ±     0.234  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      2500            5000  thrpt   20     104.210 ±     0.008    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                2500            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 2500            5000  thrpt   20       2.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         5000             100  thrpt   20   56532.516 ±   639.354   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           5000             100  thrpt   20       5.617 ±     0.063  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      5000             100  thrpt   20     104.246 ±     0.006    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                5000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 5000             100  thrpt   20       3.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                         5000            5000  thrpt   20   54349.379 ±  1788.922   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate           5000            5000  thrpt   20       5.401 ±     0.177  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm      5000            5000  thrpt   20     104.255 ±     0.010    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count                5000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                 5000            5000  thrpt   20       3.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        10000             100  thrpt   20   52300.181 ±  1859.566   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          10000             100  thrpt   20       6.394 ±     0.227  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     10000             100  thrpt   20     128.265 ±     0.010    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               10000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                10000             100  thrpt   20       4.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        10000            5000  thrpt   20   50830.408 ±  1829.776   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          10000            5000  thrpt   20       6.215 ±     0.223  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     10000            5000  thrpt   20     128.272 ±     0.010    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               10000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                10000            5000  thrpt   20       3.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        20000             100  thrpt   20   51616.005 ±  1096.587   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          20000             100  thrpt   20       7.492 ±     0.159  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     20000             100  thrpt   20     152.267 ±     0.006    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               20000             100  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        20000            5000  thrpt   20   50351.287 ±  1488.523   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          20000            5000  thrpt   20       7.308 ±     0.216  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     20000            5000  thrpt   20     152.275 ±     0.009    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               20000            5000  thrpt   20         ≈ 0              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        35000             100  thrpt   20   50650.677 ±   717.747   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          35000             100  thrpt   20       9.669 ±     0.137  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     35000             100  thrpt   20     200.272 ±     0.004    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               35000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                35000             100  thrpt   20       7.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        35000            5000  thrpt   20   50389.358 ±   871.955   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          35000            5000  thrpt   20       9.619 ±     0.166  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     35000            5000  thrpt   20     200.274 ±     0.006    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               35000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                35000            5000  thrpt   20       6.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        50000             100  thrpt   20   51576.171 ±   692.183   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          50000             100  thrpt   20      12.206 ±     0.163  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     50000             100  thrpt   20     248.267 ±     0.004    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               50000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                50000             100  thrpt   20       4.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        50000            5000  thrpt   20   49595.886 ±   795.024   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          50000            5000  thrpt   20      11.738 ±     0.188  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     50000            5000  thrpt   20     248.278 ±     0.005    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               50000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                50000            5000  thrpt   20       4.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        75000             100  thrpt   20   50629.228 ±   866.203   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          75000             100  thrpt   20      15.456 ±     0.264  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     75000             100  thrpt   20     320.273 ±     0.006    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               75000             100  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                75000             100  thrpt   20       7.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                        75000            5000  thrpt   20   49530.593 ±   455.684   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate          75000            5000  thrpt   20      15.121 ±     0.139  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm     75000            5000  thrpt   20     320.279 ±     0.002    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count               75000            5000  thrpt   20       1.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time                75000            5000  thrpt   20       8.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                       100000             100  thrpt   20   49184.899 ±  1007.661   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate         100000             100  thrpt   20      22.143 ±     0.453  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm    100000             100  thrpt   20     472.280 ±     0.006    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count              100000             100  thrpt   20       2.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time               100000             100  thrpt   20      12.000                  ms
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius                       100000            5000  thrpt   20   48280.198 ±   588.340   ops/s
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate         100000            5000  thrpt   20      21.735 ±     0.265  MB/sec
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.alloc.rate.norm    100000            5000  thrpt   20     472.286 ±     0.004    B/op
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.count              100000            5000  thrpt   20       2.000              counts
+GeoKdTreeRadiusBenchmarks.queryKdTreeRadius:gc.time               100000            5000  thrpt   20      15.000                  ms

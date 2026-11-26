@@ -1,0 +1,181 @@
+Benchmark                                                            (n)  (radiusMeters)   Mode  Cnt       Score     Error   Units
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          100            1000  thrpt   40    6713.944 ±  74.466   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            100            1000  thrpt   40     683.081 ±   7.525  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       100            1000  thrpt   40  106777.066 ±  15.695    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 100            1000  thrpt   40      97.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  100            1000  thrpt   40      60.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          100           50000  thrpt   40    5652.147 ±  80.327   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            100           50000  thrpt   40     744.227 ±  10.638  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       100           50000  thrpt   40  138187.413 ±  19.244    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 100           50000  thrpt   40      71.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  100           50000  thrpt   40      53.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          200            1000  thrpt   40    6628.580 ±  85.324   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            200            1000  thrpt   40     820.978 ±  10.535  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       200            1000  thrpt   40  129988.206 ±  15.524    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 200            1000  thrpt   40      93.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  200            1000  thrpt   40      65.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          200           50000  thrpt   40    5539.750 ±  66.539   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            200           50000  thrpt   40     791.425 ±   9.427  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       200           50000  thrpt   40  149931.599 ±  18.585    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 200           50000  thrpt   40      90.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  200           50000  thrpt   40      62.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          500            1000  thrpt   40    6520.748 ±  44.461   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            500            1000  thrpt   40     674.411 ±   4.562  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       500            1000  thrpt   40  108543.393 ±  16.194    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 500            1000  thrpt   40      77.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  500            1000  thrpt   40      52.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                          500           50000  thrpt   40    5361.247 ±  32.416   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate            500           50000  thrpt   40     656.004 ±   3.902  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm       500           50000  thrpt   40  128410.735 ±  19.226    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                 500           50000  thrpt   40      75.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                  500           50000  thrpt   40      53.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         1000            1000  thrpt   40    6527.869 ±  83.128   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           1000            1000  thrpt   40     682.270 ±   8.621  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      1000            1000  thrpt   40  109682.690 ±  15.312    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                1000            1000  thrpt   40      77.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 1000            1000  thrpt   40      55.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         1000           50000  thrpt   40    4957.311 ±  39.926   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           1000           50000  thrpt   40     613.432 ±   4.852  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      1000           50000  thrpt   40  129864.051 ±  21.058    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                1000           50000  thrpt   40      70.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 1000           50000  thrpt   40      48.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         2500            1000  thrpt   40    6405.742 ±  59.210   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           2500            1000  thrpt   40     698.069 ±   6.360  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      2500            1000  thrpt   40  114364.524 ±  16.157    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                2500            1000  thrpt   40      80.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 2500            1000  thrpt   40      56.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         2500           50000  thrpt   40    4090.869 ±  45.767   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           2500           50000  thrpt   40     524.721 ±   5.913  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      2500           50000  thrpt   40  134615.412 ±  26.565    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                2500           50000  thrpt   40      75.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 2500           50000  thrpt   40      48.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         5000            1000  thrpt   40    6243.070 ±  87.142   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           5000            1000  thrpt   40     725.130 ±  10.239  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      5000            1000  thrpt   40  121895.878 ±  17.964    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                5000            1000  thrpt   40      82.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 5000            1000  thrpt   40      54.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                         5000           50000  thrpt   40    3322.394 ±  26.254   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate           5000           50000  thrpt   40     449.494 ±   3.545  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm      5000           50000  thrpt   40  141983.094 ±  30.346    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count                5000           50000  thrpt   40      66.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                 5000           50000  thrpt   40      43.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        10000            1000  thrpt   40    5353.965 ±  35.345   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          10000            1000  thrpt   40     790.146 ±   5.375  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     10000            1000  thrpt   40  154879.102 ±  20.683    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               10000            1000  thrpt   40      75.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                10000            1000  thrpt   40      54.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        10000           50000  thrpt   40    3857.447 ±  29.399   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          10000           50000  thrpt   40     512.818 ±   3.839  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     10000           50000  thrpt   40  139518.826 ±  26.962    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               10000           50000  thrpt   40      75.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                10000           50000  thrpt   40      50.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        20000            1000  thrpt   40    5663.625 ± 106.532   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          20000            1000  thrpt   40     799.342 ±  15.302  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     20000            1000  thrpt   40  148120.783 ±  28.965    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               20000            1000  thrpt   40      62.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                20000            1000  thrpt   40      50.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        20000           50000  thrpt   40    3306.887 ±  46.465   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          20000           50000  thrpt   40     473.552 ±   6.679  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     20000           50000  thrpt   40  150284.777 ±  31.994    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               20000           50000  thrpt   40      55.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                20000           50000  thrpt   40      38.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        35000            1000  thrpt   40    4956.225 ±  73.064   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          35000            1000  thrpt   40     753.208 ±  11.001  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     35000            1000  thrpt   40  159487.621 ±  21.648    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               35000            1000  thrpt   40      58.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                35000            1000  thrpt   40      44.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        35000           50000  thrpt   40    3544.380 ±  67.404   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          35000           50000  thrpt   40     478.856 ±   9.011  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     35000           50000  thrpt   40  141786.325 ±  42.946    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               35000           50000  thrpt   40      47.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                35000           50000  thrpt   40      32.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        50000            1000  thrpt   40    4841.697 ±  90.888   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          50000            1000  thrpt   40     724.649 ±  13.660  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     50000            1000  thrpt   40  157068.717 ±  36.191    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               50000            1000  thrpt   40      57.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                50000            1000  thrpt   40      44.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        50000           50000  thrpt   40    3548.155 ±  26.461   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          50000           50000  thrpt   40     460.637 ±   3.446  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     50000           50000  thrpt   40  136262.516 ±  34.222    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               50000           50000  thrpt   40      53.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                50000           50000  thrpt   40      35.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        75000            1000  thrpt   40    5000.209 ±  37.454   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          75000            1000  thrpt   40     783.796 ±   5.928  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     75000            1000  thrpt   40  164513.912 ±  22.043    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               75000            1000  thrpt   40      61.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                75000            1000  thrpt   40      48.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                        75000           50000  thrpt   40    3510.851 ±  69.050   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate          75000           50000  thrpt   40     495.221 ±   9.739  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm     75000           50000  thrpt   40  148027.125 ±  45.150    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count               75000           50000  thrpt   40      48.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time                75000           50000  thrpt   40      35.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       100000            1000  thrpt   40    4986.589 ±  42.245   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         100000            1000  thrpt   40     753.206 ±   6.413  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    100000            1000  thrpt   40  158512.132 ±  28.919    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              100000            1000  thrpt   40      58.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               100000            1000  thrpt   40      45.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       100000           50000  thrpt   40    3537.953 ±  43.314   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         100000           50000  thrpt   40     471.534 ±   5.840  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    100000           50000  thrpt   40  139871.631 ±  30.024    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              100000           50000  thrpt   40      46.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               100000           50000  thrpt   40      32.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       250000            1000  thrpt   40    4711.387 ±  73.664   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         250000            1000  thrpt   40     734.516 ±  11.387  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    250000            1000  thrpt   40  163614.894 ±  28.082    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              250000            1000  thrpt   40     105.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               250000            1000  thrpt   40      71.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       250000           50000  thrpt   40    3563.031 ±  40.297   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         250000           50000  thrpt   40     580.719 ±   6.688  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    250000           50000  thrpt   40  171069.704 ±  30.336    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              250000           50000  thrpt   40      85.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               250000           50000  thrpt   40      56.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       500000            1000  thrpt   40    4608.968 ±  69.526   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         500000            1000  thrpt   40     724.157 ±  10.767  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    500000            1000  thrpt   40  164901.154 ±  56.225    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              500000            1000  thrpt   40      83.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               500000            1000  thrpt   40      56.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                       500000           50000  thrpt   40    3480.862 ±  38.649   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate         500000           50000  thrpt   40     682.767 ±   7.569  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm    500000           50000  thrpt   40  205853.019 ±  30.398    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count              500000           50000  thrpt   40      79.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time               500000           50000  thrpt   40      57.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      1000000            1000  thrpt   40    4683.935 ±  46.296   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        1000000            1000  thrpt   40     742.593 ±   7.099  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   1000000            1000  thrpt   40  166385.896 ±  30.264    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             1000000            1000  thrpt   40      61.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              1000000            1000  thrpt   40      48.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      1000000           50000  thrpt   40    3328.091 ±  33.989   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        1000000           50000  thrpt   40     598.684 ±   5.972  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   1000000           50000  thrpt   40  188780.842 ±  66.825    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             1000000           50000  thrpt   40      46.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              1000000           50000  thrpt   40      39.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      2500000            1000  thrpt   40    4347.932 ±  29.985   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        2500000            1000  thrpt   40     904.441 ±   5.983  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   2500000            1000  thrpt   40  218313.130 ±  31.605    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             2500000            1000  thrpt   40      44.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              2500000            1000  thrpt   40      41.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      2500000           50000  thrpt   40    2805.347 ±  39.467   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        2500000           50000  thrpt   40    1850.229 ±  26.374  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   2500000           50000  thrpt   40  692223.403 ±  79.665    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             2500000           50000  thrpt   40      59.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              2500000           50000  thrpt   40      58.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      5000000            1000  thrpt   40    3577.258 ± 112.071   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        5000000            1000  thrpt   40    1054.524 ±  32.820  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   5000000            1000  thrpt   40  309416.119 ±  37.394    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             5000000            1000  thrpt   40      45.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              5000000            1000  thrpt   40      72.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                      5000000           50000  thrpt   40    2540.103 ±  64.172   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate        5000000           50000  thrpt   40     786.246 ±  19.801  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm   5000000           50000  thrpt   40  324879.128 ±  56.781    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count             5000000           50000  thrpt   40      62.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time              5000000           50000  thrpt   40      73.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                     10000000            1000  thrpt   40    2686.013 ± 140.258   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate       10000000            1000  thrpt   40    1285.107 ±  66.839  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm  10000000            1000  thrpt   40  502190.397 ±  59.167    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count            10000000            1000  thrpt   40      63.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time             10000000            1000  thrpt   40      76.000                ms
+GeoLuceneRadiusBenchmarks.queryLuceneRadius                     10000000           50000  thrpt   40    2019.556 ±  90.404   ops/s
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate       10000000           50000  thrpt   40    1000.994 ±  45.123  MB/sec
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.alloc.rate.norm  10000000           50000  thrpt   40  520177.376 ±  65.835    B/op
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.count            10000000           50000  thrpt   40      52.000            counts
+GeoLuceneRadiusBenchmarks.queryLuceneRadius:gc.time             10000000           50000  thrpt   40      82.000                ms

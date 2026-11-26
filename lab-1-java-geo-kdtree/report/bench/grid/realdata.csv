@@ -1,0 +1,11 @@
+dataset,query,v6_us,v7_us,smile_us,s2_us
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=100,17.72,8.89,5.88,0.00
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=1000,1039.71,661.74,368.53,0.00
+"NYC Taxi pickups (clustered, TUM paper dataset)",radius r=5000,20024.45,13447.05,8691.11,0.00
+"NYC Taxi pickups (clustered, TUM paper dataset)",kNN k=1,9.24,4.34,2.14,0.00
+"NYC Taxi pickups (clustered, TUM paper dataset)",kNN k=20,210.27,162.45,264.96,0.00
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=100,12.28,8.63,3.91,431.15
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=1000,365.18,277.72,107.28,621.50
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",radius r=5000,6422.16,4848.71,1930.48,5785.88
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",kNN k=1,635.18,550.08,278.44,403.12
+"NYC OSM POIs (well distributed, proxy for TUM Twitter dataset)",kNN k=20,1221.91,880.66,580.07,442.01

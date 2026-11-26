@@ -1,0 +1,217 @@
+package org.timermakov.geo;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.within;
+
+/**
+ * Property-based tests ported from the C# FsCheck suite: tree queries must match an
+ * independent full-scan oracle. Deterministic replacement for [Property(MaxTest = 40)].
+ */
+class GeoGeodesicKdTreeIndexPropertyTests {
+
+    /** Number of randomized cases per property — mirrors FsCheck MaxTest = 40. */
+    private static final int PROPERTY_CASES = 40;
+
+    /** Base seed for per-case generators (fixed so failures are reproducible). */
+    private static final long PROPERTY_BASE_SEED = 42L;
+
+    /** Upper bound of the generated raw value arrays (>= 2 * max point count of any property). */
+    private static final int MAX_RAW_VALUES_LENGTH = 1_200;
+
+    private static final int RADIUS_PROPERTY_MAX_POINTS = 300;
+    private static final int KNN_PROPERTY_MAX_POINTS = 350;
+
+    private static final int BASE_RADIUS_METERS = 5_000;
+    private static final int RADIUS_MULTIPLIER = 97;
+    private static final int RADIUS_MODULUS = 150_000;
+
+    private static final int K_FRACTION = 20;
+    private static final int K_LIMIT = 50;
+
+    private static final double DISTANCE_TOLERANCE_METERS = 1e-6;
+
+    private static final double NORM_LAT_MIN = -89.9;
+    private static final double NORM_LAT_MAX = 89.9;
+    private static final double NORM_LNG_MIN = -179.9;
+    private static final double NORM_LNG_MAX = 179.9;
+
+    /** (double) uint.MaxValue — span of the int random values used by the normalizer. */
+    private static final double INT_VALUE_SPAN = 4294967295.0;
+
+    private static final double MOSCOW_LATITUDE = 55.7558;
+    private static final double MOSCOW_LONGITUDE = 37.6176;
+    private static final double SAINT_PETERSBURG_LATITUDE = 59.9343;
+    private static final double SAINT_PETERSBURG_LONGITUDE = 30.3351;
+    private static final double SAMPLE_RADIUS_METERS = 1_000;
+    private static final int SAMPLE_K = 10;
+
+    /** Oracle ordering: by distance, ties by id — independent of the index comparators. */
+    private static final Comparator<GeoSearchResult> EXPECTED_ORDER =
+            Comparator.comparingDouble(GeoSearchResult::distanceMeters)
+                    .thenComparing(result -> result.point().id());
+
+    static Stream<int[]> randomRawValues() {
+        return IntStream.rangeClosed(1, PROPERTY_CASES)
+                .mapToObj(caseIndex -> {
+                    var random = new Random(PROPERTY_BASE_SEED + caseIndex);
+                    var length = random.nextInt(MAX_RAW_VALUES_LENGTH + 1);
+                    var values = new int[length];
+                    for (var i = 0; i < length; i++) {
+                        values[i] = random.nextInt();
+                    }
+                    return values;
+                });
+    }
+
+    @ParameterizedTest
+    @MethodSource("randomRawValues")
+    void radiusQueryMatchesFullScan(int[] rawValues) {
+        var points = buildPoints(rawValues, RADIUS_PROPERTY_MAX_POINTS);
+        if (points.isEmpty()) {
+            return;
+        }
+
+        GeoGeodesicKdTreeIndex index = buildIndex(points);
+        var query = points.get(points.size() / 2);
+        var radiusMeters = BASE_RADIUS_METERS + ((points.size() * RADIUS_MULTIPLIER) % RADIUS_MODULUS);
+
+        var actual = index.searchRadius(query.latitude(), query.longitude(), radiusMeters);
+        var expected = fullScanRadius(points, query.latitude(), query.longitude(), radiusMeters);
+        assertEquivalent(expected, actual);
+    }
+
+    @ParameterizedTest
+    @MethodSource("randomRawValues")
+    void knnQueryMatchesFullScan(int[] rawValues) {
+        var points = buildPoints(rawValues, KNN_PROPERTY_MAX_POINTS);
+        if (points.isEmpty()) {
+            return;
+        }
+
+        GeoGeodesicKdTreeIndex index = buildIndex(points);
+        var query = points.get(points.size() / 3);
+        var k = Math.clamp(points.size() / K_FRACTION + 1, 1, Math.min(K_LIMIT, points.size()));
+
+        var actual = index.searchKNearest(query.latitude(), query.longitude(), k);
+        var expected = fullScanKnn(points, query.latitude(), query.longitude(), k);
+        assertEquivalent(expected, actual);
+    }
+
+    @Test
+    void insertDuplicateIdThrows() {
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
+        index.insert(new GeoPoint("dup", MOSCOW_LATITUDE, MOSCOW_LONGITUDE));
+
+        assertThatThrownBy(() -> index.insert(
+                new GeoPoint("dup", SAINT_PETERSBURG_LATITUDE, SAINT_PETERSBURG_LONGITUDE)))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void emptyIndexReturnsEmptyResults() {
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
+
+        assertThat(index.searchRadius(MOSCOW_LATITUDE, MOSCOW_LONGITUDE, SAMPLE_RADIUS_METERS)).isEmpty();
+        assertThat(index.searchKNearest(MOSCOW_LATITUDE, MOSCOW_LONGITUDE, SAMPLE_K)).isEmpty();
+    }
+
+    private static GeoGeodesicKdTreeIndex buildIndex(List<GeoPoint> points) {
+        GeoGeodesicKdTreeIndex index = new GeoGeodesicKdTreeIndex();
+        for (var point : points) {
+            index.insert(point);
+        }
+
+        return index;
+    }
+
+    private static List<GeoPoint> buildPoints(int[] rawValues, int maxCount) {
+        var limit = Math.min(maxCount, rawValues.length / 2);
+        var points = new ArrayList<GeoPoint>(limit);
+        for (var i = 0; i < limit; i++) {
+            var latRaw = rawValues[i * 2];
+            var lngRaw = rawValues[i * 2 + 1];
+            var lat = normalize(latRaw, NORM_LAT_MIN, NORM_LAT_MAX);
+            var lng = normalize(lngRaw, NORM_LNG_MIN, NORM_LNG_MAX);
+            points.add(new GeoPoint("p-" + i, lat, lng));
+        }
+
+        return points;
+    }
+
+    private static List<GeoSearchResult> fullScanRadius(
+            List<GeoPoint> points,
+            double queryLat,
+            double queryLng,
+            double radiusMeters) {
+        return points.stream()
+                .map(point -> new GeoSearchResult(
+                        point, haversineMeters(queryLat, queryLng, point.latitude(), point.longitude())))
+                .filter(result -> result.distanceMeters() <= radiusMeters)
+                .sorted(EXPECTED_ORDER)
+                .toList();
+    }
+
+    private static List<GeoSearchResult> fullScanKnn(
+            List<GeoPoint> points,
+            double queryLat,
+            double queryLng,
+            int k) {
+        return points.stream()
+                .map(point -> new GeoSearchResult(
+                        point, haversineMeters(queryLat, queryLng, point.latitude(), point.longitude())))
+                .sorted(EXPECTED_ORDER)
+                .limit(k)
+                .toList();
+    }
+
+    private static void assertEquivalent(List<GeoSearchResult> expected, List<GeoSearchResult> actual) {
+        assertThat(actual).hasSize(expected.size());
+        for (var i = 0; i < expected.size(); i++) {
+            assertThat(actual.get(i).point().id())
+                    .hasSize(expected.get(i).point().id().length())
+                    .isEqualTo(expected.get(i).point().id());
+            assertThat(actual.get(i).distanceMeters())
+                    .isCloseTo(expected.get(i).distanceMeters(), within(DISTANCE_TOLERANCE_METERS));
+        }
+    }
+
+    private static double normalize(int value, double min, double max) {
+        var unit = (value - (double) Integer.MIN_VALUE) / INT_VALUE_SPAN;
+        return min + (max - min) * unit;
+    }
+
+    // Independent re-implementation of the haversine metric (mirrors the C# tests):
+    // keeps the full-scan oracle decoupled from the library's GeoDistance.
+
+    /** Mean Earth radius in meters used by the oracle metric. */
+    private static final double ORACLE_EARTH_RADIUS_METERS = 6_371_000.0;
+
+    private static double haversineMeters(double lat1, double lng1, double lat2, double lng2) {
+        var dLat = degreesToRadians(lat2 - lat1);
+        var dLng = degreesToRadians(lng2 - lng1);
+        var rLat1 = degreesToRadians(lat1);
+        var rLat2 = degreesToRadians(lat2);
+
+        var sinLat = Math.sin(dLat / 2);
+        var sinLng = Math.sin(dLng / 2);
+        var a = sinLat * sinLat + Math.cos(rLat1) * Math.cos(rLat2) * sinLng * sinLng;
+        var c = 2 * Math.asin(Math.min(1.0, Math.sqrt(a)));
+        return ORACLE_EARTH_RADIUS_METERS * c;
+    }
+
+    private static double degreesToRadians(double value) {
+        return value * (Math.PI / 180.0);
+    }
+}

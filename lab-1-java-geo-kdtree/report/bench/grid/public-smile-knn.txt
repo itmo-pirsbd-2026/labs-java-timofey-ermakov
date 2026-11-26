@@ -1,0 +1,121 @@
+Benchmark                                                     (k)     (n)   Mode  Cnt         Score        Error   Units
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1     100  thrpt   40  18653667.482 ± 585958.350   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1     100  thrpt   40      2986.898 ±     93.814  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1     100  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1     100  thrpt   40       210.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1     100  thrpt   40       157.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1     200  thrpt   40  18320176.318 ± 146736.434   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1     200  thrpt   40      2933.493 ±     23.657  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1     200  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1     200  thrpt   40       205.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1     200  thrpt   40       138.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1     500  thrpt   40  15341560.349 ± 104472.688   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1     500  thrpt   40      2456.234 ±     16.687  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1     500  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1     500  thrpt   40       184.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1     500  thrpt   40       119.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1    1000  thrpt   40  13599471.506 ± 237875.058   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1    1000  thrpt   40      2177.484 ±     38.053  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1    1000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1    1000  thrpt   40       159.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1    1000  thrpt   40       110.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1    2500  thrpt   40  12872413.520 ± 233846.909   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1    2500  thrpt   40      2061.339 ±     37.467  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1    2500  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1    2500  thrpt   40       153.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1    2500  thrpt   40       104.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1    5000  thrpt   40  11887403.081 ± 272722.487   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1    5000  thrpt   40      1903.504 ±     43.667  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1    5000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1    5000  thrpt   40       138.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1    5000  thrpt   40       102.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1   10000  thrpt   40  11247815.095 ± 192028.115   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1   10000  thrpt   40      1801.074 ±     30.761  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1   10000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1   10000  thrpt   40       138.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1   10000  thrpt   40        95.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1   20000  thrpt   40  10661330.284 ± 170058.464   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1   20000  thrpt   40      1707.143 ±     27.297  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1   20000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1   20000  thrpt   40       116.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1   20000  thrpt   40        85.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1   35000  thrpt   40  10972333.936 ± 183466.545   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1   35000  thrpt   40      1756.985 ±     29.381  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1   35000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1   35000  thrpt   40       117.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1   35000  thrpt   40        84.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1   50000  thrpt   40   9837591.561 ± 184539.380   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1   50000  thrpt   40      1575.374 ±     29.549  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1   50000  thrpt   40       168.001 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1   50000  thrpt   40       100.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1   50000  thrpt   40        72.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1   75000  thrpt   40   8927801.111 ± 154617.107   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1   75000  thrpt   40      1429.634 ±     24.743  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1   75000  thrpt   40       168.002 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1   75000  thrpt   40       105.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1   75000  thrpt   40        72.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                       1  100000  thrpt   40   7245952.121 ± 129207.863   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate         1  100000  thrpt   40      1160.191 ±     20.650  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm    1  100000  thrpt   40       168.002 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count              1  100000  thrpt   40        85.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time               1  100000  thrpt   40        58.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20     100  thrpt   40    821629.706 ±  12569.320   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20     100  thrpt   40      1259.270 ±     19.255  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20     100  thrpt   40      1608.017 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20     100  thrpt   40       116.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20     100  thrpt   40        71.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20     200  thrpt   40    791163.567 ±  11450.101   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20     200  thrpt   40      1212.678 ±     17.540  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20     200  thrpt   40      1608.018 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20     200  thrpt   40       111.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20     200  thrpt   40        68.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20     500  thrpt   40    681745.402 ±  10447.394   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20     500  thrpt   40      1044.941 ±     16.012  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20     500  thrpt   40      1608.020 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20     500  thrpt   40       142.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20     500  thrpt   40        76.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20    1000  thrpt   40    584936.279 ±   7462.006   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20    1000  thrpt   40       896.514 ±     11.416  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20    1000  thrpt   40      1608.024 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20    1000  thrpt   40       100.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20    1000  thrpt   40        58.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20    2500  thrpt   40    658456.772 ±   9520.324   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20    2500  thrpt   40      1009.243 ±     14.582  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20    2500  thrpt   40      1608.021 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20    2500  thrpt   40       112.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20    2500  thrpt   40        65.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20    5000  thrpt   40    558278.395 ±  12843.602   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20    5000  thrpt   40       855.719 ±     19.689  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20    5000  thrpt   40      1608.025 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20    5000  thrpt   40        96.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20    5000  thrpt   40        56.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20   10000  thrpt   40    645191.877 ±  12843.904   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20   10000  thrpt   40       988.954 ±     19.688  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20   10000  thrpt   40      1608.022 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20   10000  thrpt   40        91.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20   10000  thrpt   40        56.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20   20000  thrpt   40    701670.964 ±  13440.924   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20   20000  thrpt   40      1075.475 ±     20.583  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20   20000  thrpt   40      1608.020 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20   20000  thrpt   40        99.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20   20000  thrpt   40        60.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20   35000  thrpt   40    686437.536 ±  12900.133   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20   35000  thrpt   40      1052.080 ±     19.762  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20   35000  thrpt   40      1608.020 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20   35000  thrpt   40        80.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20   35000  thrpt   40        53.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20   50000  thrpt   40    698422.500 ±  14262.430   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20   50000  thrpt   40      1070.551 ±     21.875  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20   50000  thrpt   40      1608.020 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20   50000  thrpt   40        82.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20   50000  thrpt   40        56.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20   75000  thrpt   40    637740.107 ±  13588.089   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20   75000  thrpt   40       977.497 ±     20.843  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20   75000  thrpt   40      1608.022 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20   75000  thrpt   40        74.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20   75000  thrpt   40        50.000                   ms
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn                      20  100000  thrpt   40    620643.906 ±  12862.924   ops/s
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate        20  100000  thrpt   40       951.246 ±     19.714  MB/sec
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.alloc.rate.norm   20  100000  thrpt   40      1608.023 ±      0.001    B/op
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.count             20  100000  thrpt   40        73.000               counts
+GeoKdTreeSmileKnnBenchmarks.querySmileKnn:gc.time              20  100000  thrpt   40        50.000                   ms
